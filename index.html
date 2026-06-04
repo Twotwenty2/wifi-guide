@@ -205,6 +205,8 @@
 
   /* Note hint */
   .login-note { font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 12px; padding: 0 16px; line-height: 1.4; }
+
+  @keyframes fadeReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -539,7 +541,7 @@ const BRANDS = [
       {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
       {t:'Go to Admin Page', d:'Type this address into your browser.', code:'linksyssmartwifi.com', mockup:{type:'login',data:{url:'linksyssmartwifi.com',title:'Linksys Smart WiFi',userLabel:'Username',passLabel:'Password'}}},
       {t:'Navigate to WiFi', d:'Tap WiFi in the left sidebar, then WiFi Settings.', code:null, mockup:null},
-      {t:'Change Channel', d:'Set Channel Selection to your chosen free channel. Click OK.', code:null, mockup:{type:'channel',data:{url:'linksyssmartwifi.com',section:'2.4 GHz Network',field:'Channel',saveBtn:'Apply'}}}
+      {t:'Change Channel', d:'Set Channel Selection to your chosen free channel. Click OK.', code:null, mockup:{type:'channel',data:{url:'linksyssmartwifi.com',section:'WiFi Settings',field:'Channel Selection',saveBtn:'Apply'}}}
     ], affiliates:['linksys_mx5','netspot'] },
 
   { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-bg)', icon:'G',
@@ -551,7 +553,7 @@ const BRANDS = [
       {t:'Channel Setting', d:'Google Nest auto-manages channels. Overrides may appear here if available.', code:null, mockup:null}
     ], affiliates:['eero_pro6','netspot'] },
 
-  { id:'att', name:'AT&T BGW', color:'var(--orange)', bg(--orange-bg)', icon:'AT',
+  { id:'att', name:'AT&T BGW', color:'var(--orange)', bg:'var(--orange-bg)', icon:'AT',
     adminUrl:'192.168.1.254', user:null, pass:'Access Code', app:null,
     steps:[
       searchEmptyStep,
