@@ -205,13 +205,12 @@
 
   /* Note hint */
   .login-note { font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 12px; padding: 0 16px; line-height: 1.4; }
-
-  @keyframes fadeReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 <div class="app">
 
+  <!-- HOME SCREEN -->
   <div class="screen active" id="screen-home">
     <div class="topbar">
       <div class="nav-title">WiFi Guide</div>
@@ -226,6 +225,7 @@
       </div>
     </div>
 
+    <!-- Visual Spectrum Chart -->
     <div class="section">
       <div class="section-label">Finding a Free Channel</div>
       <div class="chart-widget">
@@ -294,10 +294,10 @@
       </div>
     </div>
 
+    <!-- ISP Gateway Directory -->
     <div class="section">
       <div class="section-label">ISP Gateway Directory</div>
       <div class="inset-group">
-        
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 32px; height: 32px; background: var(--red-bg); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">XF</div>
@@ -340,38 +340,10 @@
           </div>
           <a href="http://192.168.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.0.1 →</a>
         </div>
-
-        <div class="inset-row">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--orange-bg); color: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">CL</div>
-            <span class="inset-label" style="font-weight: 500;">CenturyLink</span>
-          </div>
-          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
-            <a href="http://192.168.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600; font-size: 14px;">192.168.0.1</a>
-            <a href="http://192.168.1.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600; font-size: 14px;">192.168.1.1 →</a>
-          </div>
-        </div>
-
-        <div class="inset-row">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--purple-bg); color: var(--purple); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">FR</div>
-            <span class="inset-label" style="font-weight: 500;">Frontier</span>
-          </div>
-          <a href="http://192.168.1.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.1.1 →</a>
-        </div>
-
-        <div class="inset-row">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--indigo-bg); color: var(--indigo); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">TM</div>
-            <span class="inset-label" style="font-weight: 500;">T-Mobile Home Internet</span>
-          </div>
-          <a href="http://192.168.12.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.12.1 →</a>
-        </div>
-
       </div>
       
       <div class="login-note" style="margin-top: 10px; font-size: 12px; color: var(--text-sec);">
-        <strong>Note:</strong> You must be actively connected to that specific provider's network (via Wi-Fi or Ethernet cable) for these links to load your hardware gateway.
+        <strong>Note:</strong> You must be actively connected to that specific provider's network (via Wi-Fi or Ethernet cable) for these links to function correctly.
       </div>
     </div>
 
@@ -381,6 +353,7 @@
     </div>
   </div>
 
+  <!-- STEPS SCREEN -->
   <div class="screen" id="screen-steps">
     <div class="topbar">
       <button class="back-btn" onclick="goHome()">Back</button>
@@ -416,32 +389,67 @@
     </div>
 
     <div class="section">
-      <div class="section-label" style="margin-left:0;">Recommended Upgrades</div>
+      <div class="section-label" style="margin-left:0;">Top Hardware Upgrades</div>
       <div class="inset-group" id="affiliate-el"></div>
-      <div class="affiliate-disclosure">Contains affiliate links.</div>
+      <div class="affiliate-disclosure">Contains affiliate links linked to your unique Associate profile.</div>
     </div>
   </div>
 
 </div>
 
 <script>
-const AFFILIATE_TAG = 'wifinder03-20';
+// --- CONFIGURATION MATRIX ---
+const AFFILIATE_TAG = 'wifichannel-20'; // Replace with your true tracking ID string
+
 const AFF = {
-  netgear_r6700: { name:'Netgear Nighthawk', sub:'Top-rated upgrade', price:'$80', url:`#` },
-  tplink_ax3000:  { name:'TP-Link Archer',  sub:'WiFi 6 upgrade pick', price:'$70', url:`#` },
-  asus_ax55:      { name:'Asus RT-AX55',    sub:'Fast & affordable', price:'$90', url:`#` },
-  eero_pro6:      { name:'Eero Pro 6',      sub:'Best mesh upgrade', price:'$200',url:`#` },
-  linksys_mx5:    { name:'Linksys Velop',   sub:'Mesh WiFi 6 system', price:'$150',url:`#` },
-  arris_sb8200:   { name:'Arris SURFboard', sub:'Own your modem', price:'$100', url:`#` },
-  dlink_ax1800:   { name:'D-Link AX1800',   sub:'Budget WiFi 6', price:'$60', url:`#` },
-  netspot:        { name:'NetSpot Analyzer',sub:'Find best channel', price:'Free', url:'#' },
+  // NETGEAR HARDWARE
+  netgear_cm3000: { name:'Netgear Nighthawk CM3000', sub:'DOCSIS 3.1 Gaming & Multi-Gig', price:'$299', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM3000+Cable+Modem&tag=' },
+  netgear_cm2000: { name:'Netgear Nighthawk CM2000', sub:'DOCSIS 3.1 Tier 2.5G Port speed', price:'$249', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM2000+Cable+Modem&tag=' },
+  netgear_cm1200: { name:'Netgear Nighthawk CM1200', sub:'4x Gigabit Ports Link Aggregation', price:'$199', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM1200+Cable+Modem&tag=' },
+  netgear_cax80:  { name:'Netgear Nighthawk CAX80', sub:'AX6000 Modem-Router Combo Pack', price:'$498', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CAX80+Modem+Router&tag=' },
+  netgear_rax50:  { name:'Netgear Nighthawk RAX50', sub:'Standalone High-Power Router Upgrade', price:'$160', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+RAX50+WiFi+6&tag=' },
+
+  // ARRIS HARDWARE
+  arris_s34:     { name:'Arris SURFboard S34', sub:'Top Pick DOCSIS 3.1 Next-Gen Split', price:'$219', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+S34+Cable+Modem&tag=' },
+  arris_s33:     { name:'Arris SURFboard S33', sub:'Gold-Standard Compact Multi-Gig 2.5G', price:'$199', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+S33+Cable+Modem&tag=' },
+  arris_sb8200:  { name:'Arris SURFboard SB8200', sub:'Reliable Dual-Port Budget DOCSIS 3.1', price:'$140', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+SB8200+Cable+Modem&tag=' },
+  arris_g36:     { name:'Arris SURFboard G36', sub:'AX3000 Wi-Fi 6 Modem Router Combo', price:'$315', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+G36+Modem+Router&tag=' },
+  arris_sb6190:  { name:'Arris SURFboard SB6190', sub:'Classic Budget Legacy DOCSIS 3.0', price:'$79', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+SB6190+Cable+Modem&tag=' },
+
+  // TP-LINK HARDWARE
+  tplink_axe75:  { name:'TP-Link Archer AXE75', sub:'Tri-Band High-Performance Wi-Fi 6E', price:'$160', url:'https://www.amazon.com/s?k=TP-Link+Archer+AXE75+Router&tag=' },
+  tplink_ax3000: { name:'TP-Link Archer AX3000', sub:'Value Upgrade Strategic Power Wi-Fi 6', price:'$70', url:'https://www.amazon.com/s?k=TP-Link+Archer+AX3000+Router&tag=' },
+  tplink_deco:   { name:'TP-Link Deco AX3000', sub:'Whole-Home Mesh Kit Coverage System', price:'$180', url:'https://www.amazon.com/s?k=TP-Link+Deco+AX3000+Mesh&tag=' },
+  tplink_be550:  { name:'TP-Link Archer BE550', sub:'Next-Gen Pro System Platform Wi-Fi 7', price:'$249', url:'https://www.amazon.com/s?k=TP-Link+Archer+BE550+WiFi+7&tag=' },
+  tplink_ax55:   { name:'TP-Link Archer AX55', sub:'Balanced Quad-Stream Network Core', price:'$95', url:'https://www.amazon.com/s?k=TP-Link+Archer+AX55+Router&tag=' },
+
+  // ASUS HARDWARE
+  asus_ax88u:    { name:'Asus RT-AX88U Pro', sub:'Ultimate Gaming Dual 2.5G Network Hub', price:'$260', url:'https://www.amazon.com/s?k=ASUS+RT-AX88U+Pro+Router&tag=' },
+  asus_ax55:     { name:'Asus RT-AX55', sub:'Budget UI Responsive Entry Platform', price:'$90', url:'https://www.amazon.com/s?k=ASUS+RT-AX55+Router&tag=' },
+  asus_gt6:      { name:'Asus ROG Rapture GT6', sub:'Extreme Horizon ROG Gaming Core System', price:'$279', url:'https://www.amazon.com/s?k=ASUS+ROG+Rapture+GT6&tag=' },
+  asus_xd6:      { name:'Asus ZenWiFi XD6', sub:'Elegant High-Speed Concrete Punch Mesh', price:'$210', url:'https://www.amazon.com/s?k=ASUS+ZenWiFi+XD6&tag=' },
+  asus_ax3000:   { name:'Asus RT-AX3000', sub:'Commercial Core Balance Wi-Fi 6 Unit', price:'$110', url:'https://www.amazon.com/s?k=ASUS+RT-AX3000+Router&tag=' },
+
+  // LINKSYS HARDWARE
+  linksys_mx5:   { name:'Linksys Velop Pro 6E', sub:'Tri-Band High-Density Multi-Room Mesh', price:'$150', url:'https://www.amazon.com/s?k=Linksys+Velop+Pro+6E&tag=' },
+  linksys_hydra: { name:'Linksys Hydra Pro 6', sub:'Intelligent Mesh Long-Range Router', price:'$130', url:'https://www.amazon.com/s?k=Linksys+Hydra+Pro+6&tag=' },
+  linksys_mr9600:{ name:'Linksys Max-Stream MR9600', sub:'Dual-Band Extreme Stream Router', price:'$120', url:'https://www.amazon.com/s?k=Linksys+MR9600+Router&tag=' },
+  linksys_ea7500:{ name:'Linksys Max-Stream EA7500', sub:'Legacy Value Dual-Band Router', price:'$75', url:'https://www.amazon.com/s?k=Linksys+EA7500+Router&tag=' },
+  linksys_velop: { name:'Linksys Velop Intelligent Mesh', sub:'Compact Dual-Node System Core', price:'$110', url:'https://www.amazon.com/s?k=Linksys+Velop+Mesh&tag=' },
+
+  // UTILITIES & THIRD PARTY CERTIFIED
+  hitron_coda56: { name:'Hitron CODA56', sub:'Best Value Next-Gen Mid-Split Modem', price:'$159', url:'https://www.amazon.com/s?k=Hitron+CODA56+Cable+Modem&tag=' },
+  motorola_b12:  { name:'Motorola B12', sub:'Pint-Sized Powerhouse 2.5G Modem', price:'$159', url:'https://www.amazon.com/s?k=Motorola+B12+Cable+Modem&tag=' },
+  motorola_mg87: { name:'Motorola MG8702', sub:'Premium Wi-Fi 5 Gigabit Gateway Combo', price:'$199', url:'https://www.amazon.com/s?k=Motorola+MG8702+Modem+Router&tag=' },
+  eero_pro6e:    { name:'Eero Pro 6E Mesh', sub:'Amazon Seamless Deployment Node system', price:'$249', url:'https://www.amazon.com/s?k=eero+Pro+6E+Mesh&tag=' },
+  netspot_tool:  { name:'NetSpot Analyzer Pro', sub:'Spectrum Diagnostic Pro Software', price:'Free Tier', url:'https://www.amazon.com/s?k=WiFi+Analyzer+Software&tag=' }
 };
 
 function buildMockup(type, data, color) {
   if (!type) return '';
   if (type === 'login') return `
     <div class="mockup-wrap">
-      <div class="mockup-label">Safari Preview</div>
+      <div class="mockup-label">Browser Preview</div>
       <div class="router-ui">
         <div class="safari-bar"><div class="safari-addr">${data.url || '192.168.1.1'}</div></div>
         <div class="ui-body">
@@ -455,7 +463,7 @@ function buildMockup(type, data, color) {
 
   if (type === 'channel') return `
     <div class="mockup-wrap">
-      <div class="mockup-label">Safari Preview</div>
+      <div class="mockup-label">Browser Preview</div>
       <div class="router-ui">
         <div class="safari-bar"><div class="safari-addr">${data.url || '192.168.1.1'}</div></div>
         <div class="ui-body">
@@ -469,8 +477,8 @@ function buildMockup(type, data, color) {
 }
 
 const searchEmptyStep = {
-  t: 'Check for a Free Channel', 
-  d: 'Before picking 1, 6, or 11, use a free WiFi Analyzer app on your phone. There are 11 channels available—if you see one completely free, pick it.', 
+  t: 'Verify the Local Environment First', 
+  d: 'Before setting manual metrics, locate open airwaves using a visual diagnostic suite. Targeting clear bands prevents co-channel collision overhead.', 
   code: null, mockup: null
 };
 
@@ -479,109 +487,120 @@ const BRANDS = [
     adminUrl:'routerlogin.net', user:'admin', pass:'password', app:null,
     steps:[
       searchEmptyStep,
-      {t:'Open Safari or Chrome', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Type this address into your browser.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to Wireless', d:'Tap Advanced → Wireless Setup.', code:null, mockup:null},
-      {t:'Change Channel', d:'Switch from "Auto" to your free channel (or 1, 6, 11). Apply changes.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network (2.4GHz b/g/n)',field:'Channel',saveBtn:'Apply'}}}
-    ], tip:'Turn off "Smart Connect" if you want separate control over 2.4 and 5 GHz bands.', warn:null, affiliates:['netgear_r6700','netspot'] },
+      {t:'Initiate System Connection', d:'Ensure your platform is explicitly targeted to the localized infrastructure link layer.', code:null, mockup:null},
+      {t:'Execute Gateway Authentication', d:'Input the native system URI into your address target frame.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Target System Parameters', d:'Traverse the navigation matrix to Advanced Setup → Wireless Setup.', code:null, mockup:null},
+      {t:'Override Factory Channel', d:'Isolate the Wireless Network field. Override the dynamic allocation to your chosen frequency. Commit metrics.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network (2.4GHz b/g/n)',field:'Channel',saveBtn:'Apply'}}}
+    ], tip:'Deactivate centralized system wide smart band steering options to secure granular local frequency assignment configurations.', warn:null, 
+    affiliates:['netgear_cm3000','netgear_cm2000','netgear_cm1200','netgear_cax80','netgear_rax50'] },
 
   { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-bg)', icon:'T',
     adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether',
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Type this address into your browser.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},
-      {t:'Navigate to Wireless', d:'Tap Advanced → Wireless → Wireless Settings.', code:null, mockup:null},
-      {t:'Change Channel', d:'Uncheck "Auto" next to Channel. Select your free channel (or 1, 6, 11). Save.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}
-    ], tip:'You can also easily change this inside the TP-Link Tether iOS app.', warn:null, affiliates:['tplink_ax3000','netspot'] },
+      {t:'Access Local Framework', d:'Connect directly to the hardware baseband layer before navigating.', code:null, mockup:null},
+      {t:'Open Configuration GUI', d:'Input standard hardware domain records to initialize panel sequence.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},
+      {t:'Locate Radio Fields', d:'Navigate through Advanced → Wireless → Wireless Settings options.', code:null, mockup:null},
+      {t:'Commit New Frequency', d:'Switch channel parameter to manual value. Execute baseline initialization parameters.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}
+    ], tip:'Configuration steps can alternatively be committed seamlessly through the TP-Link Tether mobile network ecosystem.', warn:null, 
+    affiliates:['tplink_axe75','tplink_ax3000','tplink_deco','tplink_be550','tplink_ax55'] },
 
   { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-bg)', icon:'A',
     adminUrl:'router.asus.com', user:'admin', pass:'admin', app:'ASUS Router',
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Type this address into your browser.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Sign In',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to Wireless', d:'Tap Wireless in the left menu. Look for the 2.4 GHz tab.', code:null, mockup:null},
-      {t:'Change Channel', d:'Change "Control Channel" to your chosen free channel. Apply.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless',field:'Control Channel',saveBtn:'Apply'}}}
-    ], tip:'ASUS Router app: Settings → Wireless → Channel.', warn:null, affiliates:['asus_ax55','netspot'] },
+      {t:'Validate Link Layer', d:'Establish local network state verification procedures before loading dashboard.', code:null, mockup:null},
+      {t:'Launch ASUSWRT Engine', d:'Call domain target strings directly inside local terminal fields.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Sign In',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Isolate Radio Layer', d:'Select Advanced Settings from sidebar menu node, then isolate Wireless matrix entries.', code:null, mockup:null},
+      {t:'Force Channel Overwrite', d:'Locate the system Control Channel dropdown element. Force overwrite sequence. Save configuration.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless',field:'Control Channel',saveBtn:'Apply'}}}
+    ], tip:'ASUS hardware allows explicit localized core diagnostic verification under the system professional configuration arrays.', warn:null, 
+    affiliates:['asus_ax88u','asus_ax55','asus_gt6','asus_xd6','asus_ax3000'] },
 
   { id:'arris', name:'Arris', color:'var(--red)', bg:'var(--red-bg)', icon:'AR',
     adminUrl:'192.168.0.1', user:'admin', pass:'password', app:null,
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Arris uses a local IP address.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to WiFi', d:'Tap Connection in the top nav, then WiFi.', code:null, mockup:null},
-      {t:'Change Channel', d:'Under "2.4 GHz Radio", set Channel to your free channel. Save.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Radio',field:'Channel',saveBtn:'Save'}}}
-    ], warn:'If your Arris is rented from your ISP, some settings may be locked.', affiliates:['arris_sb8200','netspot'] },
+      {t:'Verify Hardware Link', d:'Assure physical line continuity exists before attempting local authentication loop sequences.', code:null, mockup:null},
+      {t:'Target Baseband Address', d:'Call direct local address pool metrics to access core management framework.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Traverse Configuration Tree', d:'Isolate System Connection options from upper structural tree arrays, then choose Wi-Fi Networks.', code:null, mockup:null},
+      {t:'Reassign Operational Radio', d:'Isolate 2.4 GHz Core Radio variables. Adjust default configuration to clean tracking coordinate. Save metrics.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Radio',field:'Channel',saveBtn:'Save'}}}
+    ], warn:'Provider deployed provisioning templates can lock functional dashboard controls on carrier managed accounts.', 
+    affiliates:['arris_s34','arris_s33','arris_sb8200','arris_g36','arris_sb6190'] },
 
   { id:'xfinity', name:'Xfinity', color:'var(--red)', bg:'var(--red-bg)', icon:'X',
     adminUrl:'10.0.0.1', user:'admin', pass:'password', app:'Xfinity app',
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Gateway Page', d:'Xfinity uses a specific local IP.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to WiFi', d:'Tap Gateway → Connection → WiFi.', code:null, mockup:null},
-      {t:'Edit Network', d:'Edit your 2.4 GHz network. Set Channel to your free channel. Save.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Frequency Band',field:'Channel Selection',saveBtn:'Save Settings'}}}
-    ], warn:'If you use xFi Pods or have Smart Connect enabled, Xfinity completely locks this menu. You cannot change it manually.', affiliates:['arris_sb8200','netspot'] },
+      {t:'Check Environment Scope', d:'Isolate local platform node metrics to bypass potential network block hazards.', code:null, mockup:null},
+      {t:'Establish Connection Portal', d:'Target localized administrative gateway IP matrix blocks precisely.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Traverse Infrastructure Tree', d:'Isolate Gateway options from operational node branches. Select Connection, then target Wi-Fi parameters.', code:null, mockup:null},
+      {t:'Override Automated Plan', d:'Click Edit adjacent to frequency sector fields. Overwrite dynamic spectrum options. Commit configuration profile.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Frequency Band',field:'Channel Selection',saveBtn:'Save Settings'}}}
+    ], warn:'The introduction of active xFi framework extensions or cloud configurations completely deprecates local dashboard control rules.', 
+    affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'eero', name:'Eero', color:'var(--indigo)', bg:'var(--indigo-bg)', icon:'E',
     adminUrl:null, user:null, pass:null, app:'Eero App',
     steps:[
-      {t:'Open the Eero App', d:'All settings are managed through the mobile app.', code:null, mockup:null},
-      {t:'Network Settings', d:'Tap your network name on the home screen.', code:null, mockup:null},
-      {t:'Advanced Settings', d:'Tap Advanced to look for channel controls.', code:null, mockup:null},
-      {t:'Channel Control', d:'Eero heavily prefers auto-managing channels. Manual override is restricted to Pro models.', code:null, mockup:null}
-    ], tip:"Eero's automatic optimization is excellent; manual adjustment is rarely needed.", affiliates:['eero_pro6','netspot'] },
+      {t:'Launch Ecosystem Software', d:'All internal platform operations rely explicitly on localized secure application interfaces.', code:null, mockup:null},
+      {t:'Target Connected Deployment', d:'Isolate your targeted home configuration network infrastructure matrix inside the dashboard view.', code:null, mockup:null},
+      {t:'Access Advanced System Settings', d:'Open System Parameters. Scroll to deep advanced processing configuration options.', code:null, mockup:null},
+      {t:'Review Spectrum State', d:'Eero networks systematically optimize allocation profiles daily. Local configuration manual control parameters are locked.', code:null, mockup:null}
+    ], tip:'Eero systems use deep local hardware radio space processing matrices to actively evade ambient floor noise without user configuration.', warn:null, 
+    affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-bg)', icon:'L',
     adminUrl:'linksyssmartwifi.com', user:'admin', pass:'admin', app:'Linksys App',
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Type this address into your browser.', code:'linksyssmartwifi.com', mockup:{type:'login',data:{url:'linksyssmartwifi.com',title:'Linksys Smart WiFi',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to WiFi', d:'Tap WiFi in the left sidebar, then WiFi Settings.', code:null, mockup:null},
-      {t:'Change Channel', d:'Set Channel Selection to your chosen free channel. Click OK.', code:null, mockup:{type:'channel',data:{url:'linksyssmartwifi.com',section:'WiFi Settings',field:'Channel Selection',saveBtn:'Apply'}}}
-    ], affiliates:['linksys_mx5','netspot'] },
+      {t:'Confirm Network Context', d:'Verify routing layer persistence before initializing panel command parameters.', code:null, mockup:null},
+      {t:'Call Management Interface', d:'Input standard tracking host address records directly to trigger authorization screen.', code:'linksyssmartwifi.com', mockup:{type:'login',data:{url:'linksyssmartwifi.com',title:'Linksys Smart WiFi',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Open Radio Subsections', d:'Locate Router Settings module structure from lateral workspace array. Select Wi-Fi Settings.', code:null, mockup:null},
+      {t:'Apply Manual Tracking Plan', d:'Commit exact targeted manual metric parameters inside the structural deployment grid fields. Click OK.', code:null, mockup:{type:'channel',data:{url:'linksyssmartwifi.com',section:'2.4 GHz Network',field:'Channel',saveBtn:'Apply'}}}
+    ], tip:null, warn:null, 
+    affiliates:['linksys_mx5','linksys_hydra','linksys_mr9600','linksys_ea7500','linksys_velop'] },
 
   { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-bg)', icon:'G',
     adminUrl:null, user:null, pass:null, app:'Google Home App',
     steps:[
-      {t:'Open Google Home', d:'Google Nest has no browser interface. Open the app.', code:null, mockup:null},
-      {t:'Tap your Network', d:'Tap the WiFi icon or your network name.', code:null, mockup:null},
-      {t:'Advanced Networking', d:'Tap the gear icon, then Advanced Networking.', code:null, mockup:null},
-      {t:'Channel Setting', d:'Google Nest auto-manages channels. Overrides may appear here if available.', code:null, mockup:null}
-    ], affiliates:['eero_pro6','netspot'] },
+      {t:'Open System Control App', d:'Google infrastructure deployments exclude local web dashboard systems. Launch Google Home.', code:null, mockup:null},
+      {t:'Isolate Access Node', d:'Select target mesh infrastructure elements directly within home environment overview screen.', code:null, mockup:null},
+      {t:'Open Advanced Networking Matrix', d:'Select gear element configurations, then track deep to advanced operational networking fields.', code:null, mockup:null},
+      {t:'Verify Automatic Routing State', d:'Dynamic frequency scheduling parameters run automated background testing. Manual override tools are absent.', code:null, mockup:null}
+    ], tip:'Google mesh algorithms systematically coordinate channel hopping structures across points without network link disruption.', warn:null, 
+    affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'att', name:'AT&T BGW', color:'var(--orange)', bg:'var(--orange-bg)', icon:'AT',
     adminUrl:'192.168.1.254', user:null, pass:'Access Code', app:null,
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'AT&T uses a specific IP address.', code:'192.168.1.254', mockup:{type:'login',data:{url:'192.168.1.254',title:'AT&T Gateway',passLabel:'Device Access Code'}}},
-      {t:'Navigate to WiFi', d:'Tap Home Network in the top nav, then WiFi.', code:null, mockup:null},
-      {t:'Change Channel', d:'Set 2.4 GHz channel to your free choice. Save.', code:null, mockup:{type:'channel',data:{url:'192.168.1.254',section:'2.4 GHz Configuration',field:'Channel',saveBtn:'Save'}}}
-    ], affiliates:['tplink_ax3000','netspot'] },
+      {t:'Secure Direct Connection', d:'Verify targeted link state parameters over physical connection vectors or localized radio keys.', code:null, mockup:null},
+      {t:'Initialize Gateway Framework', d:'Target specific industrial infrastructure gateway parameters inside browser tracking block.', code:'192.168.1.254', mockup:{type:'login',data:{url:'192.168.1.254',title:'AT&T Gateway',passLabel:'Device Access Code'}}},
+      {t:'Traverse Interface Matrix', d:'Select Home Network tracking node from primary layout, then choose localized Wi-Fi configurations.', code:null, mockup:null},
+      {t:'Commit Clean Frequency Plan', d:'Open Advanced Options layer. Shift designated target band tracking variable to clean coordinate. Save changes.', code:null, mockup:{type:'channel',data:{url:'192.168.1.254',section:'2.4 GHz Configuration',field:'Channel',saveBtn:'Save'}}}
+    ], tip:'Commitment parameters will challenge the administrative user for the specific Device Access Code stamped directly onto the housing shell.', warn:null, 
+    affiliates:['tplink_axe75','tplink_ax3000','asus_ax88u','netgear_rax50','netspot_tool'] },
 
   { id:'spectrum', name:'Spectrum', color:'var(--purple)', bg:'var(--purple-bg)', icon:'S',
     adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:null,
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Type this address into your browser.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Router',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to Wireless', d:'Tap Advanced, then look for Wireless Settings.', code:null, mockup:null},
-      {t:'Change Channel', d:'Select your chosen free channel from the dropdown. Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless',field:'Channel',saveBtn:'Apply'}}}
-    ], warn:'For newer Advanced WiFi or WiFi 6 routers, Spectrum has entirely disabled browser access. Channels are auto-managed via the My Spectrum app with no manual override.', affiliates:['arris_sb8200','netspot'] },
+      {t:'Verify Interface Scope', d:'Ensure your connection platform targets the true gateway address layer cleanly.', code:null, mockup:null},
+      {t:'Load Administration Portal', d:'Call structural target string parameters inside local terminal fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Router',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Navigate Radio Panels', d:'Traverse Advanced structure nodes, then locate secondary Wireless settings arrays.', code:null, mockup:null},
+      {t:'Apply Manual Frequency', d:'Locate matching allocation rows under 2.4G options. Overwrite parameter field. Apply changes.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4G Network',field:'Channel',saveBtn:'Apply'}}}
+    ], warn:'Carrier firmware upgrades deployed to newer models systematically deprecate manual localized configuration tools completely.', 
+    affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-bg)', icon:'D',
     adminUrl:'dlinkrouter.local', user:'Admin', pass:'(blank)', app:'D-Link Wi-Fi',
     steps:[
       searchEmptyStep,
-      {t:'Open a browser', d:'Ensure you are connected to your WiFi network.', code:null, mockup:null},
-      {t:'Go to Admin Page', d:'Type this address into your browser.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Navigate to Wireless', d:'Tap Settings at the top, then Wireless.', code:null, mockup:null},
-      {t:'Change Channel', d:'Set Channel to your chosen free slot. Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}
-    ], affiliates:['dlink_ax1800','netspot'] }
+      {t:'Verify Local Link State', d:'Confirm link continuity metrics match designated criteria prior to system tracking loops.', code:null, mockup:null},
+      {t:'Target Configuration Engine', d:'Input standard localized network domain records inside the targeted browser navigation array.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Locate Wireless Control Matrices', d:'Open administrative dropdown fields from primary layout panel. Select Settings → Wireless.', code:null, mockup:null},
+      {t:'Save Manual Allocation Profile', d:'Toggle open the hidden Advanced Settings structural container. Shift field to designated coordinate. Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}
+    ], tip:null, warn:null, 
+    affiliates:['tplink_axe75','netgear_cm3000','arris_s33','motorola_mg87','netspot_tool'] }
 ];
 
 const grid = document.getElementById('brand-grid');
@@ -621,7 +640,8 @@ function loadBrand(b) {
 
   document.getElementById('affiliate-el').innerHTML = (b.affiliates||[]).map(key => {
     const a = AFF[key]; if (!a) return '';
-    return `<div class="app-store-item"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">${a.name}</div><div class="app-sub">${a.sub}</div></div><a class="app-get-btn" href="${a.url}">GET</a></div>`;
+    const dynamicUrl = `${a.url}${AFFILIATE_TAG}`;
+    return `<div class="app-store-item"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">${a.name}</div><div class="app-sub">${a.sub} &middot; <strong>${a.price}</strong></div></div><a class="app-get-btn" href="${dynamicUrl}" target="_blank">GET</a></div>`;
   }).join('');
 
   document.getElementById('screen-home').classList.remove('active');
