@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>WiFi Channel Guide</title>
@@ -201,10 +210,14 @@
   .app-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
   .app-sub { font-size: 13px; color: var(--text-sec); margin-top: 2px; }
   .app-get-btn { background: var(--bg); color: var(--blue); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.3px; }
-  .affiliate-disclosure { font-size: 12px; color: var(--text-tert); text-align: center; padding: 12px; }
+  
+  /* Compliance & Disclosures Footers */
+  .affiliate-disclosure { font-size: 12px; color: var(--text-tert); text-align: center; padding: 16px 20px; line-height: 1.4; }
 
   /* Note hint */
   .login-note { font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 12px; padding: 0 16px; line-height: 1.4; }
+
+  @keyframes fadeReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -351,6 +364,11 @@
       <div class="section-label">Select Router Brand Guide</div>
       <div class="brand-grid" id="brand-grid"></div>
     </div>
+
+    <!-- Home Screen Compliance Footer -->
+    <div class="affiliate-disclosure">
+      As an Amazon Associate I earn from qualifying purchases.
+    </div>
   </div>
 
   <!-- STEPS SCREEN -->
@@ -391,7 +409,11 @@
     <div class="section">
       <div class="section-label" style="margin-left:0;">Top Hardware Upgrades</div>
       <div class="inset-group" id="affiliate-el"></div>
-      <div class="affiliate-disclosure">Contains affiliate links linked to your unique Associate profile.</div>
+    </div>
+
+    <!-- Steps Screen Compliance Footer -->
+    <div class="affiliate-disclosure">
+      Contains affiliate links. As an Amazon Associate I earn from qualifying purchases. All platform search queries automatically carry programmatic Associate markers.
     </div>
   </div>
 
@@ -399,7 +421,7 @@
 
 <script>
 // --- CONFIGURATION MATRIX ---
-const AFFILIATE_TAG = 'wifinder03-20'; // Replace with your true tracking ID string
+const AFFILIATE_TAG = 'wifichannel-20'; // Replace with your true tracking ID string
 
 const AFF = {
   // NETGEAR HARDWARE
@@ -587,7 +609,7 @@ const BRANDS = [
       {t:'Verify Interface Scope', d:'Ensure your connection platform targets the true gateway address layer cleanly.', code:null, mockup:null},
       {t:'Load Administration Portal', d:'Call structural target string parameters inside local terminal fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Router',userLabel:'Username',passLabel:'Password'}}},
       {t:'Navigate Radio Panels', d:'Traverse Advanced structure nodes, then locate secondary Wireless settings arrays.', code:null, mockup:null},
-      {t:'Apply Manual Frequency', d:'Locate matching allocation rows under 2.4G options. Overwrite parameter field. Apply changes.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4G Network',field:'Channel',saveBtn:'Apply'}}}
+      {t:'Apply Manual Frequency', d:'Locate matching allocation rows under 2.4G options. Overwrite parameter field. Apply changes.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless',field:'Channel',saveBtn:'Apply'}}}
     ], warn:'Carrier firmware upgrades deployed to newer models systematically deprecate manual localized configuration tools completely.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
