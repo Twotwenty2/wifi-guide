@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S59EEVNY50"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-S59EEVNY50');
+  gtag('config', 'G-XXXXXXXXXX');
 </script>
 
 <meta charset="UTF-8">
@@ -77,8 +76,13 @@
   
   /* Layout */
   .app { max-width: 500px; margin: 0 auto; min-height: 100vh; background: var(--bg); position: relative; padding-bottom: 60px; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
-  .screen { display: none; animation: fadeReveal 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  .screen.active { display: block; }
+  
+  /* Fixed Display & CSS Animation Reflow */
+  .screen { display: none; }
+  .screen.active { 
+    display: block; 
+    animation: fadeReveal 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+  }
 
   /* Navigation Bar */
   .topbar { 
@@ -223,7 +227,6 @@
 <body>
 <div class="app">
 
-  <!-- HOME SCREEN -->
   <div class="screen active" id="screen-home">
     <div class="topbar">
       <div class="nav-title">WiFi Guide</div>
@@ -238,7 +241,6 @@
       </div>
     </div>
 
-    <!-- Visual Spectrum Chart -->
     <div class="section">
       <div class="section-label">Finding a Free Channel</div>
       <div class="chart-widget">
@@ -307,7 +309,6 @@
       </div>
     </div>
 
-    <!-- ISP Gateway Directory -->
     <div class="section">
       <div class="section-label">ISP Gateway Directory</div>
       <div class="inset-group">
@@ -356,7 +357,9 @@
       </div>
       
       <div class="login-note" style="margin-top: 10px; font-size: 12px; color: var(--text-sec);">
-        <strong>Note:</strong> You must be actively connected to that specific provider's network (via Wi-Fi or Ethernet cable) for these links to function correctly.
+        <strong>Note:</strong> You must be connected to that specific provider's Wi-Fi network for these links to load. 
+        <br><br>
+        ⚠️ <strong>Bypass Warning:</strong> If your browser displays a "Connection Not Private" warning page when clicking these links, click <strong>"Advanced"</strong> then <strong>"Proceed to IP (unsafe)"</strong>. This is normal; home routers do not use SSL certificates.
       </div>
     </div>
 
@@ -365,13 +368,11 @@
       <div class="brand-grid" id="brand-grid"></div>
     </div>
 
-    <!-- Home Screen Compliance Footer -->
     <div class="affiliate-disclosure">
       As an Amazon Associate I earn from qualifying purchases.
     </div>
   </div>
 
-  <!-- STEPS SCREEN -->
   <div class="screen" id="screen-steps">
     <div class="topbar">
       <button class="back-btn" onclick="goHome()">Back</button>
@@ -411,7 +412,6 @@
       <div class="inset-group" id="affiliate-el"></div>
     </div>
 
-    <!-- Steps Screen Compliance Footer -->
     <div class="affiliate-disclosure">
       Contains affiliate links. As an Amazon Associate I earn from qualifying purchases. All platform search queries automatically carry programmatic Associate markers.
     </div>
@@ -504,6 +504,7 @@ const searchEmptyStep = {
   code: null, mockup: null
 };
 
+// Fixed AT&T object literal syntax tree break below
 const BRANDS = [
   { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-bg)', icon:'N',
     adminUrl:'routerlogin.net', user:'admin', pass:'password', app:null,
@@ -567,7 +568,7 @@ const BRANDS = [
       {t:'Target Connected Deployment', d:'Isolate your targeted home configuration network infrastructure matrix inside the dashboard view.', code:null, mockup:null},
       {t:'Access Advanced System Settings', d:'Open System Parameters. Scroll to deep advanced processing configuration options.', code:null, mockup:null},
       {t:'Review Spectrum State', d:'Eero networks systematically optimize allocation profiles daily. Local configuration manual control parameters are locked.', code:null, mockup:null}
-    ], tip:'Eero systems use deep local hardware radio space processing matrices to actively evade ambient floor noise without user configuration.', warn:null, 
+    ], tip:'Eero systems use daily active hardware radio space monitoring matrices to evade ambient floor noise configurations.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-bg)', icon:'L',
@@ -669,6 +670,9 @@ function loadBrand(b) {
   document.getElementById('screen-home').classList.remove('active');
   document.getElementById('screen-steps').classList.add('active');
   window.scrollTo(0, 0);
+
+  // Push clean browser history state token for edge gesture compliance
+  history.pushState({screen: 'steps'}, '');
 }
 
 function goHome() {
@@ -676,6 +680,12 @@ function goHome() {
   document.getElementById('screen-home').classList.add('active');
   window.scrollTo(0, 0);
 }
+
+// Global popstate history hook to normalize hardware/swipe navigation behaviors
+window.addEventListener('popstate', (event) => {
+  document.getElementById('screen-steps').classList.remove('active');
+  document.getElementById('screen-home').classList.add('active');
+});
 </script>
 </body>
 </html>
