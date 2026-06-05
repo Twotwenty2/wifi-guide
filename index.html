@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -227,6 +228,7 @@
 <body>
 <div class="app">
 
+  <!-- HOME SCREEN -->
   <div class="screen active" id="screen-home">
     <div class="topbar">
       <div class="nav-title">WiFi Guide</div>
@@ -241,6 +243,7 @@
       </div>
     </div>
 
+    <!-- Visual Spectrum Chart -->
     <div class="section">
       <div class="section-label">Finding a Free Channel</div>
       <div class="chart-widget">
@@ -309,6 +312,7 @@
       </div>
     </div>
 
+    <!-- ISP Gateway Directory -->
     <div class="section">
       <div class="section-label">ISP Gateway Directory</div>
       <div class="inset-group">
@@ -368,11 +372,13 @@
       <div class="brand-grid" id="brand-grid"></div>
     </div>
 
+    <!-- Home Screen Compliance Footer -->
     <div class="affiliate-disclosure">
       As an Amazon Associate I earn from qualifying purchases.
     </div>
   </div>
 
+  <!-- STEPS SCREEN -->
   <div class="screen" id="screen-steps">
     <div class="topbar">
       <button class="back-btn" onclick="goHome()">Back</button>
@@ -412,6 +418,7 @@
       <div class="inset-group" id="affiliate-el"></div>
     </div>
 
+    <!-- Steps Screen Compliance Footer -->
     <div class="affiliate-disclosure">
       Contains affiliate links. As an Amazon Associate I earn from qualifying purchases. All platform search queries automatically carry programmatic Associate markers.
     </div>
@@ -504,7 +511,6 @@ const searchEmptyStep = {
   code: null, mockup: null
 };
 
-// Fixed AT&T object literal syntax tree break below
 const BRANDS = [
   { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-bg)', icon:'N',
     adminUrl:'routerlogin.net', user:'admin', pass:'password', app:null,
@@ -572,14 +578,14 @@ const BRANDS = [
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-bg)', icon:'L',
-    adminUrl:'linksyssmartwifi.com', user:'admin', pass:'admin', app:'Linksys App',
+    adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:'Linksys App',
     steps:[
       searchEmptyStep,
       {t:'Confirm Network Context', d:'Verify routing layer persistence before initializing panel command parameters.', code:null, mockup:null},
-      {t:'Call Management Interface', d:'Input standard tracking host address records directly to trigger authorization screen.', code:'linksyssmartwifi.com', mockup:{type:'login',data:{url:'linksyssmartwifi.com',title:'Linksys Smart WiFi',userLabel:'Username',passLabel:'Password'}}},
+      {t:'Call Local Management IP', d:'Input the direct local server IP address or fallback record into your navigation bar.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Login',userLabel:'Username',passLabel:'Password'}}},
       {t:'Open Radio Subsections', d:'Locate Router Settings module structure from lateral workspace array. Select Wi-Fi Settings.', code:null, mockup:null},
-      {t:'Apply Manual Tracking Plan', d:'Commit exact targeted manual metric parameters inside the structural deployment grid fields. Click OK.', code:null, mockup:{type:'channel',data:{url:'linksyssmartwifi.com',section:'2.4 GHz Network',field:'Channel',saveBtn:'Apply'}}}
-    ], tip:null, warn:null, 
+      {t:'Apply Manual Tracking Plan', d:'Commit exact targeted manual metric parameters inside the structural deployment grid fields. Click OK.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Network',field:'Channel',saveBtn:'Apply'}}}
+    ], tip:'Linksys officially discontinued cloud support for linksyssmartwifi.com. You must manage settings locally via 192.168.1.1 or myrouter.local.', warn:null, 
     affiliates:['linksys_mx5','linksys_hydra','linksys_mr9600','linksys_ea7500','linksys_velop'] },
 
   { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-bg)', icon:'G',
