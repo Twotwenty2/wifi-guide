@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S59EEVNY50"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,7 +14,6 @@
 <title>WiFi Channel Guide</title>
 <style>
   :root {
-    /* iOS System Colors */
     --bg: #F2F2F7;
     --surface: #FFFFFF;
     --border: #E5E5EA;
@@ -34,13 +32,14 @@
     --purple-bg: #EFEDFB;
     --indigo: #5E5CE6;
     --indigo-bg: #EAE9FB;
+    --teal: #32ADE6;
+    --teal-bg: #E5F5FE;
     --radius-lg: 20px;
     --radius: 12px;
     --radius-sm: 8px;
     --shadow: 0 4px 20px rgba(0,0,0,0.04);
   }
 
-  /* Dark Mode Support */
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #000000;
@@ -60,6 +59,8 @@
       --purple-bg: #2B0A46;
       --indigo: #5E5CE6;
       --indigo-bg: #1B1A42;
+      --teal: #32ADE6;
+      --teal-bg: #002840;
       --shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
   }
@@ -75,17 +76,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Layout */
   .app { max-width: 500px; margin: 0 auto; min-height: 100vh; background: var(--bg); position: relative; padding-bottom: 60px; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
   
-  /* Fixed Display & CSS Animation Reflow */
   .screen { display: none; }
   .screen.active { 
     display: block; 
     animation: fadeReveal 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
   }
 
-  /* Navigation Bar */
   .topbar { 
     position: sticky; top: 0; z-index: 100;
     padding: 16px 20px; 
@@ -106,13 +104,11 @@
   .back-btn::before { content: "‹"; font-size: 28px; line-height: 1; margin-top: -3px; font-weight: 300; }
   .back-btn:active { opacity: 0.6; }
 
-  /* Hero */
   .hero { padding: 40px 24px 24px; text-align: center; }
   .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 12px; }
   .hero p { font-size: 17px; color: var(--text-sec); line-height: 1.4; letter-spacing: -0.02em; }
   .hero-note { font-size: 14px; color: var(--text-sec); margin-top: 16px; padding: 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); display: inline-block; box-shadow: var(--shadow); line-height: 1.4; }
 
-  /* Generic Sections */
   .section { padding: 0 20px 24px; }
   .section-label { font-size: 13px; font-weight: 400; text-transform: uppercase; color: var(--text-sec); margin: 0 0 8px 16px; letter-spacing: -0.01em; }
   
@@ -123,34 +119,25 @@
   .inset-value { color: var(--text-sec); max-width: 60%; text-align: right; word-wrap: break-word; }
   .inset-value.link { color: var(--blue); }
 
-  /* Bar Chart Widget */
+  /* Bar Chart */
   .chart-widget { background: var(--surface); border-radius: var(--radius-lg); padding: 20px 20px 24px; box-shadow: var(--shadow); border: 0.5px solid var(--border); }
   .chart-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
   .chart-icon { background: var(--blue-bg); color: var(--blue); width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
   .chart-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
-  
   .y-axis-guide { font-size: 10px; font-weight: 600; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 28px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-  
   .bar-chart { display: flex; align-items: flex-end; justify-content: space-between; height: 110px; border-bottom: 1.5px solid var(--text-tert); padding-bottom: 0; margin-bottom: 26px; }
   .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative; height: 100%; }
-  
   .bar-count { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -0.3px; }
   .bar { width: 64%; max-width: 14px; border-radius: 4px 4px 0 0; background: var(--border); }
-  
-  /* Chart Data Colors and Heights */
   .bar.max { background: var(--red); height: 100%; }
   .bar.high { background: var(--orange); height: 65%; }
   .bar.med { background: var(--blue); height: 40%; opacity: 0.8; }
   .bar.low { background: var(--blue); height: 15%; opacity: 0.4; }
   .bar.empty { background: var(--green); height: 6px; box-shadow: 0 0 8px var(--green); }
-  
-  /* Axis Labels */
   .bar-label { font-size: 11px; font-weight: 500; color: var(--text-sec); position: absolute; bottom: -22px; width: 100%; text-align: center; }
   .x-axis-title { text-align: center; font-size: 10px; font-weight: 600; color: var(--text-tert); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; margin-top: -6px; }
-  
   .col-highlight .bar-label, .col-highlight .bar-count { color: var(--green); font-weight: 700; }
   .col-congested .bar-label, .col-congested .bar-count { color: var(--red); font-weight: 700; }
-  
   .chart-caption { font-size: 14px; color: var(--text-sec); line-height: 1.4; margin-top: 16px; border-top: 0.5px solid var(--border); padding-top: 16px; }
   .chart-caption strong { color: var(--text); font-weight: 600; }
 
@@ -163,10 +150,11 @@
   .pill-avoid { background: var(--orange-bg); color: var(--orange); }
   .pill-bad { background: var(--red-bg); color: var(--red); }
 
-  .tip-box, .warn-box { border-radius: var(--radius); padding: 14px 16px; margin-top: 12px; font-size: 15px; line-height: 1.4; display: flex; gap: 12px; align-items: flex-start; }
+  .tip-box, .warn-box, .info-box { border-radius: var(--radius); padding: 14px 16px; margin-top: 12px; font-size: 15px; line-height: 1.4; display: flex; gap: 12px; align-items: flex-start; }
   .tip-box { background: var(--blue-bg); color: var(--blue); }
   .warn-box { background: var(--orange-bg); color: var(--orange); }
-  .box-icon { font-size: 18px; margin-top: -1px; }
+  .info-box { background: var(--teal-bg); color: var(--teal); }
+  .box-icon { font-size: 18px; margin-top: -1px; flex-shrink: 0; }
 
   /* Brand grid */
   .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -176,19 +164,16 @@
   .brand-name { font-size: 16px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); }
   .brand-sub { font-size: 13px; color: var(--text-sec); margin-top: 2px; }
 
-  /* Steps screen elements */
+  /* Steps screen */
   .step-header-area { padding: 24px 20px 16px; }
   .step-brand-pill { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: -0.2px; margin-bottom: 12px; }
   .step-main-title { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
-
   .step-card { background: var(--surface); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); border: 0.5px solid var(--border); }
   .step-num-badge { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
   .step-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 6px; letter-spacing: -0.3px; }
   .step-desc { font-size: 15px; color: var(--text-sec); line-height: 1.5; }
   .code-block { background: var(--bg); border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 12px; }
   .code-block code { font-family: "SF Mono", ui-monospace, Menlo, Monaco, monospace; font-size: 13px; line-height: 1.5; white-space: pre; display: block; }
-
-  /* Mockup UI */
   .mockup-wrap { margin-top: 16px; border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); }
   .mockup-label { font-size: 11px; font-weight: 600; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; background: var(--bg); border-bottom: 0.5px solid var(--border); }
   .router-ui { background: var(--surface); color: var(--text); font-size: 13px; }
@@ -201,13 +186,10 @@
   .ui-label { color: var(--text-sec); }
   .ui-value { color: var(--text); }
   .ui-btn-mock { display: inline-block; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #fff; background: var(--blue); width: 100%; text-align: center; margin-top: 8px; }
-
-  /* Done card & App Store Links */
   .done-card { background: var(--green-bg); border-radius: var(--radius-lg); padding: 24px 20px; text-align: center; border: 0.5px solid rgba(52, 199, 89, 0.2); }
   .done-icon { font-size: 40px; margin-bottom: 12px; }
   .done-title { font-size: 20px; font-weight: 600; color: var(--green); letter-spacing: -0.4px; }
   .done-sub { font-size: 15px; color: var(--green); opacity: 0.9; margin-top: 6px; line-height: 1.4; }
-  
   .app-store-item { padding: 16px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .app-store-item:last-child { border-bottom: none; }
   .app-icon { font-size: 28px; width: 44px; height: 44px; background: var(--bg); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -215,12 +197,116 @@
   .app-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
   .app-sub { font-size: 13px; color: var(--text-sec); margin-top: 2px; }
   .app-get-btn { background: var(--bg); color: var(--blue); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.3px; }
-  
-  /* Compliance & Disclosures Footers */
   .affiliate-disclosure { font-size: 12px; color: var(--text-tert); text-align: center; padding: 16px 20px; line-height: 1.4; }
-
-  /* Note hint */
   .login-note { font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 12px; padding: 0 16px; line-height: 1.4; }
+
+  /* ── NEW: Interference grid ─────────────────────────────── */
+  .interference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .interference-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 0.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .interference-icon { font-size: 22px; }
+  .interference-name { font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
+  .interference-desc { font-size: 12px; color: var(--text-sec); line-height: 1.4; }
+  .severity-dot {
+    width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px;
+  }
+  .severity-high { background: var(--red); }
+  .severity-med { background: var(--orange); }
+  .severity-low { background: var(--blue); }
+  .severity-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  .severity-label.high { color: var(--red); }
+  .severity-label.med { color: var(--orange); }
+  .severity-label.low { color: var(--blue); }
+
+  /* ── NEW: 5 GHz band comparison ─────────────────────────── */
+  .band-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .band-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    border: 0.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .band-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 4px 10px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; letter-spacing: -0.2px;
+    margin-bottom: 10px;
+  }
+  .band-badge.two { background: var(--orange-bg); color: var(--orange); }
+  .band-badge.five { background: var(--blue-bg); color: var(--blue); }
+  .band-stat { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
+  .band-stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-sec); }
+  .band-stat-val { font-size: 14px; font-weight: 600; color: var(--text); }
+  .band-pro { font-size: 12px; color: var(--green); font-weight: 500; padding: 2px 0; }
+  .band-con { font-size: 12px; color: var(--red); font-weight: 500; padding: 2px 0; }
+
+  /* ── NEW: Placement tips ─────────────────────────────────── */
+  .placement-list { display: flex; flex-direction: column; gap: 10px; }
+  .placement-item {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex; align-items: flex-start; gap: 12px;
+    border: 0.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .placement-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .placement-text {}
+  .placement-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
+  .placement-desc { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+  .placement-tag {
+    display: inline-block; margin-top: 5px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .tag-do { background: var(--green-bg); color: var(--green); }
+  .tag-dont { background: var(--red-bg); color: var(--red); }
+
+  /* ── NEW: Speed test workflow ─────────────────────────────── */
+  .speedtest-steps { display: flex; flex-direction: column; gap: 0; }
+  .speedtest-step {
+    background: var(--surface);
+    padding: 16px;
+    display: flex; align-items: flex-start; gap: 14px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .speedtest-step:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .speedtest-step:last-child { border-bottom: none; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+  .speedtest-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--teal-bg); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+  .speedtest-content {}
+  .speedtest-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
+  .speedtest-desc { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+  .speedtest-link { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--blue); }
+
+  /* ── NEW: Buffering diagnosis ─────────────────────────────── */
+  .diagnosis-list { display: flex; flex-direction: column; gap: 10px; }
+  .diagnosis-item {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex; align-items: flex-start; gap: 12px;
+    border: 0.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .diagnosis-icon { font-size: 20px; flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .diagnosis-body {}
+  .diagnosis-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .diagnosis-desc { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+  .diagnosis-fix { font-size: 12px; font-weight: 600; margin-top: 5px; }
 
   @keyframes fadeReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
@@ -236,14 +322,96 @@
     
     <div class="hero">
       <h1>Fix your slow WiFi.</h1>
-      <p>Pick your router brand and follow the exact steps to optimize your network.</p>
-      
+      <p>Diagnose congestion, interference, and buffering — then fix it step by step.</p>
       <div class="hero-note">
         <span style="font-weight: 600; color: var(--text);">Quick Tip:</span> Some manufacturers have the login information written directly on the device. Check the sticker on the back or bottom of your router!
       </div>
     </div>
 
-    <!-- Visual Spectrum Chart -->
+    <!-- ── NEW: Buffering Diagnosis ───────────────────────── -->
+    <div class="section">
+      <div class="section-label">What's Causing Your Buffering?</div>
+      <div class="diagnosis-list">
+        <div class="diagnosis-item">
+          <div class="diagnosis-icon" style="background:var(--red-bg);">📡</div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-title">Channel Congestion</div>
+            <div class="diagnosis-desc">Neighbors sharing the same WiFi channel. Speeds drop when multiple routers fight for the same frequency space.</div>
+            <div class="diagnosis-fix" style="color:var(--red);">Fix → Change your channel below</div>
+          </div>
+        </div>
+        <div class="diagnosis-item">
+          <div class="diagnosis-icon" style="background:var(--orange-bg);">⚡</div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-title">Physical Interference</div>
+            <div class="diagnosis-desc">Appliances, walls, and other devices radiating on similar frequencies. Can cause sudden drops even with no neighbors nearby.</div>
+            <div class="diagnosis-fix" style="color:var(--orange);">Fix → See interference guide below</div>
+          </div>
+        </div>
+        <div class="diagnosis-item">
+          <div class="diagnosis-icon" style="background:var(--purple-bg);">🌐</div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-title">ISP Throttling</div>
+            <div class="diagnosis-desc">Your internet provider intentionally slowing certain traffic. Unlike a WiFi issue, throttling shows up equally on wired and wireless — if your wired speed test is also slow, this is the likely cause.</div>
+            <div class="diagnosis-fix" style="color:var(--purple);">Fix → Run speed test wired vs wireless</div>
+          </div>
+        </div>
+        <div class="diagnosis-item">
+          <div class="diagnosis-icon" style="background:var(--blue-bg);">📶</div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-title">Weak Signal / Poor Placement</div>
+            <div class="diagnosis-desc">Router too far away, or signal blocked by concrete, metal, or appliances. The device gets a weak signal and buffers constantly.</div>
+            <div class="diagnosis-fix" style="color:var(--blue);">Fix → See placement guide below</div>
+          </div>
+        </div>
+        <div class="diagnosis-item">
+          <div class="diagnosis-icon" style="background:var(--green-bg);">🔀</div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-title">Router Bottleneck</div>
+            <div class="diagnosis-desc">Too many devices competing for bandwidth on an older router. The router itself can't handle the load, not the internet connection.</div>
+            <div class="diagnosis-fix" style="color:var(--green);">Fix → Upgrade router or enable QoS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NEW: Speed Test Workflow ───────────────────────── -->
+    <div class="section">
+      <div class="section-label">Speed Test — Diagnose First</div>
+      <div class="speedtest-steps">
+        <div class="speedtest-step">
+          <div class="speedtest-num">1</div>
+          <div class="speedtest-content">
+            <div class="speedtest-title">Test Wired (Ethernet)</div>
+            <div class="speedtest-desc">Plug your computer directly into the router with an ethernet cable, then run a speed test. This isolates whether the problem is your internet plan or your WiFi.</div>
+            <a class="speedtest-link" href="https://fast.com" target="_blank">fast.com →</a>
+          </div>
+        </div>
+        <div class="speedtest-step">
+          <div class="speedtest-num">2</div>
+          <div class="speedtest-content">
+            <div class="speedtest-title">Test Wireless, Same Room</div>
+            <div class="speedtest-desc">Disconnect ethernet and run the same test on WiFi while standing next to the router. If speeds drop significantly, your router may be struggling.</div>
+          </div>
+        </div>
+        <div class="speedtest-step">
+          <div class="speedtest-num">3</div>
+          <div class="speedtest-content">
+            <div class="speedtest-title">Test From Problem Spot</div>
+            <div class="speedtest-desc">Run the test from the room where buffering happens. Compare this result to the same-room WiFi test. A big gap means signal loss, not congestion.</div>
+          </div>
+        </div>
+        <div class="speedtest-step">
+          <div class="speedtest-num">4</div>
+          <div class="speedtest-content">
+            <div class="speedtest-title">Compare Against Your Plan</div>
+            <div class="speedtest-desc">Your wired speed should be close to what you're paying for. If wired is also slow, call your ISP — this is a throttling or line issue, not a WiFi issue.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Spectrum Chart (original) -->
     <div class="section">
       <div class="section-label">Finding a Free Channel</div>
       <div class="chart-widget">
@@ -251,51 +419,39 @@
           <div class="chart-icon">📊</div>
           <div class="chart-title">Neighborhood Traffic Example</div>
         </div>
-        
         <div class="y-axis-guide">
           <span style="font-size: 14px;">↑</span> Taller Bar = More Users on Channel
         </div>
-        
         <div class="bar-chart">
           <div class="bar-col"><div class="bar-count">8</div><div class="bar high"></div><div class="bar-label">1</div></div>
           <div class="bar-col"><div class="bar-count">2</div><div class="bar low"></div><div class="bar-label">2</div></div>
           <div class="bar-col"><div class="bar-count">5</div><div class="bar med"></div><div class="bar-label">3</div></div>
-          
           <div class="bar-col col-highlight">
             <div style="font-size: 9px; position:absolute; top:-24px; color:var(--green); font-weight:800; letter-spacing: 0.5px;">FREE</div>
-            <div class="bar-count">0</div>
-            <div class="bar empty"></div><div class="bar-label">4</div>
+            <div class="bar-count">0</div><div class="bar empty"></div><div class="bar-label">4</div>
           </div>
-          
           <div class="bar-col"><div class="bar-count">1</div><div class="bar low"></div><div class="bar-label">5</div></div>
-          
           <div class="bar-col col-congested">
             <div style="font-size: 9px; position:absolute; top:-24px; color:var(--red); font-weight:800; letter-spacing: 0.5px;">BAD</div>
-            <div class="bar-count">14</div>
-            <div class="bar max"></div><div class="bar-label">6</div>
+            <div class="bar-count">14</div><div class="bar max"></div><div class="bar-label">6</div>
           </div>
-          
           <div class="bar-col"><div class="bar-count">2</div><div class="bar low"></div><div class="bar-label">7</div></div>
           <div class="bar-col"><div class="bar-count">6</div><div class="bar med"></div><div class="bar-label">8</div></div>
-          
           <div class="bar-col col-highlight">
             <div style="font-size: 9px; position:absolute; top:-24px; color:var(--green); font-weight:800; letter-spacing: 0.5px;">FREE</div>
-            <div class="bar-count">0</div>
-            <div class="bar empty"></div><div class="bar-label">9</div>
+            <div class="bar-count">0</div><div class="bar empty"></div><div class="bar-label">9</div>
           </div>
-          
           <div class="bar-col"><div class="bar-count">1</div><div class="bar low"></div><div class="bar-label">10</div></div>
           <div class="bar-col"><div class="bar-count">4</div><div class="bar med"></div><div class="bar-label">11</div></div>
         </div>
-        
         <div class="x-axis-title">WiFi Channel (1–11)</div>
-
         <div class="chart-caption">
-          Channels 1, 6, and 11 are recommended because they don't overlap with each other. However, <strong>there are 11 available channels</strong>. Use a WiFi Analyzer app—if you spot a completely free channel in your area (like 4 or 9), claim it! Avoid highly congested channels where multiple networks fight for space.
+          Channels 1, 6, and 11 are recommended because they don't overlap with each other. <strong>Stick to these three</strong> — channels like 4 or 9 overlap with multiple non-overlapping channels and will cause more interference, not less. Use a WiFi Analyzer app to find which of 1, 6, or 11 has the least traffic in your area.
         </div>
       </div>
     </div>
 
+    <!-- Channel reference (original) -->
     <div class="section">
       <div class="section-label">2.4 GHz Reference</div>
       <div class="channel-grid">
@@ -308,11 +464,178 @@
       </div>
       <div class="tip-box">
         <div class="box-icon">💡</div>
-        <div>Only channels 1, 6, and 11 don't overlap. Try to find a free channel between 1–11.</div>
+        <div>Only channels 1, 6, and 11 don't overlap with each other. Always choose one of these three — avoid channels in between.</div>
       </div>
     </div>
 
-    <!-- ISP Gateway Directory -->
+    <!-- ── NEW: 5 GHz Band Guide ──────────────────────────── -->
+    <div class="section">
+      <div class="section-label">2.4 GHz vs 5 GHz — Which to Use?</div>
+      <div class="band-compare">
+        <div class="band-card">
+          <div class="band-badge two">2.4 GHz</div>
+          <div class="band-stat">
+            <div class="band-stat-label">Range</div>
+            <div class="band-stat-val">Long ✓</div>
+          </div>
+          <div class="band-stat">
+            <div class="band-stat-label">Speed</div>
+            <div class="band-stat-val">Moderate</div>
+          </div>
+          <div class="band-stat">
+            <div class="band-stat-label">Channels</div>
+            <div class="band-stat-val">11 (3 usable)</div>
+          </div>
+          <div class="band-pro">✓ Penetrates walls better</div>
+          <div class="band-pro">✓ Works on older devices</div>
+          <div class="band-con">✗ Very congested in apartments</div>
+          <div class="band-con">✗ Microwaves cause interference</div>
+        </div>
+        <div class="band-card">
+          <div class="band-badge five">5 GHz</div>
+          <div class="band-stat">
+            <div class="band-stat-label">Range</div>
+            <div class="band-stat-val">Shorter</div>
+          </div>
+          <div class="band-stat">
+            <div class="band-stat-label">Speed</div>
+            <div class="band-stat-val">Fast ✓</div>
+          </div>
+          <div class="band-stat">
+            <div class="band-stat-label">Channels</div>
+            <div class="band-stat-val">25+ non-overlap</div>
+          </div>
+          <div class="band-pro">✓ Far less congested</div>
+          <div class="band-pro">✓ Much higher speeds</div>
+          <div class="band-con">✗ Blocked by thick walls</div>
+          <div class="band-con">✗ Shorter effective range</div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-top: 12px;">
+        <div class="box-icon">💡</div>
+        <div><strong style="color: var(--blue);">Best practice:</strong> Connect streaming devices and phones close to the router to 5 GHz. Use 2.4 GHz for devices far away or behind walls.</div>
+      </div>
+      <div class="info-box">
+        <div class="box-icon">📡</div>
+        <div>5 GHz channels 36, 40, 44, 48, 149, 153, 157, 161 are the safest picks — they don't require radar scanning (DFS) and are available on all routers.</div>
+      </div>
+    </div>
+
+    <!-- ── NEW: Interference Sources ─────────────────────── -->
+    <div class="section">
+      <div class="section-label">Common Interference Sources</div>
+      <div class="interference-grid">
+        <div class="interference-card">
+          <div class="interference-icon">📟</div>
+          <div class="interference-name">Microwave Oven</div>
+          <div class="interference-desc">Operates on 2.4 GHz. Can completely disrupt WiFi when running.</div>
+          <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">📞</div>
+          <div class="interference-name">Cordless Phone</div>
+          <div class="interference-desc">Older 2.4 GHz DECT phones broadcast on the same band as your router.</div>
+          <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">🔵</div>
+          <div class="interference-name">Bluetooth</div>
+          <div class="interference-desc">Shares the 2.4 GHz band. Headphones, speakers, and keyboards can create small drops.</div>
+          <div><span class="severity-dot severity-med"></span><span class="severity-label med">Medium</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">👶</div>
+          <div class="interference-name">Baby Monitor</div>
+          <div class="interference-desc">Analog monitors transmit constantly on 2.4 GHz, creating sustained interference.</div>
+          <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">🏢</div>
+          <div class="interference-name">Neighbor Routers</div>
+          <div class="interference-desc">Overlapping channels from nearby networks. Worse in apartments and condos.</div>
+          <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">🪟</div>
+          <div class="interference-name">Concrete / Metal</div>
+          <div class="interference-desc">Walls, floors, and metal studs absorb and reflect signals — especially 5 GHz.</div>
+          <div><span class="severity-dot severity-med"></span><span class="severity-label med">Medium</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">💡</div>
+          <div class="interference-name">LED Dimmers</div>
+          <div class="interference-desc">Cheap dimmer switches can emit broadband RF noise that affects 2.4 GHz.</div>
+          <div><span class="severity-dot severity-low"></span><span class="severity-label low">Low</span></div>
+        </div>
+        <div class="interference-card">
+          <div class="interference-icon">📺</div>
+          <div class="interference-name">Other Smart Devices</div>
+          <div class="interference-desc">Smart plugs, bulbs, and cameras all compete on 2.4 GHz — especially IoT-heavy homes.</div>
+          <div><span class="severity-dot severity-med"></span><span class="severity-label med">Medium</span></div>
+        </div>
+      </div>
+      <div class="warn-box">
+        <div class="box-icon">⚠️</div>
+        <div>If buffering spikes exactly when your microwave runs or someone uses a cordless phone, interference — not congestion — is your problem. Switching to 5 GHz is the fastest fix.</div>
+      </div>
+    </div>
+
+    <!-- ── NEW: Router Placement ──────────────────────────── -->
+    <div class="section">
+      <div class="section-label">Router Placement</div>
+      <div class="placement-list">
+        <div class="placement-item">
+          <div class="placement-emoji">🏔️</div>
+          <div class="placement-text">
+            <div class="placement-title">Place It High and Central</div>
+            <div class="placement-desc">WiFi signals radiate outward and downward. A shelf or high table in the center of your home covers more area than a corner on the floor.</div>
+            <span class="placement-tag tag-do">Do This</span>
+          </div>
+        </div>
+        <div class="placement-item">
+          <div class="placement-emoji">📦</div>
+          <div class="placement-text">
+            <div class="placement-title">Don't Hide It in a Cabinet</div>
+            <div class="placement-desc">Enclosures block signal significantly. Wood, metal, and cabinet walls reduce range by 30–50%.</div>
+            <span class="placement-tag tag-dont">Avoid</span>
+          </div>
+        </div>
+        <div class="placement-item">
+          <div class="placement-emoji">🍳</div>
+          <div class="placement-text">
+            <div class="placement-title">Keep Away from the Kitchen</div>
+            <div class="placement-desc">Microwave ovens, refrigerators, and metal appliances all disrupt 2.4 GHz. Don't place your router on a kitchen counter.</div>
+            <span class="placement-tag tag-dont">Avoid</span>
+          </div>
+        </div>
+        <div class="placement-item">
+          <div class="placement-emoji">🧱</div>
+          <div class="placement-text">
+            <div class="placement-title">Minimize Wall Crossings</div>
+            <div class="placement-desc">Each wall a signal passes through cuts it. Concrete and brick are the worst. Position your router so fewer walls separate it from the devices that matter most.</div>
+            <span class="placement-tag tag-do">Do This</span>
+          </div>
+        </div>
+        <div class="placement-item">
+          <div class="placement-emoji">🪴</div>
+          <div class="placement-text">
+            <div class="placement-title">Avoid Aquariums and Large Plants</div>
+            <div class="placement-desc">Water absorbs WiFi signal significantly. Fish tanks and large water features close to your router can noticeably reduce range.</div>
+            <span class="placement-tag tag-dont">Avoid</span>
+          </div>
+        </div>
+        <div class="placement-item">
+          <div class="placement-emoji">📡</div>
+          <div class="placement-text">
+            <div class="placement-title">Point Antennas Correctly</div>
+            <div class="placement-desc">If your router has external antennas, point them perpendicular to the devices you want to reach — vertical for devices on the same floor, horizontal for above/below floors.</div>
+            <span class="placement-tag tag-do">Do This</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ISP Gateway Directory (original) -->
     <div class="section">
       <div class="section-label">ISP Gateway Directory</div>
       <div class="inset-group">
@@ -323,7 +646,6 @@
           </div>
           <a href="http://10.0.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">10.0.0.1 →</a>
         </div>
-
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 32px; height: 32px; background: var(--blue-bg); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">AT</div>
@@ -331,7 +653,6 @@
           </div>
           <a href="http://192.168.1.254" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.1.254 →</a>
         </div>
-
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 32px; height: 32px; background: var(--purple-bg); color: var(--purple); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">SP</div>
@@ -342,7 +663,6 @@
             <a href="http://192.168.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600; font-size: 14px;">192.168.0.1 →</a>
           </div>
         </div>
-
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 32px; height: 32px; background: var(--red-bg); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">VZ</div>
@@ -350,7 +670,6 @@
           </div>
           <a href="http://192.168.1.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.1.1 →</a>
         </div>
-
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 32px; height: 32px; background: var(--blue-bg); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">CX</div>
@@ -359,9 +678,8 @@
           <a href="http://192.168.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.0.1 →</a>
         </div>
       </div>
-      
       <div class="login-note" style="margin-top: 10px; font-size: 12px; color: var(--text-sec);">
-        <strong>Note:</strong> You must be connected to that specific provider's Wi-Fi network for these links to load. 
+        <strong>Note:</strong> You must be connected to that specific provider's Wi-Fi network for these links to load.
         <br><br>
         ⚠️ <strong>Bypass Warning:</strong> If your browser displays a "Connection Not Private" warning page when clicking these links, click <strong>"Advanced"</strong> then <strong>"Proceed to IP (unsafe)"</strong>. This is normal; home routers do not use SSL certificates.
       </div>
@@ -372,39 +690,33 @@
       <div class="brand-grid" id="brand-grid"></div>
     </div>
 
-    <!-- Home Screen Compliance Footer -->
     <div class="affiliate-disclosure">
       As an Amazon Associate I earn from qualifying purchases.
     </div>
   </div>
 
-  <!-- STEPS SCREEN -->
+  <!-- STEPS SCREEN (original, unchanged) -->
   <div class="screen" id="screen-steps">
     <div class="topbar">
       <button class="back-btn" onclick="goHome()">Back</button>
       <div class="nav-title" id="nav-brand-title">Router Setup</div>
     </div>
-
     <div class="step-header-area">
       <div class="step-brand-pill" id="brand-pill-el"></div>
       <h1 class="step-main-title">Change Channel</h1>
     </div>
-
     <div class="section">
       <div class="inset-group" id="info-bars-el"></div>
       <div class="login-note">
         <span style="font-weight: 600;">Note:</span> Many manufacturers print the exact login information on a sticker located on the back or bottom of the modem/router device.
       </div>
     </div>
-
     <div class="section">
       <div class="section-label" style="margin-left:0;">Instructions</div>
       <div id="steps-container"></div>
     </div>
-
     <div class="section" id="tip-section"></div>
     <div class="section" id="warn-section"></div>
-
     <div class="section">
       <div class="done-card">
         <div class="done-icon">✓</div>
@@ -412,13 +724,10 @@
         <div class="done-sub">Your router will restart briefly. Reconnect to experience faster speeds.</div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-label" style="margin-left:0;">Top Hardware Upgrades</div>
       <div class="inset-group" id="affiliate-el"></div>
     </div>
-
-    <!-- Steps Screen Compliance Footer -->
     <div class="affiliate-disclosure">
       Contains affiliate links. As an Amazon Associate I earn from qualifying purchases. All platform search queries automatically carry programmatic Associate markers.
     </div>
@@ -427,46 +736,34 @@
 </div>
 
 <script>
-// --- CONFIGURATION MATRIX ---
-const AFFILIATE_TAG = 'wifichannel-20'; // Replace with your true tracking ID string
+const AFFILIATE_TAG = 'wifichannel-20';
 
 const AFF = {
-  // NETGEAR HARDWARE
   netgear_cm3000: { name:'Netgear Nighthawk CM3000', sub:'DOCSIS 3.1 Gaming & Multi-Gig', price:'$299', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM3000+Cable+Modem&tag=' },
   netgear_cm2000: { name:'Netgear Nighthawk CM2000', sub:'DOCSIS 3.1 Tier 2.5G Port speed', price:'$249', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM2000+Cable+Modem&tag=' },
   netgear_cm1200: { name:'Netgear Nighthawk CM1200', sub:'4x Gigabit Ports Link Aggregation', price:'$199', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM1200+Cable+Modem&tag=' },
   netgear_cax80:  { name:'Netgear Nighthawk CAX80', sub:'AX6000 Modem-Router Combo Pack', price:'$498', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CAX80+Modem+Router&tag=' },
   netgear_rax50:  { name:'Netgear Nighthawk RAX50', sub:'Standalone High-Power Router Upgrade', price:'$160', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+RAX50+WiFi+6&tag=' },
-
-  // ARRIS HARDWARE
   arris_s34:     { name:'Arris SURFboard S34', sub:'Top Pick DOCSIS 3.1 Next-Gen Split', price:'$219', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+S34+Cable+Modem&tag=' },
   arris_s33:     { name:'Arris SURFboard S33', sub:'Gold-Standard Compact Multi-Gig 2.5G', price:'$199', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+S33+Cable+Modem&tag=' },
   arris_sb8200:  { name:'Arris SURFboard SB8200', sub:'Reliable Dual-Port Budget DOCSIS 3.1', price:'$140', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+SB8200+Cable+Modem&tag=' },
   arris_g36:     { name:'Arris SURFboard G36', sub:'AX3000 Wi-Fi 6 Modem Router Combo', price:'$315', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+G36+Modem+Router&tag=' },
   arris_sb6190:  { name:'Arris SURFboard SB6190', sub:'Classic Budget Legacy DOCSIS 3.0', price:'$79', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+SB6190+Cable+Modem&tag=' },
-
-  // TP-LINK HARDWARE
   tplink_axe75:  { name:'TP-Link Archer AXE75', sub:'Tri-Band High-Performance Wi-Fi 6E', price:'$160', url:'https://www.amazon.com/s?k=TP-Link+Archer+AXE75+Router&tag=' },
   tplink_ax3000: { name:'TP-Link Archer AX3000', sub:'Value Upgrade Strategic Power Wi-Fi 6', price:'$70', url:'https://www.amazon.com/s?k=TP-Link+Archer+AX3000+Router&tag=' },
   tplink_deco:   { name:'TP-Link Deco AX3000', sub:'Whole-Home Mesh Kit Coverage System', price:'$180', url:'https://www.amazon.com/s?k=TP-Link+Deco+AX3000+Mesh&tag=' },
   tplink_be550:  { name:'TP-Link Archer BE550', sub:'Next-Gen Pro System Platform Wi-Fi 7', price:'$249', url:'https://www.amazon.com/s?k=TP-Link+Archer+BE550+WiFi+7&tag=' },
   tplink_ax55:   { name:'TP-Link Archer AX55', sub:'Balanced Quad-Stream Network Core', price:'$95', url:'https://www.amazon.com/s?k=TP-Link+Archer+AX55+Router&tag=' },
-
-  // ASUS HARDWARE
   asus_ax88u:    { name:'Asus RT-AX88U Pro', sub:'Ultimate Gaming Dual 2.5G Network Hub', price:'$260', url:'https://www.amazon.com/s?k=ASUS+RT-AX88U+Pro+Router&tag=' },
   asus_ax55:     { name:'Asus RT-AX55', sub:'Budget UI Responsive Entry Platform', price:'$90', url:'https://www.amazon.com/s?k=ASUS+RT-AX55+Router&tag=' },
   asus_gt6:      { name:'Asus ROG Rapture GT6', sub:'Extreme Horizon ROG Gaming Core System', price:'$279', url:'https://www.amazon.com/s?k=ASUS+ROG+Rapture+GT6&tag=' },
   asus_xd6:      { name:'Asus ZenWiFi XD6', sub:'Elegant High-Speed Concrete Punch Mesh', price:'$210', url:'https://www.amazon.com/s?k=ASUS+ZenWiFi+XD6&tag=' },
   asus_ax3000:   { name:'Asus RT-AX3000', sub:'Commercial Core Balance Wi-Fi 6 Unit', price:'$110', url:'https://www.amazon.com/s?k=ASUS+RT-AX3000+Router&tag=' },
-
-  // LINKSYS HARDWARE
   linksys_mx5:   { name:'Linksys Velop Pro 6E', sub:'Tri-Band High-Density Multi-Room Mesh', price:'$150', url:'https://www.amazon.com/s?k=Linksys+Velop+Pro+6E&tag=' },
   linksys_hydra: { name:'Linksys Hydra Pro 6', sub:'Intelligent Mesh Long-Range Router', price:'$130', url:'https://www.amazon.com/s?k=Linksys+Hydra+Pro+6&tag=' },
   linksys_mr9600:{ name:'Linksys Max-Stream MR9600', sub:'Dual-Band Extreme Stream Router', price:'$120', url:'https://www.amazon.com/s?k=Linksys+MR9600+Router&tag=' },
   linksys_ea7500:{ name:'Linksys Max-Stream EA7500', sub:'Legacy Value Dual-Band Router', price:'$75', url:'https://www.amazon.com/s?k=Linksys+EA7500+Router&tag=' },
   linksys_velop: { name:'Linksys Velop Intelligent Mesh', sub:'Compact Dual-Node System Core', price:'$110', url:'https://www.amazon.com/s?k=Linksys+Velop+Mesh&tag=' },
-
-  // UTILITIES & THIRD PARTY CERTIFIED
   hitron_coda56: { name:'Hitron CODA56', sub:'Best Value Next-Gen Mid-Split Modem', price:'$159', url:'https://www.amazon.com/s?k=Hitron+CODA56+Cable+Modem&tag=' },
   motorola_b12:  { name:'Motorola B12', sub:'Pint-Sized Powerhouse 2.5G Modem', price:'$159', url:'https://www.amazon.com/s?k=Motorola+B12+Cable+Modem&tag=' },
   motorola_mg87: { name:'Motorola MG8702', sub:'Premium Wi-Fi 5 Gigabit Gateway Combo', price:'$199', url:'https://www.amazon.com/s?k=Motorola+MG8702+Modem+Router&tag=' },
@@ -489,7 +786,6 @@ function buildMockup(type, data, color) {
         </div>
       </div>
     </div>`;
-
   if (type === 'channel') return `
     <div class="mockup-wrap">
       <div class="mockup-label">Browser Preview</div>
@@ -511,125 +807,71 @@ const searchEmptyStep = {
   code: null, mockup: null
 };
 
-// --- ULTRA-SIMPLIFIED BRANDS DICTIONARY MATRIX ---
 const BRANDS = [
   { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-bg)', icon:'N',
     adminUrl:'routerlogin.net', user:'admin', pass:'password', app:null,
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your phone, tablet, or computer is actively connected to your home Netgear WiFi network.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open any web browser (like Safari or Chrome) and type routerlogin.net into the top search/address bar.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear Login',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Type in your password to log in. Click on the Advanced tab at the top, then click on Wireless Setup from the side menu.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Look for the "Channel" dropdown menu under the 2.4GHz section. Change it from "Auto" to your chosen clean number and click Apply.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network Settings (2.4GHz)',field:'Channel',saveBtn:'Apply'}}}
-    ], tip:'Turning off "Smart Connect" or "Band Steering" in your router settings lets you change individual channel numbers manually.', warn:null, 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone, tablet, or computer is actively connected to your home Netgear WiFi network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser (like Safari or Chrome) and type routerlogin.net into the top search/address bar.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Type in your password to log in. Click on the Advanced tab at the top, then click on Wireless Setup from the side menu.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the "Channel" dropdown menu under the 2.4GHz section. Change it from "Auto" to your chosen clean number and click Apply.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network Settings (2.4GHz)',field:'Channel',saveBtn:'Apply'}}}],
+    tip:'Turning off "Smart Connect" or "Band Steering" in your router settings lets you change individual channel numbers manually.', warn:null, 
     affiliates:['netgear_cm3000','netgear_cm2000','netgear_cm1200','netgear_cax80','netgear_rax50'] },
 
   { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-bg)', icon:'T',
     adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether',
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your home TP-Link network link.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open your browser and type tplinkwifi.net into the top address bar to pull up the access screen.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in with your password. Click on Advanced at the top, then click Wireless on the left, and choose Wireless Settings.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Locate the Channel dropdown row, change it to your desired manual channel number, and click the Save button.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}
-    ], tip:'You can also easily manage these settings directly from your smartphone using the free TP-Link Tether mobile app.', warn:null, 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your home TP-Link network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser and type tplinkwifi.net into the top address bar to pull up the access screen.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with your password. Click on Advanced at the top, then click Wireless on the left, and choose Wireless Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the Channel dropdown row, change it to your desired manual channel number, and click the Save button.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}],
+    tip:'You can also easily manage these settings directly from your smartphone using the free TP-Link Tether mobile app.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','tplink_deco','tplink_be550','tplink_ax55'] },
 
   { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-bg)', icon:'A',
     adminUrl:'router.asus.com', user:'admin', pass:'admin', app:'ASUS Router',
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the search bar at the top.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}
-    ], tip:'If your Asus router supports multiple bands, ensure you are editing the 2.4 GHz configuration profile for local channel adjustments.', warn:null, 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the search bar at the top.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}],
+    tip:'If your Asus router supports multiple bands, ensure you are editing the 2.4 GHz configuration profile for local channel adjustments.', warn:null, 
     affiliates:['asus_ax88u','asus_ax55','asus_gt6','asus_xd6','asus_ax3000'] },
 
   { id:'arris', name:'Arris', color:'var(--red)', bg:'var(--red-bg)', icon:'AR',
     adminUrl:'192.168.0.1', user:'admin', pass:'password', app:null,
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your phone or computer is fully connected to your Arris home wireless network.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open a web browser window and type 192.168.0.1 into the top link location bar.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway Login',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in with the details on your router sticker. Click on System Connection and select Wi-Fi Networks.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Find the 2.4 GHz Radio parameters list. Change the Channel option to your clean chosen number and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Wireless Radio',field:'Wireless Channel',saveBtn:'Save'}}}
-    ], warn:'Some internet service providers lock down custom settings on rented Arris boxes, which might prevent manual channel changing.', 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or computer is fully connected to your Arris home wireless network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser window and type 192.168.0.1 into the top link location bar.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with the details on your router sticker. Click on System Connection and select Wi-Fi Networks.', code:null, mockup:null},{t:'Change the Channel', d:'Find the 2.4 GHz Radio parameters list. Change the Channel option to your clean chosen number and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Wireless Radio',field:'Wireless Channel',saveBtn:'Save'}}}],
+    warn:'Some internet service providers lock down custom settings on rented Arris boxes, which might prevent manual channel changing.', 
     affiliates:['arris_s34','arris_s33','arris_sb8200','arris_g36','arris_sb6190'] },
 
   { id:'xfinity', name:'Xfinity', color:'var(--red)', bg:'var(--red-bg)', icon:'X',
     adminUrl:'10.0.0.1', user:'admin', pass:'password', app:'Xfinity app',
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your computer or smartphone is connected to your private home Xfinity network.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open a browser screen and type 10.0.0.1 into the top address bar target location.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway Login',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in using your account codes. Navigate down the left menu to Gateway > Connection > Wi-Fi.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Click the Edit button next to your 2.4 GHz band row, switch Channel Selection to your manual number, and click Save Settings.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Wi-Fi Configuration',field:'Channel Selection',saveBtn:'Save Settings'}}}
-    ], warn:'If you use Xfinity Pod mesh expanders or have modern cloud control rules turned on, manual channel adjustments will be locked out.', 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your computer or smartphone is connected to your private home Xfinity network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser screen and type 10.0.0.1 into the top address bar target location.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account codes. Navigate down the left menu to Gateway > Connection > Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Edit button next to your 2.4 GHz band row, switch Channel Selection to your manual number, and click Save Settings.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Wi-Fi Configuration',field:'Channel Selection',saveBtn:'Save Settings'}}}],
+    warn:'If you use Xfinity Pod mesh expanders or have modern cloud control rules turned on, manual channel adjustments will be locked out.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'eero', name:'Eero', color:'var(--indigo)', bg:'var(--indigo-bg)', icon:'E',
     adminUrl:null, user:null, pass:null, app:'Eero App',
-    steps:[
-      {t:'Open the Eero App', d:'Eero smart mesh networks do not use an admin website link. Open the official Eero app on your mobile phone.', code:null, mockup:null},
-      {t:'Select Your Network', d:'Tap on your main home network system profile box displayed right on the central dashboard view.', code:null, mockup:null},
-      {t:'Open Advanced Settings', d:'Tap on the lower Settings navigation option menu, scroll down, and select Advanced from the list.', code:null, mockup:null},
-      {t:'Automatic Background Tuning', d:'Eero platforms constantly scan your neighborhood and change channels automatically to fix slow speeds. Manual overrides are completely blocked.', code:null, mockup:null}
-    ], tip:'Because Eero balances overlapping channels across multiple nodes automatically, you don\'t need to configure manual channel keys.', warn:null, 
+    steps:[{t:'Open the Eero App', d:'Eero smart mesh networks do not use an admin website link. Open the official Eero app on your mobile phone.', code:null, mockup:null},{t:'Select Your Network', d:'Tap on your main home network system profile box displayed right on the central dashboard view.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap on the lower Settings navigation option menu, scroll down, and select Advanced from the list.', code:null, mockup:null},{t:'Automatic Background Tuning', d:'Eero platforms constantly scan your neighborhood and change channels automatically to fix slow speeds. Manual overrides are completely blocked.', code:null, mockup:null}],
+    tip:'Because Eero balances overlapping channels across multiple nodes automatically, you don\'t need to configure manual channel keys.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-bg)', icon:'L',
     adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:'Linksys App',
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your active device is securely connected to your personal home Linksys network.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open any web browser and type 192.168.1.1 into the top bar link path fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Dashboard',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in using your password keys. Look at the left sidebar menu area, find Router Settings, and click Wi-Fi Settings.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Locate the 2.4 GHz wireless setup block, change the Channel selection field to your chosen manual number, and click OK or Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Wireless Settings',field:'Channel',saveBtn:'Apply'}}}
-    ], tip:'Linksys officially discontinued cloud login support via linksyssmartwifi.com. You must handle changes locally using 192.168.1.1 or myrouter.local.', warn:null, 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active device is securely connected to your personal home Linksys network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser and type 192.168.1.1 into the top bar link path fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Dashboard',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your password keys. Look at the left sidebar menu area, find Router Settings, and click Wi-Fi Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4 GHz wireless setup block, change the Channel selection field to your chosen manual number, and click OK or Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Wireless Settings',field:'Channel',saveBtn:'Apply'}}}],
+    tip:'Linksys officially discontinued cloud login support via linksyssmartwifi.com. You must handle changes locally using 192.168.1.1 or myrouter.local.', warn:null, 
     affiliates:['linksys_mx5','linksys_hydra','linksys_mr9600','linksys_ea7500','linksys_velop'] },
 
   { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-bg)', icon:'G',
     adminUrl:null, user:null, pass:null, app:'Google Home App',
-    steps:[
-      {t:'Open the Google Home App', d:'Google Nest hardware does not have an administrative website link. Launch the free Google Home app on your phone.', code:null, mockup:null},
-      {t:'Select Your Wi-Fi Node', d:'Locate your primary router or active Wi-Fi device circle icon directly on your home map control panel.', code:null, mockup:null},
-      {t:'Open Advanced Settings', d:'Tap the Settings gear icon in the top right corner, scroll down to the bottom, and select Advanced Networking.', code:null, mockup:null},
-      {t:'Automated Traffic Control', d:'Google Nest systematically manages neighborhood traffic channels in the background to avoid congestion. There is no manual override control.', code:null, mockup:null}
-    ], tip:'Google Nest mesh pods coordinate automatic frequency hopping behind the scenes to keep data flowing smoothly without manual intervention.', warn:null, 
+    steps:[{t:'Open the Google Home App', d:'Google Nest hardware does not have an administrative website link. Launch the free Google Home app on your phone.', code:null, mockup:null},{t:'Select Your Wi-Fi Node', d:'Locate your primary router or active Wi-Fi device circle icon directly on your home map control panel.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap the Settings gear icon in the top right corner, scroll down to the bottom, and select Advanced Networking.', code:null, mockup:null},{t:'Automated Traffic Control', d:'Google Nest systematically manages neighborhood traffic channels in the background to avoid congestion. There is no manual override control.', code:null, mockup:null}],
+    tip:'Google Nest mesh pods coordinate automatic frequency hopping behind the scenes to keep data flowing smoothly without manual intervention.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'att', name:'AT&T BGW', color:'var(--orange)', bg:'var(--orange-bg)', icon:'AT',
     adminUrl:'192.168.1.254', user:null, pass:'Access Code', app:null,
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your phone or laptop is actively connected to your AT&T home internet gateway network.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open your browser program and type 192.168.1.254 directly into the top navigation location field.', code:'192.168.1.254', mockup:{type:'login',data:{url:'192.168.1.254',title:'AT&T Gateway Management',passLabel:'Device Access Code'}}},
-      {t:'Find Wireless Settings', d:'Click the Home Network tab from the main menu options, then click on the sub-option for Wi-Fi.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Click Advanced Options near the top. When prompted, type in the Device Access Code printed on your router\'s sticker. Change the 2.4 GHz channel value and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.1.254',section:'2.4 GHz Network Options',field:'Channel Selection',saveBtn:'Save Settings'}}}
-    ], tip:'The Device Access Code is a unique password completely separate from your daily WiFi password. Look closely at the barcode sticker on the back of the box.', warn:null, 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is actively connected to your AT&T home internet gateway network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser program and type 192.168.1.254 directly into the top navigation location field.', code:'192.168.1.254', mockup:{type:'login',data:{url:'192.168.1.254',title:'AT&T Gateway Management',passLabel:'Device Access Code'}}},{t:'Find Wireless Settings', d:'Click the Home Network tab from the main menu options, then click on the sub-option for Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click Advanced Options near the top. When prompted, type in the Device Access Code printed on your router\'s sticker. Change the 2.4 GHz channel value and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.1.254',section:'2.4 GHz Network Options',field:'Channel Selection',saveBtn:'Save Settings'}}}],
+    tip:'The Device Access Code is a unique password completely separate from your daily WiFi password. Look closely at the barcode sticker on the back of the box.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','asus_ax88u','netgear_rax50','netspot_tool'] },
 
   { id:'spectrum', name:'Spectrum', color:'var(--purple)', bg:'var(--purple-bg)', icon:'S',
     adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:null,
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your active setup device is connected to your standard Spectrum home network link.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open a browser tab window and enter 192.168.1.1 into the top structural target bar.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Portal',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in using your account info. Navigate to the Advanced settings tab sheet and click the main Wireless sub-menu row.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Locate the 2.4G channel profile configuration row, select your clean target channel number, and click Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless Configurations',field:'Channel Control',saveBtn:'Apply'}}}
-    ], warn:'Newer model Spectrum routers with automated software updates frequently lock out manual browser menu overrides entirely.', 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active setup device is connected to your standard Spectrum home network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser tab window and enter 192.168.1.1 into the top structural target bar.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Portal',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account info. Navigate to the Advanced settings tab sheet and click the main Wireless sub-menu row.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4G channel profile configuration row, select your clean target channel number, and click Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless Configurations',field:'Channel Control',saveBtn:'Apply'}}}],
+    warn:'Newer model Spectrum routers with automated software updates frequently lock out manual browser menu overrides entirely.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-bg)', icon:'D',
     adminUrl:'dlinkrouter.local', user:'Admin', pass:'(blank)', app:'D-Link Wi-Fi',
-    steps:[
-      searchEmptyStep,
-      {t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},
-      {t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the search and address bar link fields.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},
-      {t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},
-      {t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}
-    ], tip:null, warn:null, 
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the search and address bar link fields.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}],
+    tip:null, warn:null, 
     affiliates:['tplink_axe75','netgear_cm3000','arris_s33','motorola_mg87','netspot_tool'] }
 ];
 
@@ -647,7 +889,6 @@ function loadBrand(b) {
   const pill = document.getElementById('brand-pill-el');
   pill.textContent = b.name + ' Router';
   pill.style.background = b.bg; pill.style.color = b.color;
-
   const bars = document.getElementById('info-bars-el');
   let barsHtml = '';
   if (b.adminUrl) barsHtml += `<div class="inset-row"><span class="inset-label">Admin URL</span><span class="inset-value link">${b.adminUrl}</span></div>`;
@@ -655,7 +896,6 @@ function loadBrand(b) {
   if (b.user) barsHtml += `<div class="inset-row"><span class="inset-label">Default User</span><span class="inset-value">${b.user}</span></div>`;
   if (b.pass) barsHtml += `<div class="inset-row"><span class="inset-label">Default Pass</span><span class="inset-value">${b.pass}</span></div>`;
   bars.innerHTML = barsHtml;
-
   const container = document.getElementById('steps-container');
   container.innerHTML = '';
   b.steps.forEach((s, i) => {
@@ -664,21 +904,16 @@ function loadBrand(b) {
     card.innerHTML = `<div class="step-num-badge" style="background:${b.bg}; color:${b.color}">${i+1}</div><div class="step-title">${s.t}</div><div class="step-desc">${s.d}</div>${s.code ? `<div class="code-block"><code style="color:${b.color}">${s.code}</code></div>` : ''}${s.mockup ? buildMockup(s.mockup.type, s.mockup.data, b.color) : ''}`;
     container.appendChild(card);
   });
-
   document.getElementById('tip-section').innerHTML = b.tip ? `<div class="tip-box"><div class="box-icon">💡</div><div>${b.tip}</div></div>` : '';
   document.getElementById('warn-section').innerHTML = b.warn ? `<div class="warn-box"><div class="box-icon">⚠️</div><div>${b.warn}</div></div>` : '';
-
   document.getElementById('affiliate-el').innerHTML = (b.affiliates||[]).map(key => {
     const a = AFF[key]; if (!a) return '';
     const dynamicUrl = `${a.url}${AFFILIATE_TAG}`;
     return `<div class="app-store-item"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">${a.name}</div><div class="app-sub">${a.sub} &middot; <strong>${a.price}</strong></div></div><a class="app-get-btn" href="${dynamicUrl}" target="_blank">GET</a></div>`;
   }).join('');
-
   document.getElementById('screen-home').classList.remove('active');
   document.getElementById('screen-steps').classList.add('active');
   window.scrollTo(0, 0);
-
-  // Push clean browser history state token for edge gesture compliance
   history.pushState({screen: 'steps'}, '');
 }
 
@@ -688,7 +923,6 @@ function goHome() {
   window.scrollTo(0, 0);
 }
 
-// Global popstate history hook to normalize hardware/swipe navigation behaviors
 window.addEventListener('popstate', (event) => {
   document.getElementById('screen-steps').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
