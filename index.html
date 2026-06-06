@@ -8,446 +8,794 @@
   gtag('js', new Date());
   gtag('config', 'G-S59EEVNY50');
 </script>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WiFi Channel Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>WiFi Troubleshooting Guide</title>
 <style>
+
+/* ═══════════════════════════════════════════════════════════
+   WIFI GUIDE  ·  2026 DESIGN SYSTEM
+   Dark-first  ·  Cool zinc neutrals  ·  Electric accents
+   Clear type hierarchy  ·  Flat cards  ·  Mobile + Desktop
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Backgrounds — layered dark zinc */
+  --bg:        #08080E;
+  --bg-2:      #0F0F18;
+  --surface:   #141420;
+  --surface-2: #1C1C2C;
+
+  /* Borders */
+  --border:    #252535;
+  --border-2:  #32324A;
+
+  /* Type */
+  --text:      #EEEEF8;       /* primary — near-white, slightly warm */
+  --text-2:    #9898B8;       /* secondary — readable zinc */
+  --text-3:    #50506A;       /* tertiary / labels */
+
+  /* Accent — electric blue (primary CTA) */
+  --blue:      #5B9BFF;
+  --blue-dim:  #12203E;
+  --blue-glow: rgba(91,155,255,0.12);
+
+  /* Semantic accents */
+  --green:     #34D974;  --green-dim:  #0A2618;
+  --orange:    #F8A525;  --orange-dim: #2A1A00;
+  --red:       #F04E65;  --red-dim:    #2C0A12;
+  --purple:    #A78BFA;  --purple-dim: #1C1040;
+  --teal:      #20D4EE;  --teal-dim:   #022830;
+
+  /* Type scale */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Fira Code", monospace;
+
+  /* Geometry */
+  --r-2xl: 20px;
+  --r-xl:  16px;
+  --r-lg:  12px;
+  --r:      8px;
+  --r-sm:   4px;
+
+  /* Spacing */
+  --pad:    20px;
+  --pad-lg: 28px;
+  --gap:    12px;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: #F2F2F7;
-    --surface: #FFFFFF;
-    --border: #E5E5EA;
-    --text: #000000;
-    --text-sec: #8E8E93;
-    --text-tert: #C7C7CC;
-    --blue: #007AFF;
-    --blue-bg: #E5F1FF;
-    --green: #34C759;
-    --green-bg: #EAF9EE;
-    --orange: #FF9500;
-    --orange-bg: #FFF4E5;
-    --red: #FF3B30;
-    --red-bg: #FFEBEA;
-    --purple: #5856D6;
-    --purple-bg: #EFEDFB;
-    --indigo: #5E5CE6;
-    --indigo-bg: #EAE9FB;
-    --teal: #32ADE6;
-    --teal-bg: #E5F5FE;
-    --radius-lg: 20px;
-    --radius: 12px;
-    --radius-sm: 8px;
-    --shadow: 0 4px 20px rgba(0,0,0,0.04);
+    --bg:        #F3F3F8;
+    --bg-2:      #E8E8F2;
+    --surface:   #FFFFFF;
+    --surface-2: #F7F7FC;
+    --border:    #DDDDE8;
+    --border-2:  #CBCBDA;
+    --text:      #0C0C1A;
+    --text-2:    #55557A;
+    --text-3:    #9898B0;
+    --blue-dim:  #E8EFFF;
+    --blue-glow: rgba(91,155,255,0.08);
+    --green-dim:  #E8FAF0;
+    --orange-dim: #FFF5E6;
+    --red-dim:    #FEF0F2;
+    --purple-dim: #F4F0FF;
+    --teal-dim:   #E8FAFB;
+  }
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── App shell ──────────────────────────────────────────── */
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  padding-bottom: 80px;
+}
+
+.screen { display: none; }
+.screen.active {
+  display: block;
+  animation: fadeUp 0.22s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Nav bar ────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8,8,14,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: light) {
+  .topbar { background: rgba(243,243,248,0.9); }
+}
+.nav-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.back-btn {
+  position: absolute; left: var(--pad); top: 50%; transform: translateY(-50%);
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  color: var(--blue);
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--r);
+  transition: background 0.12s, border-color 0.12s;
+  font-family: var(--font);
+}
+.back-btn::before { content: "←"; font-weight: 400; }
+.back-btn:hover { background: var(--border); border-color: var(--border-2); }
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+  padding: 52px var(--pad-lg) 36px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+.hero-eyebrow::before {
+  content: "";
+  display: block; width: 18px; height: 2px;
+  background: var(--blue); border-radius: 2px;
+}
+
+/* PAGE TITLE — largest, heaviest weight */
+.hero h1 {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+/* Sub-headline */
+.hero p {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 400px;
+}
+
+.hero-tip {
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: var(--blue-glow);
+  border: 1px solid var(--blue-dim);
+  border-radius: var(--r-lg);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.hero-tip strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.hero-skip-btn {
+  margin-top: 22px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-xl);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: opacity 0.14s, transform 0.14s;
+}
+.hero-skip-btn:hover  { opacity: 0.86; transform: translateY(-1px); }
+.hero-skip-btn:active { opacity: 1; transform: scale(0.97); }
+
+/* ── Section wrapper ────────────────────────────────────── */
+.section { padding: 32px var(--pad) 0; }
+
+/* SECTION LABEL — small all-caps, distinct from body */
+.section-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+
+/* ── Generic card list ──────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.card-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.card-row:last-child { border-bottom: none; }
+.card-row-label { font-weight: 600; color: var(--text); }
+.card-row-val   { color: var(--text-2); text-align: right; }
+.card-row-val a {
+  color: var(--blue); text-decoration: none; font-weight: 700;
+  transition: opacity 0.12s;
+}
+.card-row-val a:hover { opacity: 0.75; }
+
+/* ── Inline tags ────────────────────────────────────────── */
+.tag {
+  display: inline-flex; align-items: center;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.07em; text-transform: uppercase;
+}
+.tag-do    { background: var(--green-dim);  color: var(--green); }
+.tag-dont  { background: var(--red-dim);    color: var(--red); }
+.tag-best  { background: var(--green-dim);  color: var(--green); }
+.tag-avoid { background: var(--orange-dim); color: var(--orange); }
+.tag-bad   { background: var(--red-dim);    color: var(--red); }
+
+/* ── Notice / callout boxes ─────────────────────────────── */
+.notice {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  font-size: 13px; font-weight: 400;
+  line-height: 1.6;
+  margin-top: var(--gap);
+}
+.notice-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+.notice strong { font-weight: 700; }
+.notice-tip  { background: var(--blue-glow); border: 1px solid var(--blue-dim); color: var(--text-2); }
+.notice-tip strong { color: var(--text); }
+.notice-warn { background: var(--orange-dim); border: 1px solid rgba(248,165,37,0.4); color: var(--orange); }
+.notice-info { background: var(--teal-dim);   border: 1px solid rgba(32,212,238,0.3); color: var(--teal); }
+
+/* ── Diagnosis cards ────────────────────────────────────── */
+.diagnosis-list { display: flex; flex-direction: column; gap: var(--gap); }
+.diagnosis-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  display: flex; gap: 14px; align-items: flex-start;
+  transition: border-color 0.14s;
+}
+.diagnosis-item:hover { border-color: var(--border-2); }
+.diagnosis-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+
+/* Card title — bold, full contrast */
+.diagnosis-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.diagnosis-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.diagnosis-fix {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 7px;
+  letter-spacing: 0.03em;
+}
+
+/* ── Speed test ─────────────────────────────────────────── */
+.speedtest-steps { display: flex; flex-direction: column; }
+.speedtest-step {
+  background: var(--surface);
+  padding: 16px;
+  display: flex; gap: 14px; align-items: flex-start;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.speedtest-step:first-child {
+  border-top: 1px solid var(--border);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+}
+.speedtest-step:last-child {
+  border-radius: 0 0 var(--r-xl) var(--r-xl);
+}
+.speedtest-num {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  color: var(--teal);
+  font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.speedtest-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.speedtest-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.speedtest-link {
+  display: inline-block; margin-top: 7px;
+  font-size: 12px; font-weight: 700;
+  color: var(--blue); text-decoration: none;
+}
+.speedtest-link:hover { text-decoration: underline; }
+
+/* ── Bar chart ──────────────────────────────────────────── */
+.chart-widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 22px 20px 26px;
+}
+.chart-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.chart-icon {
+  width: 32px; height: 32px; border-radius: var(--r);
+  background: var(--blue-dim); color: var(--blue);
+  display: flex; align-items: center; justify-content: center; font-size: 15px;
+}
+/* Chart title — bold card heading */
+.chart-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.y-axis-guide {
+  font-size: 10px; font-weight: 700; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid var(--border); padding-bottom: 8px;
+}
+.bar-chart {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  height: 108px;
+  border-bottom: 1px solid var(--border-2);
+  margin-bottom: 26px;
+}
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative; height: 100%; }
+.bar-count { font-size: 10px; font-weight: 700; color: var(--text-3); margin-bottom: 3px; }
+.bar { width: 58%; max-width: 13px; border-radius: 3px 3px 0 0; }
+.bar.max  { background: var(--red);    height: 100%; }
+.bar.high { background: var(--orange); height: 65%; }
+.bar.med  { background: var(--blue);   height: 40%; opacity: 0.6; }
+.bar.low  { background: var(--blue);   height: 15%; opacity: 0.3; }
+.bar.empty{ background: var(--green);  height: 4px; box-shadow: 0 0 8px var(--green); }
+.bar-label { font-size: 10px; font-weight: 600; color: var(--text-3); position: absolute; bottom: -20px; width: 100%; text-align: center; }
+.x-axis-title { text-align: center; font-size: 9px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; margin-top: -4px; }
+.col-highlight .bar-label, .col-highlight .bar-count { color: var(--green); font-weight: 800; }
+.col-congested .bar-label, .col-congested .bar-count { color: var(--red); font-weight: 800; }
+.chart-caption {
+  font-size: 13px; font-weight: 400;
+  color: var(--text-2); line-height: 1.65;
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+.chart-caption strong { font-weight: 700; color: var(--text); }
+
+/* ── Channel pills ──────────────────────────────────────── */
+.channel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.channel-pill {
+  text-align: center; padding: 16px 8px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.channel-pill .ch { font-size: 24px; font-weight: 900; letter-spacing: -0.04em; }
+.channel-pill .cl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.pill-best  { background: var(--green-dim);  border-color: rgba(52,217,116,0.35);  color: var(--green); }
+.pill-avoid { background: var(--orange-dim); border-color: rgba(248,165,37,0.35);  color: var(--orange); }
+.pill-bad   { background: var(--red-dim);    border-color: rgba(240,78,101,0.35);  color: var(--red); }
+
+/* ── Band compare ───────────────────────────────────────── */
+.band-compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.band-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px;
+}
+.band-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 10px; border-radius: var(--r-sm);
+  font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.band-badge.two  { background: var(--orange-dim); color: var(--orange); }
+.band-badge.five { background: var(--blue-dim);   color: var(--blue); }
+.band-stat { margin-bottom: 12px; }
+.band-stat-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 2px; }
+.band-stat-val   { font-size: 15px; font-weight: 700; color: var(--text); }
+.band-pro { font-size: 12px; font-weight: 500; color: var(--green); padding: 2px 0; }
+.band-con { font-size: 12px; font-weight: 500; color: var(--red);   padding: 2px 0; }
+
+/* ── Interference grid ──────────────────────────────────── */
+.interference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.interference-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 15px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.interference-icon { font-size: 20px; }
+/* Card heading — bold */
+.interference-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.interference-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.severity-row { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+.severity-dot { width: 6px; height: 6px; border-radius: 50%; }
+.severity-dot.high { background: var(--red); }
+.severity-dot.med  { background: var(--orange); }
+.severity-dot.low  { background: var(--blue); }
+.severity-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; }
+.severity-label.high { color: var(--red); }
+.severity-label.med  { color: var(--orange); }
+.severity-label.low  { color: var(--blue); }
+
+/* ── Placement tips ─────────────────────────────────────── */
+.placement-list { display: flex; flex-direction: column; gap: var(--gap); }
+.placement-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.placement-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.placement-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.placement-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 9px;
+}
+
+/* ── ISP directory ──────────────────────────────────────── */
+.isp-badge {
+  width: 34px; height: 34px; flex-shrink: 0;
+  border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+}
+.isp-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── Brand grid ─────────────────────────────────────────── */
+.brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.brand-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 18px;
+  cursor: pointer;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: border-color 0.14s, transform 0.12s;
+  -webkit-user-select: none; user-select: none;
+}
+.brand-card:hover  { border-color: var(--border-2); }
+.brand-card:active { transform: scale(0.97); }
+.brand-icon-wrap {
+  width: 44px; height: 44px; border-radius: var(--r-lg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800;
+}
+/* Brand name — card title, bold */
+.brand-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.brand-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+/* ── Steps screen ───────────────────────────────────────── */
+.step-header-area {
+  padding: 32px var(--pad) 22px;
+  border-bottom: 1px solid var(--border);
+}
+.step-brand-pill {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; border-radius: var(--r-sm);
+  font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+/* Screen title */
+.step-main-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px;
+  margin-bottom: var(--gap);
+  transition: border-color 0.14s;
+}
+.step-num-badge {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800;
+  margin-bottom: 12px;
+}
+/* Step card title — bold */
+.step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.step-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+/* ── Mockup preview ─────────────────────────────────────── */
+.mockup-wrap { margin-top: 14px; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); }
+.mockup-label { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 12px; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+.router-ui { background: var(--surface); color: var(--text); }
+.safari-bar { background: var(--bg-2); padding: 8px 12px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+.safari-addr { background: var(--surface); border-radius: var(--r); padding: 5px 0; width: 80%; text-align: center; font-size: 12px; font-family: var(--font-mono); color: var(--text-2); border: 1px solid var(--border); }
+.ui-body { padding: 14px 16px; }
+.ui-section { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+.ui-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.ui-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.ui-label { color: var(--text-2); font-size: 13px; }
+.ui-value  { color: var(--text);   font-size: 13px; font-weight: 600; }
+.ui-btn-mock { display: block; padding: 9px 16px; border-radius: var(--r); font-size: 13px; font-weight: 700; color: #fff; width: 100%; text-align: center; margin-top: 10px; }
+
+/* ── Done card ──────────────────────────────────────────── */
+.done-card {
+  background: var(--green-dim);
+  border: 1px solid rgba(52,217,116,0.4);
+  border-radius: var(--r-xl);
+  padding: 32px 20px;
+  text-align: center;
+}
+.done-icon  { font-size: 40px; margin-bottom: 12px; }
+.done-title { font-size: 20px; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
+.done-sub   { font-size: 14px; font-weight: 400; color: var(--green); opacity: 0.75; margin-top: 6px; line-height: 1.5; }
+
+/* ── Affiliate items ────────────────────────────────────── */
+.affiliate-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.affiliate-item:last-child { border-bottom: none; }
+.aff-icon { font-size: 20px; width: 40px; height: 40px; background: var(--surface-2); border-radius: var(--r); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.aff-info { flex: 1; }
+.aff-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.aff-sub  { font-size: 12px; font-weight: 400; color: var(--text-2); margin-top: 2px; }
+.aff-price{ font-size: 12px; font-weight: 700; color: var(--text-3); }
+.aff-btn  {
+  padding: 7px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  color: var(--blue);
+  font-size: 12px; font-weight: 700;
+  border-radius: var(--r);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  font-family: var(--font);
+  transition: background 0.12s;
+}
+.aff-btn:hover { background: var(--border); }
+
+/* ── Login note ─────────────────────────────────────────── */
+.login-note {
+  font-size: 12px; font-weight: 400;
+  color: var(--text-3);
+  margin-top: 12px;
+  padding: 0 2px;
+  line-height: 1.65;
+}
+.login-note strong { color: var(--text-2); font-weight: 600; }
+
+/* ── Inset info group (credentials) ─────────────────────── */
+.inset-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.inset-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.inset-row:last-child { border-bottom: none; }
+.inset-label { font-weight: 600; color: var(--text); }
+.inset-value { color: var(--text-2); text-align: right; }
+.inset-value.link { color: var(--blue); font-weight: 700; }
+
+/* Tip / warn boxes (legacy class names kept for JS compat) */
+.tip-box, .warn-box, .info-box {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  font-size: 13px; font-weight: 400; line-height: 1.6;
+  margin-top: var(--gap);
+}
+.box-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+.tip-box  { background: var(--blue-glow);   border: 1px solid var(--blue-dim);          color: var(--text-2); }
+.warn-box { background: var(--orange-dim);  border: 1px solid rgba(248,165,37,0.4);     color: var(--orange); }
+.info-box { background: var(--teal-dim);    border: 1px solid rgba(32,212,238,0.3);     color: var(--teal); }
+.tip-box strong, .info-box strong { font-weight: 700; color: var(--text); }
+
+/* ── Footer ─────────────────────────────────────────────── */
+.affiliate-disclosure {
+  font-size: 11px; font-weight: 400;
+  color: var(--text-3);
+  text-align: center;
+  padding: 24px var(--pad);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   DESKTOP  768px+
+   ═══════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  body { background: var(--bg-2); }
+
+  .app {
+    max-width: 1080px;
+    box-shadow: none;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #000000;
-      --surface: #1C1C1E;
-      --border: #38383A;
-      --text: #FFFFFF;
-      --text-sec: #8E8E93;
-      --blue: #0A84FF;
-      --blue-bg: #00224A;
-      --green: #32D74B;
-      --green-bg: #0B3315;
-      --orange: #FF9F0A;
-      --orange-bg: #3D2200;
-      --red: #FF453A;
-      --red-bg: #3B0907;
-      --purple: #BF5AF2;
-      --purple-bg: #2B0A46;
-      --indigo: #5E5CE6;
-      --indigo-bg: #1B1A42;
-      --teal: #32ADE6;
-      --teal-bg: #002840;
-      --shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-  }
+  .topbar { padding: 0 48px; }
+  .back-btn { left: 48px; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  
-  body { 
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-    background: var(--bg); 
-    color: var(--text); 
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .app { max-width: 500px; margin: 0 auto; min-height: 100vh; background: var(--bg); position: relative; padding-bottom: 60px; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
-  @media (min-width: 768px) { body { background: var(--border); } .app { background: var(--bg); box-shadow: 0 0 60px rgba(0,0,0,0.08); border-radius: 0; } }
-  
-  .screen { display: none; }
-  .screen.active { 
-    display: block; 
-    animation: fadeReveal 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
-  }
+  .hero { padding: 72px 48px 48px; }
+  .hero h1 { font-size: 58px; }
+  .hero p  { font-size: 18px; }
 
-  .topbar { 
-    position: sticky; top: 0; z-index: 100;
-    padding: 16px 20px; 
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(242, 242, 247, 0.75); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 0.5px solid var(--border);
-  }
-  @media (prefers-color-scheme: dark) { .topbar { background: rgba(0, 0, 0, 0.75); } }
-  .nav-title { font-size: 17px; font-weight: 600; letter-spacing: -0.4px; }
-  .back-btn { 
-    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; color: var(--blue);
-    font-size: 17px; font-weight: 400; cursor: pointer;
-    display: flex; align-items: center; gap: 4px; padding: 4px 8px 4px 0;
-  }
-  .back-btn::before { content: "‹"; font-size: 28px; line-height: 1; margin-top: -3px; font-weight: 300; }
-  .back-btn:active { opacity: 0.6; }
+  .section { padding: 36px 48px 0; }
 
-  .hero { padding: 40px 24px 24px; text-align: center; }
-  .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 12px; }
-  .hero p { font-size: 17px; color: var(--text-sec); line-height: 1.4; letter-spacing: -0.02em; }
-  .hero-note { font-size: 14px; color: var(--text-sec); margin-top: 16px; padding: 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); display: inline-block; box-shadow: var(--shadow); line-height: 1.4; }
+  .diagnosis-list  { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
 
-  .section { padding: 0 20px 24px; }
-  .section-label { font-size: 13px; font-weight: 400; text-transform: uppercase; color: var(--text-sec); margin: 0 0 8px 16px; letter-spacing: -0.01em; }
-  
-  .inset-group { background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; }
-  .inset-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 0.5px solid var(--border); font-size: 16px; }
-  .inset-row:last-child { border-bottom: none; }
-  .inset-label { color: var(--text); }
-  .inset-value { color: var(--text-sec); max-width: 60%; text-align: right; word-wrap: break-word; }
-  .inset-value.link { color: var(--blue); }
+  .speedtest-steps { display: grid; grid-template-columns: 1fr 1fr; }
+  .speedtest-step:first-child { border-radius: var(--r-xl) 0 0 0; border-right: none; }
+  .speedtest-step:nth-child(2){ border-radius: 0 var(--r-xl) 0 0; }
+  .speedtest-step:nth-child(3){ border-right: none; }
+  .speedtest-step:last-child  { border-radius: 0 0 var(--r-xl) 0; }
 
-  /* Bar Chart */
-  .chart-widget { background: var(--surface); border-radius: var(--radius-lg); padding: 20px 20px 24px; box-shadow: var(--shadow); border: 0.5px solid var(--border); }
-  .chart-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-  .chart-icon { background: var(--blue-bg); color: var(--blue); width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-  .chart-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
-  .y-axis-guide { font-size: 10px; font-weight: 600; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 28px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-  .bar-chart { display: flex; align-items: flex-end; justify-content: space-between; height: 110px; border-bottom: 1.5px solid var(--text-tert); padding-bottom: 0; margin-bottom: 26px; }
-  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative; height: 100%; }
-  .bar-count { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -0.3px; }
-  .bar { width: 64%; max-width: 14px; border-radius: 4px 4px 0 0; background: var(--border); }
-  .bar.max { background: var(--red); height: 100%; }
-  .bar.high { background: var(--orange); height: 65%; }
-  .bar.med { background: var(--blue); height: 40%; opacity: 0.8; }
-  .bar.low { background: var(--blue); height: 15%; opacity: 0.4; }
-  .bar.empty { background: var(--green); height: 6px; box-shadow: 0 0 8px var(--green); }
-  .bar-label { font-size: 11px; font-weight: 500; color: var(--text-sec); position: absolute; bottom: -22px; width: 100%; text-align: center; }
-  .x-axis-title { text-align: center; font-size: 10px; font-weight: 600; color: var(--text-tert); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; margin-top: -6px; }
-  .col-highlight .bar-label, .col-highlight .bar-count { color: var(--green); font-weight: 700; }
-  .col-congested .bar-label, .col-congested .bar-count { color: var(--red); font-weight: 700; }
-  .chart-caption { font-size: 14px; color: var(--text-sec); line-height: 1.4; margin-top: 16px; border-top: 0.5px solid var(--border); padding-top: 16px; }
-  .chart-caption strong { color: var(--text); font-weight: 600; }
+  .channel-grid     { grid-template-columns: repeat(6, 1fr); }
+  .interference-grid{ grid-template-columns: repeat(4, 1fr); }
+  .placement-list   { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+  .brand-grid       { grid-template-columns: repeat(4, 1fr); }
+  .bar-chart        { height: 130px; }
 
-  /* Channel reference */
-  .channel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .channel-pill { text-align: center; padding: 14px 8px; border-radius: var(--radius); display: flex; flex-direction: column; gap: 4px; }
-  .channel-pill .ch { font-size: 20px; font-weight: 600; letter-spacing: -0.5px; }
-  .channel-pill .cl { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-  .pill-best { background: var(--green-bg); color: var(--green); }
-  .pill-avoid { background: var(--orange-bg); color: var(--orange); }
-  .pill-bad { background: var(--red-bg); color: var(--red); }
+  .step-header-area { padding: 40px 48px 26px; }
+  .step-main-title  { font-size: 40px; }
+  #screen-steps .section { padding: 32px 48px 0; }
+  #steps-container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+  .step-card { margin-bottom: 0; }
 
-  .tip-box, .warn-box, .info-box { border-radius: var(--radius); padding: 14px 16px; margin-top: 12px; font-size: 15px; line-height: 1.4; display: flex; gap: 12px; align-items: flex-start; }
-  .tip-box { background: var(--blue-bg); color: var(--blue); }
-  .warn-box { background: var(--orange-bg); color: var(--orange); }
-  .info-box { background: var(--teal-bg); color: var(--teal); }
-  .box-icon { font-size: 18px; margin-top: -1px; flex-shrink: 0; }
+  #affiliate-el { display: grid; grid-template-columns: 1fr 1fr; }
+  #affiliate-el .affiliate-item:nth-child(odd) { border-right: 1px solid var(--border); }
 
-  /* Brand grid */
-  .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .brand-card { background: var(--surface); border-radius: var(--radius-lg); padding: 16px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.15s; box-shadow: var(--shadow); border: 0.5px solid var(--border); }
-  .brand-card:active { transform: scale(0.96); }
-  .brand-icon-wrap { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; }
-  .brand-name { font-size: 16px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); }
-  .brand-sub { font-size: 13px; color: var(--text-sec); margin-top: 2px; }
+  .done-card { max-width: 500px; margin: 0 auto; }
+}
 
-  /* Steps screen */
-  .step-header-area { padding: 24px 20px 16px; }
-  .step-brand-pill { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: -0.2px; margin-bottom: 12px; }
-  .step-main-title { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
-  .step-card { background: var(--surface); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); border: 0.5px solid var(--border); }
-  .step-num-badge { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
-  .step-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 6px; letter-spacing: -0.3px; }
-  .step-desc { font-size: 15px; color: var(--text-sec); line-height: 1.5; }
-  .code-block { background: var(--bg); border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 12px; }
-  .code-block code { font-family: "SF Mono", ui-monospace, Menlo, Monaco, monospace; font-size: 13px; line-height: 1.5; white-space: pre; display: block; }
-  .mockup-wrap { margin-top: 16px; border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); }
-  .mockup-label { font-size: 11px; font-weight: 600; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; background: var(--bg); border-bottom: 0.5px solid var(--border); }
-  .router-ui { background: var(--surface); color: var(--text); font-size: 13px; }
-  .safari-bar { background: var(--bg); padding: 10px; display: flex; align-items: center; justify-content: center; border-bottom: 0.5px solid var(--border); }
-  .safari-addr { background: var(--surface); border-radius: 8px; padding: 6px 0; width: 80%; text-align: center; font-size: 13px; color: var(--text); }
-  .ui-body { padding: 16px; }
-  .ui-section { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
-  .ui-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 0.5px solid var(--border); padding-bottom: 12px; }
-  .ui-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .ui-label { color: var(--text-sec); }
-  .ui-value { color: var(--text); }
-  .ui-btn-mock { display: inline-block; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #fff; background: var(--blue); width: 100%; text-align: center; margin-top: 8px; }
-  .done-card { background: var(--green-bg); border-radius: var(--radius-lg); padding: 24px 20px; text-align: center; border: 0.5px solid rgba(52, 199, 89, 0.2); }
-  .done-icon { font-size: 40px; margin-bottom: 12px; }
-  .done-title { font-size: 20px; font-weight: 600; color: var(--green); letter-spacing: -0.4px; }
-  .done-sub { font-size: 15px; color: var(--green); opacity: 0.9; margin-top: 6px; line-height: 1.4; }
-  .app-store-item { padding: 16px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .app-store-item:last-child { border-bottom: none; }
-  .app-icon { font-size: 28px; width: 44px; height: 44px; background: var(--bg); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .app-info { flex: 1; }
-  .app-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
-  .app-sub { font-size: 13px; color: var(--text-sec); margin-top: 2px; }
-  .app-get-btn { background: var(--bg); color: var(--blue); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.3px; }
-  .affiliate-disclosure { font-size: 12px; color: var(--text-tert); text-align: center; padding: 16px 20px; line-height: 1.4; }
-  .login-note { font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 12px; padding: 0 16px; line-height: 1.4; }
+@media (min-width: 1200px) {
+  .app { max-width: 1200px; }
+  .hero h1 { font-size: 68px; }
+  .brand-grid { grid-template-columns: repeat(5, 1fr); }
+}
 
-  /* ── NEW: Interference grid ─────────────────────────────── */
-  .interference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .interference-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    border: 0.5px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .interference-icon { font-size: 22px; }
-  .interference-name { font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
-  .interference-desc { font-size: 12px; color: var(--text-sec); line-height: 1.4; }
-  .severity-dot {
-    width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px;
-  }
-  .severity-high { background: var(--red); }
-  .severity-med { background: var(--orange); }
-  .severity-low { background: var(--blue); }
-  .severity-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
-  .severity-label.high { color: var(--red); }
-  .severity-label.med { color: var(--orange); }
-  .severity-label.low { color: var(--blue); }
-
-  /* ── NEW: 5 GHz band comparison ─────────────────────────── */
-  .band-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .band-card {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    padding: 16px;
-    border: 0.5px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .band-badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 4px 10px; border-radius: 20px;
-    font-size: 13px; font-weight: 700; letter-spacing: -0.2px;
-    margin-bottom: 10px;
-  }
-  .band-badge.two { background: var(--orange-bg); color: var(--orange); }
-  .band-badge.five { background: var(--blue-bg); color: var(--blue); }
-  .band-stat { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
-  .band-stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-sec); }
-  .band-stat-val { font-size: 14px; font-weight: 600; color: var(--text); }
-  .band-pro { font-size: 12px; color: var(--green); font-weight: 500; padding: 2px 0; }
-  .band-con { font-size: 12px; color: var(--red); font-weight: 500; padding: 2px 0; }
-
-  /* ── NEW: Placement tips ─────────────────────────────────── */
-  .placement-list { display: flex; flex-direction: column; gap: 10px; }
-  .placement-item {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    display: flex; align-items: flex-start; gap: 12px;
-    border: 0.5px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .placement-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
-  .placement-text {}
-  .placement-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
-  .placement-desc { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
-  .placement-tag {
-    display: inline-block; margin-top: 5px;
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
-    padding: 2px 8px; border-radius: 20px;
-  }
-  .tag-do { background: var(--green-bg); color: var(--green); }
-  .tag-dont { background: var(--red-bg); color: var(--red); }
-
-  /* ── NEW: Speed test workflow ─────────────────────────────── */
-  .speedtest-steps { display: flex; flex-direction: column; gap: 0; }
-  .speedtest-step {
-    background: var(--surface);
-    padding: 16px;
-    display: flex; align-items: flex-start; gap: 14px;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .speedtest-step:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-  .speedtest-step:last-child { border-bottom: none; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
-  .speedtest-num {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: var(--teal-bg); color: var(--teal);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
-  }
-  .speedtest-content {}
-  .speedtest-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
-  .speedtest-desc { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
-  .speedtest-link { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--blue); }
-
-  /* ── NEW: Buffering diagnosis ─────────────────────────────── */
-  .diagnosis-list { display: flex; flex-direction: column; gap: 10px; }
-  .diagnosis-item {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    display: flex; align-items: flex-start; gap: 12px;
-    border: 0.5px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .diagnosis-icon { font-size: 20px; flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-  .diagnosis-body {}
-  .diagnosis-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-  .diagnosis-desc { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
-  .diagnosis-fix { font-size: 12px; font-weight: 600; margin-top: 5px; }
-
-  @keyframes fadeReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* ══════════════════════════════════════════════════════
-     DESKTOP RESPONSIVE — 768px and above
-     ══════════════════════════════════════════════════════ */
-  @media (min-width: 768px) {
-
-    body { background: var(--bg); }
-
-    /* Wider centered container */
-    .app {
-      max-width: 1100px;
-      min-height: 100vh;
-      box-shadow: none;
-      padding-bottom: 80px;
-    }
-
-    /* ── Top nav bar ── */
-    .topbar {
-      padding: 18px 40px;
-      border-radius: 0;
-    }
-    .nav-title { font-size: 18px; }
-    .back-btn { left: 40px; font-size: 17px; }
-
-    /* ── Hero ── */
-    .hero {
-      padding: 60px 40px 36px;
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .hero h1 { font-size: 52px; }
-    .hero p { font-size: 19px; }
-
-    /* ── Section padding ── */
-    .section { padding: 0 40px 32px; }
-    .section-label { margin-left: 0; font-size: 12px; letter-spacing: 0.5px; }
-
-    /* ── Home screen two-column layout ── */
-    #screen-home .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 32px;
-      padding: 0 40px;
-    }
-
-    /* ── Diagnosis cards — 2 col on desktop ── */
-    .diagnosis-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .diagnosis-item { align-items: flex-start; }
-
-    /* ── Speed test steps — horizontal on desktop ── */
-    .speedtest-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    .speedtest-step:first-child { border-radius: 0; }
-    .speedtest-step:last-child { border-radius: 0; }
-    .speedtest-step:nth-child(odd) { border-right: 0.5px solid var(--border); }
-
-    /* ── Channel grid — 6 col on desktop ── */
-    .channel-grid { grid-template-columns: repeat(6, 1fr); }
-
-    /* ── Band compare — already 2 col, make cards taller ── */
-    .band-card { padding: 20px; }
-
-    /* ── Interference grid — 4 col on desktop ── */
-    .interference-grid { grid-template-columns: repeat(4, 1fr); }
-
-    /* ── Placement list — 2 col on desktop ── */
-    .placement-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    /* ── ISP Gateway — wider value column ── */
-    .inset-value { max-width: 50%; }
-
-    /* ── Brand grid — 4 col on desktop ── */
-    .brand-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .brand-card { padding: 20px; }
-    .brand-name { font-size: 15px; }
-
-    /* ── Chart widget ── */
-    .chart-widget { padding: 24px 28px 28px; }
-    .bar-chart { height: 140px; }
-
-    /* ── Steps screen desktop layout ── */
-    #screen-steps .step-header-area {
-      padding: 32px 40px 20px;
-      max-width: 800px;
-    }
-    #screen-steps .step-main-title { font-size: 36px; }
-    #screen-steps .section { padding: 0 40px 28px; }
-
-    /* Steps — 2 col grid on desktop */
-    #steps-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .step-card { margin-bottom: 0; }
-
-    /* Affiliate grid — 2 col */
-    #affiliate-el { display: grid; grid-template-columns: 1fr 1fr; }
-    #affiliate-el .app-store-item:nth-child(odd) { border-right: 0.5px solid var(--border); }
-    #affiliate-el .app-store-item { border-bottom: 0.5px solid var(--border); }
-    #affiliate-el .app-store-item:nth-last-child(-n+2) { border-bottom: none; }
-
-    /* Done card max width */
-    .done-card { max-width: 480px; margin: 0 auto; }
-
-    /* Info/tip/warn boxes max width on steps screen */
-    #tip-section .tip-box,
-    #warn-section .warn-box { max-width: 680px; }
-
-    /* Inset group — steps screen */
-    #info-bars-el { max-width: 480px; }
-
-    /* Footer */
-    .affiliate-disclosure { padding: 20px 40px; }
-  }
-
-  /* ── Extra wide — 1200px+ ── */
-  @media (min-width: 1200px) {
-    .app { max-width: 1200px; }
-    .hero h1 { font-size: 60px; }
-    .brand-grid { grid-template-columns: repeat(5, 1fr); }
-    .interference-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
+/* ── Keyframe ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 <body>
@@ -460,12 +808,13 @@
     </div>
     
     <div class="hero">
+      <div class="hero-eyebrow">WiFi Troubleshooting Guide</div>
       <h1>Fix your slow WiFi.</h1>
       <p>Diagnose congestion, interference, and buffering — then fix it step by step.</p>
-      <div class="hero-note">
-        <span style="font-weight: 600; color: var(--text);">Quick Tip:</span> Some manufacturers have the login information written directly on the device. Check the sticker on the back or bottom of your router!
+      <div class="hero-tip">
+        <strong>Quick Tip:</strong> Most routers have the default login credentials printed on a sticker on the back or bottom of the device. Check there before trying anything else.
       </div>
-      <button onclick="document.getElementById('brand-guide').scrollIntoView({behavior:'smooth'});" style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; padding:12px 20px; background:var(--blue); color:#fff; border-radius:20px; font-size:15px; font-weight:600; border:none; letter-spacing:-0.2px; box-shadow:0 4px 12px rgba(0,122,255,0.3); cursor:pointer;">
+      <button class="hero-skip-btn" onclick="document.getElementById('brand-guide').scrollIntoView({behavior:'smooth'});">
         Skip to Router Brand Guide ↓
       </button>
     </div>
@@ -475,7 +824,7 @@
       <div class="section-label">What's Causing Your Buffering?</div>
       <div class="diagnosis-list">
         <div class="diagnosis-item">
-          <div class="diagnosis-icon" style="background:var(--red-bg);">📡</div>
+          <div class="diagnosis-icon" style="background:var(--red-dim);">📡</div>
           <div class="diagnosis-body">
             <div class="diagnosis-title">Channel Congestion</div>
             <div class="diagnosis-desc">Neighbors sharing the same WiFi channel. Speeds drop when multiple routers fight for the same frequency space.</div>
@@ -483,7 +832,7 @@
           </div>
         </div>
         <div class="diagnosis-item">
-          <div class="diagnosis-icon" style="background:var(--orange-bg);">⚡</div>
+          <div class="diagnosis-icon" style="background:var(--orange-dim);">⚡</div>
           <div class="diagnosis-body">
             <div class="diagnosis-title">Physical Interference</div>
             <div class="diagnosis-desc">Appliances, walls, and other devices radiating on similar frequencies. Can cause sudden drops even with no neighbors nearby.</div>
@@ -491,7 +840,7 @@
           </div>
         </div>
         <div class="diagnosis-item">
-          <div class="diagnosis-icon" style="background:var(--purple-bg);">🌐</div>
+          <div class="diagnosis-icon" style="background:var(--purple-dim);">🌐</div>
           <div class="diagnosis-body">
             <div class="diagnosis-title">ISP Throttling</div>
             <div class="diagnosis-desc">Your internet provider intentionally slowing certain traffic. Unlike a WiFi issue, throttling shows up equally on wired and wireless — if your wired speed test is also slow, this is the likely cause.</div>
@@ -499,7 +848,7 @@
           </div>
         </div>
         <div class="diagnosis-item">
-          <div class="diagnosis-icon" style="background:var(--blue-bg);">📶</div>
+          <div class="diagnosis-icon" style="background:var(--blue-dim);">📶</div>
           <div class="diagnosis-body">
             <div class="diagnosis-title">Weak Signal / Poor Placement</div>
             <div class="diagnosis-desc">Router too far away, or signal blocked by concrete, metal, or appliances. The device gets a weak signal and buffers constantly.</div>
@@ -507,7 +856,7 @@
           </div>
         </div>
         <div class="diagnosis-item">
-          <div class="diagnosis-icon" style="background:var(--green-bg);">🔀</div>
+          <div class="diagnosis-icon" style="background:var(--green-dim);">🔀</div>
           <div class="diagnosis-body">
             <div class="diagnosis-title">Router Bottleneck</div>
             <div class="diagnosis-desc">Too many devices competing for bandwidth on an older router. The router itself can't handle the load, not the internet connection.</div>
@@ -783,21 +1132,21 @@
       <div class="inset-group">
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--red-bg); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">XF</div>
+            <div style="width: 32px; height: 32px; background: var(--red-dim); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">XF</div>
             <span class="inset-label" style="font-weight: 500;">Xfinity (Comcast)</span>
           </div>
           <a href="http://10.0.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">10.0.0.1 →</a>
         </div>
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--blue-bg); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">AT</div>
+            <div style="width: 32px; height: 32px; background: var(--blue-dim); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">AT</div>
             <span class="inset-label" style="font-weight: 500;">AT&T Internet</span>
           </div>
           <a href="http://192.168.1.254" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.1.254 →</a>
         </div>
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--purple-bg); color: var(--purple); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">SP</div>
+            <div style="width: 32px; height: 32px; background: var(--purple-dim); color: var(--purple); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">SP</div>
             <span class="inset-label" style="font-weight: 500;">Spectrum (Charter)</span>
           </div>
           <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
@@ -807,14 +1156,14 @@
         </div>
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--red-bg); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">VZ</div>
+            <div style="width: 32px; height: 32px; background: var(--red-dim); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">VZ</div>
             <span class="inset-label" style="font-weight: 500;">Verizon Fios</span>
           </div>
           <a href="http://192.168.1.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.1.1 →</a>
         </div>
         <div class="inset-row">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: var(--blue-bg); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">CX</div>
+            <div style="width: 32px; height: 32px; background: var(--blue-dim); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">CX</div>
             <span class="inset-label" style="font-weight: 500;">Cox Communications</span>
           </div>
           <a href="http://192.168.0.1" target="_blank" class="inset-value link" style="text-decoration: none; font-weight: 600;">192.168.0.1 →</a>
@@ -950,67 +1299,67 @@ const searchEmptyStep = {
 };
 
 const BRANDS = [
-  { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-bg)', icon:'N',
+  { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-dim)', icon:'N',
     adminUrl:'routerlogin.net', user:'admin', pass:'password', app:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone, tablet, or computer is actively connected to your home Netgear WiFi network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser (like Safari or Chrome) and type routerlogin.net into the top search/address bar.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Type in your password to log in. Click on the Advanced tab at the top, then click on Wireless Setup from the side menu.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the "Channel" dropdown menu under the 2.4GHz section. Change it from "Auto" to your chosen clean number and click Apply.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network Settings (2.4GHz)',field:'Channel',saveBtn:'Apply'}}}],
     tip:'Turning off "Smart Connect" or "Band Steering" in your router settings lets you change individual channel numbers manually.', warn:null, 
     affiliates:['netgear_cm3000','netgear_cm2000','netgear_cm1200','netgear_cax80','netgear_rax50'] },
 
-  { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-bg)', icon:'T',
+  { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-dim)', icon:'T',
     adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your home TP-Link network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser and type tplinkwifi.net into the top address bar to pull up the access screen.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with your password. Click on Advanced at the top, then click Wireless on the left, and choose Wireless Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the Channel dropdown row, change it to your desired manual channel number, and click the Save button.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}],
     tip:'Older TP-Link routers use admin / admin as default credentials. Newer models (2021 and later) require you to create a custom password on first login — there is no factory default. Check your router sticker or the setup screen for guidance. You can also manage these settings from your phone using the free TP-Link Tether app.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','tplink_deco','tplink_be550','tplink_ax55'] },
 
-  { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-bg)', icon:'A',
+  { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-dim)', icon:'A',
     adminUrl:'router.asus.com', adminFallback:'192.168.1.1', user:'admin', pass:'admin', app:'ASUS Router',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the address bar. If that does not load, try 192.168.1.1 instead.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}],
     tip:'If your Asus router supports multiple bands, ensure you are editing the 2.4 GHz configuration profile for local channel adjustments.', warn:null, 
     affiliates:['asus_ax88u','asus_ax55','asus_gt6','asus_xd6','asus_ax3000'] },
 
-  { id:'arris', name:'Arris', color:'var(--red)', bg:'var(--red-bg)', icon:'AR',
+  { id:'arris', name:'Arris', color:'var(--red)', bg:'var(--red-dim)', icon:'AR',
     adminUrl:'192.168.0.1', user:'admin', pass:'password', app:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or computer is fully connected to your Arris home wireless network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser window and type 192.168.0.1 into the top link location bar.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with the details on your router sticker. Click on System Connection and select Wi-Fi Networks.', code:null, mockup:null},{t:'Change the Channel', d:'Find the 2.4 GHz Radio parameters list. Change the Channel option to your clean chosen number and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Wireless Radio',field:'Wireless Channel',saveBtn:'Save'}}}],
     warn:'Some internet service providers lock down custom settings on rented Arris boxes, which might prevent manual channel changing.', 
     affiliates:['arris_s34','arris_s33','arris_sb8200','arris_g36','arris_sb6190'] },
 
-  { id:'xfinity', name:'Xfinity', color:'var(--red)', bg:'var(--red-bg)', icon:'X',
+  { id:'xfinity', name:'Xfinity', color:'var(--red)', bg:'var(--red-dim)', icon:'X',
     adminUrl:'10.0.0.1', user:'admin', pass:'password', app:'Xfinity app',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your computer or smartphone is connected to your private home Xfinity network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser screen and type 10.0.0.1 into the top address bar target location.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account codes. Navigate down the left menu to Gateway > Connection > Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Edit button next to your 2.4 GHz band row, switch Channel Selection to your manual number, and click Save Settings.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Wi-Fi Configuration',field:'Channel Selection',saveBtn:'Save Settings'}}}],
     warn:'If you use Xfinity Pod mesh expanders or have modern cloud control rules turned on, manual channel adjustments will be locked out.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
-  { id:'eero', name:'Eero', color:'var(--indigo)', bg:'var(--indigo-bg)', icon:'E',
+  { id:'eero', name:'Eero', color:'var(--indigo)', bg:'var(--purple-dim)', icon:'E',
     adminUrl:null, user:null, pass:null, app:'Eero App',
     steps:[{t:'Open the Eero App', d:'Eero smart mesh networks do not use an admin website link. Open the official Eero app on your mobile phone.', code:null, mockup:null},{t:'Select Your Network', d:'Tap on your main home network system profile box displayed right on the central dashboard view.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap on the lower Settings navigation option menu, scroll down, and select Advanced from the list.', code:null, mockup:null},{t:'Automatic Background Tuning', d:'Eero platforms constantly scan your neighborhood and change channels automatically to fix slow speeds. Manual overrides are completely blocked.', code:null, mockup:null}],
     tip:'Because Eero balances overlapping channels across multiple nodes automatically, you don\'t need to configure manual channel keys.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
-  { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-bg)', icon:'L',
+  { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-dim)', icon:'L',
     adminUrl:'192.168.1.1', user:'(leave blank)', pass:'admin', app:'Linksys App',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active device is securely connected to your personal home Linksys network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser and type 192.168.1.1 into the top bar link path fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Dashboard',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your password keys. Look at the left sidebar menu area, find Router Settings, and click Wi-Fi Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4 GHz wireless setup block, change the Channel selection field to your chosen manual number, and click OK or Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Wireless Settings',field:'Channel',saveBtn:'Apply'}}}],
     tip:'Linksys officially discontinued cloud login support via linksyssmartwifi.com. You must handle changes locally using 192.168.1.1 or myrouter.local.', warn:null, 
     affiliates:['linksys_mx5','linksys_hydra','linksys_mr9600','linksys_ea7500','linksys_velop'] },
 
-  { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-bg)', icon:'G',
+  { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-dim)', icon:'G',
     adminUrl:null, user:null, pass:null, app:'Google Home App',
     steps:[{t:'Open the Google Home App', d:'Google Nest hardware does not have an administrative website link. Launch the free Google Home app on your phone.', code:null, mockup:null},{t:'Select Your Wi-Fi Node', d:'Locate your primary router or active Wi-Fi device circle icon directly on your home map control panel.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap the Settings gear icon in the top right corner, scroll down to the bottom, and select Advanced Networking.', code:null, mockup:null},{t:'Automated Traffic Control', d:'Google Nest systematically manages neighborhood traffic channels in the background to avoid congestion. There is no manual override control.', code:null, mockup:null}],
     tip:'Google Nest mesh pods coordinate automatic frequency hopping behind the scenes to keep data flowing smoothly without manual intervention.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
-  { id:'att', name:'AT&T BGW', color:'var(--orange)', bg:'var(--orange-bg)', icon:'AT',
+  { id:'att', name:'AT&T BGW', color:'var(--orange)', bg:'var(--orange-dim)', icon:'AT',
     adminUrl:'192.168.1.254', user:null, pass:'Access Code', app:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is actively connected to your AT&T home internet gateway network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser program and type 192.168.1.254 directly into the top navigation location field.', code:'192.168.1.254', mockup:{type:'login',data:{url:'192.168.1.254',title:'AT&T Gateway Management',passLabel:'Device Access Code'}}},{t:'Find Wireless Settings', d:'Click the Home Network tab from the main menu options, then click on the sub-option for Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click Advanced Options near the top. When prompted, type in the Device Access Code printed on your router\'s sticker. Change the 2.4 GHz channel value and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.1.254',section:'2.4 GHz Network Options',field:'Channel Selection',saveBtn:'Save Settings'}}}],
     tip:'The Device Access Code is a unique password completely separate from your daily WiFi password. Look closely at the barcode sticker on the back of the box.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','asus_ax88u','netgear_rax50','netspot_tool'] },
 
-  { id:'spectrum', name:'Spectrum', color:'var(--purple)', bg:'var(--purple-bg)', icon:'S',
+  { id:'spectrum', name:'Spectrum', color:'var(--purple)', bg:'var(--purple-dim)', icon:'S',
     adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active setup device is connected to your standard Spectrum home network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser tab window and enter 192.168.1.1 into the top structural target bar.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Portal',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account info. Navigate to the Advanced settings tab sheet and click the main Wireless sub-menu row.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4G channel profile configuration row, select your clean target channel number, and click Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless Configurations',field:'Channel Control',saveBtn:'Apply'}}}],
     warn:'Newer model Spectrum routers with automated software updates frequently lock out manual browser menu overrides entirely.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
-  { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-bg)', icon:'D',
+  { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-dim)', icon:'D',
     adminUrl:'dlinkrouter.local', adminFallback:'192.168.0.1', user:'admin', pass:'Leave blank', app:'D-Link Wi-Fi',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the address bar. If that does not load, try 192.168.0.1 instead.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}],
     tip:null, warn:'D-Link routers made after 2017 do not use a blank default password. Instead, a unique password is printed on the sticker on the bottom of your device. Use that instead of leaving the field blank.', 
@@ -1059,7 +1408,7 @@ function loadBrand(b) {
   document.getElementById('affiliate-el').innerHTML = (b.affiliates||[]).map(key => {
     const a = AFF[key]; if (!a) return '';
     const dynamicUrl = `${a.url}${AFFILIATE_TAG}`;
-    return `<div class="app-store-item"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">${a.name}</div><div class="app-sub">${a.sub} &middot; <strong>${a.price}</strong></div></div><a class="app-get-btn" href="${dynamicUrl}" target="_blank">GET</a></div>`;
+    return `<div class="affiliate-item"><div class="aff-icon">📦</div><div class="aff-info"><div class="aff-name">${a.name}</div><div class="aff-sub">${a.sub}</div></div><a class="aff-btn" href="${dynamicUrl}" target="_blank">${a.price} →</a></div>`;
   }).join('');
   document.getElementById('screen-home').classList.remove('active');
   document.getElementById('screen-steps').classList.add('active');
