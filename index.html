@@ -10,7 +10,7 @@
 </script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WiFi Channel Guide</title>
 <style>
   :root {
@@ -77,6 +77,7 @@
   }
   
   .app { max-width: 500px; margin: 0 auto; min-height: 100vh; background: var(--bg); position: relative; padding-bottom: 60px; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
+  @media (min-width: 768px) { body { background: var(--border); } .app { background: var(--bg); box-shadow: 0 0 60px rgba(0,0,0,0.08); border-radius: 0; } }
   
   .screen { display: none; }
   .screen.active { 
@@ -309,6 +310,144 @@
   .diagnosis-fix { font-size: 12px; font-weight: 600; margin-top: 5px; }
 
   @keyframes fadeReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ══════════════════════════════════════════════════════
+     DESKTOP RESPONSIVE — 768px and above
+     ══════════════════════════════════════════════════════ */
+  @media (min-width: 768px) {
+
+    body { background: var(--bg); }
+
+    /* Wider centered container */
+    .app {
+      max-width: 1100px;
+      min-height: 100vh;
+      box-shadow: none;
+      padding-bottom: 80px;
+    }
+
+    /* ── Top nav bar ── */
+    .topbar {
+      padding: 18px 40px;
+      border-radius: 0;
+    }
+    .nav-title { font-size: 18px; }
+    .back-btn { left: 40px; font-size: 17px; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 60px 40px 36px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 { font-size: 52px; }
+    .hero p { font-size: 19px; }
+
+    /* ── Section padding ── */
+    .section { padding: 0 40px 32px; }
+    .section-label { margin-left: 0; font-size: 12px; letter-spacing: 0.5px; }
+
+    /* ── Home screen two-column layout ── */
+    #screen-home .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      padding: 0 40px;
+    }
+
+    /* ── Diagnosis cards — 2 col on desktop ── */
+    .diagnosis-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .diagnosis-item { align-items: flex-start; }
+
+    /* ── Speed test steps — horizontal on desktop ── */
+    .speedtest-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .speedtest-step:first-child { border-radius: 0; }
+    .speedtest-step:last-child { border-radius: 0; }
+    .speedtest-step:nth-child(odd) { border-right: 0.5px solid var(--border); }
+
+    /* ── Channel grid — 6 col on desktop ── */
+    .channel-grid { grid-template-columns: repeat(6, 1fr); }
+
+    /* ── Band compare — already 2 col, make cards taller ── */
+    .band-card { padding: 20px; }
+
+    /* ── Interference grid — 4 col on desktop ── */
+    .interference-grid { grid-template-columns: repeat(4, 1fr); }
+
+    /* ── Placement list — 2 col on desktop ── */
+    .placement-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* ── ISP Gateway — wider value column ── */
+    .inset-value { max-width: 50%; }
+
+    /* ── Brand grid — 4 col on desktop ── */
+    .brand-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .brand-card { padding: 20px; }
+    .brand-name { font-size: 15px; }
+
+    /* ── Chart widget ── */
+    .chart-widget { padding: 24px 28px 28px; }
+    .bar-chart { height: 140px; }
+
+    /* ── Steps screen desktop layout ── */
+    #screen-steps .step-header-area {
+      padding: 32px 40px 20px;
+      max-width: 800px;
+    }
+    #screen-steps .step-main-title { font-size: 36px; }
+    #screen-steps .section { padding: 0 40px 28px; }
+
+    /* Steps — 2 col grid on desktop */
+    #steps-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .step-card { margin-bottom: 0; }
+
+    /* Affiliate grid — 2 col */
+    #affiliate-el { display: grid; grid-template-columns: 1fr 1fr; }
+    #affiliate-el .app-store-item:nth-child(odd) { border-right: 0.5px solid var(--border); }
+    #affiliate-el .app-store-item { border-bottom: 0.5px solid var(--border); }
+    #affiliate-el .app-store-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    /* Done card max width */
+    .done-card { max-width: 480px; margin: 0 auto; }
+
+    /* Info/tip/warn boxes max width on steps screen */
+    #tip-section .tip-box,
+    #warn-section .warn-box { max-width: 680px; }
+
+    /* Inset group — steps screen */
+    #info-bars-el { max-width: 480px; }
+
+    /* Footer */
+    .affiliate-disclosure { padding: 20px 40px; }
+  }
+
+  /* ── Extra wide — 1200px+ ── */
+  @media (min-width: 1200px) {
+    .app { max-width: 1200px; }
+    .hero h1 { font-size: 60px; }
+    .brand-grid { grid-template-columns: repeat(5, 1fr); }
+    .interference-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
 </style>
 </head>
 <body>
@@ -326,6 +465,9 @@
       <div class="hero-note">
         <span style="font-weight: 600; color: var(--text);">Quick Tip:</span> Some manufacturers have the login information written directly on the device. Check the sticker on the back or bottom of your router!
       </div>
+      <button onclick="document.getElementById('brand-guide').scrollIntoView({behavior:'smooth'});" style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; padding:12px 20px; background:var(--blue); color:#fff; border-radius:20px; font-size:15px; font-weight:600; border:none; letter-spacing:-0.2px; box-shadow:0 4px 12px rgba(0,122,255,0.3); cursor:pointer;">
+        Skip to Router Brand Guide ↓
+      </button>
     </div>
 
     <!-- ── NEW: Buffering Diagnosis ───────────────────────── -->
@@ -685,7 +827,7 @@
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="brand-guide">
       <div class="section-label">Select Router Brand Guide</div>
       <div class="brand-grid" id="brand-grid"></div>
     </div>
@@ -817,7 +959,7 @@ const BRANDS = [
   { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-bg)', icon:'T',
     adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your home TP-Link network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser and type tplinkwifi.net into the top address bar to pull up the access screen.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with your password. Click on Advanced at the top, then click Wireless on the left, and choose Wireless Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the Channel dropdown row, change it to your desired manual channel number, and click the Save button.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}],
-    tip:'You can also easily manage these settings directly from your smartphone using the free TP-Link Tether mobile app.', warn:null, 
+    tip:'Older TP-Link routers use admin / admin as default credentials. Newer models (2021 and later) require you to create a custom password on first login — there is no factory default. Check your router sticker or the setup screen for guidance. You can also manage these settings from your phone using the free TP-Link Tether app.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','tplink_deco','tplink_be550','tplink_ax55'] },
 
   { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-bg)', icon:'A',
@@ -845,7 +987,7 @@ const BRANDS = [
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-bg)', icon:'L',
-    adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:'Linksys App',
+    adminUrl:'192.168.1.1', user:'(leave blank)', pass:'admin', app:'Linksys App',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active device is securely connected to your personal home Linksys network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser and type 192.168.1.1 into the top bar link path fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Dashboard',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your password keys. Look at the left sidebar menu area, find Router Settings, and click Wi-Fi Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4 GHz wireless setup block, change the Channel selection field to your chosen manual number, and click OK or Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Wireless Settings',field:'Channel',saveBtn:'Apply'}}}],
     tip:'Linksys officially discontinued cloud login support via linksyssmartwifi.com. You must handle changes locally using 192.168.1.1 or myrouter.local.', warn:null, 
     affiliates:['linksys_mx5','linksys_hydra','linksys_mr9600','linksys_ea7500','linksys_velop'] },
@@ -869,9 +1011,9 @@ const BRANDS = [
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-bg)', icon:'D',
-    adminUrl:'dlinkrouter.local', adminFallback:'192.168.0.1', user:'Admin', pass:'(blank)', app:'D-Link Wi-Fi',
+    adminUrl:'dlinkrouter.local', adminFallback:'192.168.0.1', user:'admin', pass:'Leave blank', app:'D-Link Wi-Fi',
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the address bar. If that does not load, try 192.168.0.1 instead.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}],
-    tip:null, warn:null, 
+    tip:null, warn:'D-Link routers made after 2017 do not use a blank default password. Instead, a unique password is printed on the sticker on the bottom of your device. Use that instead of leaving the field blank.', 
     affiliates:['tplink_axe75','netgear_cm3000','arris_s33','motorola_mg87','netspot_tool'] }
 ];
 
