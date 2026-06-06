@@ -24,6 +24,9 @@
 
 /* ── Tokens ─────────────────────────────────────────────── */
 :root {
+  /* Smooth scrolling for anchor links */
+  scroll-behavior: smooth;
+
   /* Backgrounds — layered dark zinc */
   --bg:        #08080E;
   --bg-2:      #0F0F18;
@@ -336,6 +339,12 @@ body {
   font-weight: 700;
   margin-top: 7px;
   letter-spacing: 0.03em;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+.diagnosis-fix:hover {
+  opacity: 0.7;
 }
 
 /* ── Speed test ─────────────────────────────────────────── */
@@ -833,7 +842,7 @@ body {
           <div class="diagnosis-body">
             <div class="diagnosis-title">Channel Congestion</div>
             <div class="diagnosis-desc">Neighbors sharing the same WiFi channel. Speeds drop when multiple routers fight for the same frequency space.</div>
-            <div class="diagnosis-fix" style="color:var(--red);">Fix → Change your channel below</div>
+            <a href="#channel-guide" class="diagnosis-fix" style="color:var(--red);">Fix → Change your channel below</a>
           </div>
         </div>
         <div class="diagnosis-item">
@@ -841,7 +850,7 @@ body {
           <div class="diagnosis-body">
             <div class="diagnosis-title">Physical Interference</div>
             <div class="diagnosis-desc">Appliances, walls, and other devices radiating on similar frequencies. Can cause sudden drops even with no neighbors nearby.</div>
-            <div class="diagnosis-fix" style="color:var(--orange);">Fix → See interference guide below</div>
+            <a href="#interference-guide" class="diagnosis-fix" style="color:var(--orange);">Fix → See interference guide below</a>
           </div>
         </div>
         <div class="diagnosis-item">
@@ -849,7 +858,7 @@ body {
           <div class="diagnosis-body">
             <div class="diagnosis-title">ISP Throttling</div>
             <div class="diagnosis-desc">Your internet provider intentionally slowing certain traffic. Unlike a WiFi issue, throttling shows up equally on wired and wireless — if your wired speed test is also slow, this is the likely cause.</div>
-            <div class="diagnosis-fix" style="color:var(--purple);">Fix → Run speed test wired vs wireless</div>
+            <a href="#speedtest-guide" class="diagnosis-fix" style="color:var(--purple);">Fix → Run speed test wired vs wireless</a>
           </div>
         </div>
         <div class="diagnosis-item">
@@ -857,7 +866,7 @@ body {
           <div class="diagnosis-body">
             <div class="diagnosis-title">Weak Signal / Poor Placement</div>
             <div class="diagnosis-desc">Router too far away, or signal blocked by concrete, metal, or appliances. The device gets a weak signal and buffers constantly.</div>
-            <div class="diagnosis-fix" style="color:var(--blue);">Fix → See placement guide below</div>
+            <a href="#placement-guide" class="diagnosis-fix" style="color:var(--blue);">Fix → See placement guide below</a>
           </div>
         </div>
         <div class="diagnosis-item">
@@ -865,13 +874,13 @@ body {
           <div class="diagnosis-body">
             <div class="diagnosis-title">Router Bottleneck</div>
             <div class="diagnosis-desc">Too many devices competing for bandwidth on an older router. The router itself can't handle the load, not the internet connection.</div>
-            <div class="diagnosis-fix" style="color:var(--green);">Fix → Upgrade router or enable QoS</div>
+            <a href="#brand-guide" class="diagnosis-fix" style="color:var(--green);">Fix → Upgrade router or enable QoS</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="speedtest-guide">
       <div class="section-label">Speed Test — Diagnose First</div>
       <div class="speedtest-steps">
         <div class="speedtest-step">
@@ -906,7 +915,7 @@ body {
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="channel-guide">
       <div class="section-label">Finding a Free Channel</div>
       <div class="chart-widget">
         <div class="chart-header">
@@ -1013,7 +1022,7 @@ body {
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="interference-guide">
       <div class="section-label">Common Interference Sources</div>
       <div class="interference-grid">
         <div class="interference-card">
@@ -1071,7 +1080,7 @@ body {
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="placement-guide">
       <div class="section-label">Router Placement</div>
       <div class="placement-list">
         <div class="placement-item">
