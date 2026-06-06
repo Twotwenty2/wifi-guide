@@ -821,8 +821,8 @@ const BRANDS = [
     affiliates:['tplink_axe75','tplink_ax3000','tplink_deco','tplink_be550','tplink_ax55'] },
 
   { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-bg)', icon:'A',
-    adminUrl:'router.asus.com', user:'admin', pass:'admin', app:'ASUS Router',
-    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the search bar at the top.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}],
+    adminUrl:'router.asus.com', adminFallback:'192.168.1.1', user:'admin', pass:'admin', app:'ASUS Router',
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the address bar. If that does not load, try 192.168.1.1 instead.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}],
     tip:'If your Asus router supports multiple bands, ensure you are editing the 2.4 GHz configuration profile for local channel adjustments.', warn:null, 
     affiliates:['asus_ax88u','asus_ax55','asus_gt6','asus_xd6','asus_ax3000'] },
 
@@ -869,8 +869,8 @@ const BRANDS = [
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-bg)', icon:'D',
-    adminUrl:'dlinkrouter.local', user:'Admin', pass:'(blank)', app:'D-Link Wi-Fi',
-    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the search and address bar link fields.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}],
+    adminUrl:'dlinkrouter.local', adminFallback:'192.168.0.1', user:'Admin', pass:'(blank)', app:'D-Link Wi-Fi',
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the address bar. If that does not load, try 192.168.0.1 instead.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}],
     tip:null, warn:null, 
     affiliates:['tplink_axe75','netgear_cm3000','arris_s33','motorola_mg87','netspot_tool'] }
 ];
@@ -890,9 +890,16 @@ function loadBrand(b) {
   pill.textContent = b.name + ' Router';
   pill.style.background = b.bg; pill.style.color = b.color;
   const bars = document.getElementById('info-bars-el');
+  const buildHref = (url) => url.startsWith('http') ? url : `http://${url}`;
   let barsHtml = '';
-  if (b.adminUrl) barsHtml += `<div class="inset-row"><span class="inset-label">Admin URL</span><span class="inset-value link">${b.adminUrl}</span></div>`;
-  if (b.app) barsHtml += `<div class="inset-row"><span class="inset-label">iOS App</span><span class="inset-value link">${b.app}</span></div>`;
+  if (b.adminUrl) {
+    const href = buildHref(b.adminUrl);
+    barsHtml += `<div class="inset-row"><span class="inset-label">Admin URL</span><a href="${href}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.adminUrl} →</a></div>`; if (b.adminFallback) { const fbHref = buildHref(b.adminFallback); barsHtml += `<div class="inset-row"><span class="inset-label" style="color:var(--text-sec)">Fallback IP</span><a href="${fbHref}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.adminFallback} →</a></div>`; }
+  }
+  if (b.app) {
+    const appQuery = encodeURIComponent(b.app);
+    barsHtml += `<div class="inset-row"><span class="inset-label">iOS App</span><a href="https://apps.apple.com/search?term=${appQuery}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.app} →</a></div>`;
+  }
   if (b.user) barsHtml += `<div class="inset-row"><span class="inset-label">Default User</span><span class="inset-value">${b.user}</span></div>`;
   if (b.pass) barsHtml += `<div class="inset-row"><span class="inset-label">Default Pass</span><span class="inset-value">${b.pass}</span></div>`;
   bars.innerHTML = barsHtml;
@@ -901,7 +908,8 @@ function loadBrand(b) {
   b.steps.forEach((s, i) => {
     const card = document.createElement('div');
     card.className = 'step-card';
-    card.innerHTML = `<div class="step-num-badge" style="background:${b.bg}; color:${b.color}">${i+1}</div><div class="step-title">${s.t}</div><div class="step-desc">${s.d}</div>${s.code ? `<div class="code-block"><code style="color:${b.color}">${s.code}</code></div>` : ''}${s.mockup ? buildMockup(s.mockup.type, s.mockup.data, b.color) : ''}`;
+    const codeHref = s.code ? buildHref(s.code) : null;
+    card.innerHTML = `<div class="step-num-badge" style="background:${b.bg}; color:${b.color}">${i+1}</div><div class="step-title">${s.t}</div><div class="step-desc">${s.d}</div>${s.code ? `<div class="code-block"><a href="${codeHref}" target="_blank" style="color:${b.color};text-decoration:none;font-family:'SF Mono',ui-monospace,Menlo,Monaco,monospace;font-size:13px;font-weight:600;">${s.code} →</a></div>` : ''}${s.mockup ? buildMockup(s.mockup.type, s.mockup.data, b.color) : ''}`;
     container.appendChild(card);
   });
   document.getElementById('tip-section').innerHTML = b.tip ? `<div class="tip-box"><div class="box-icon">💡</div><div>${b.tip}</div></div>` : '';
