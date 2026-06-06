@@ -451,7 +451,8 @@ body {
 .pill-bad   { background: var(--red-dim);    border-color: rgba(240,78,101,0.35);  color: var(--red); }
 
 /* ── Band compare ───────────────────────────────────────── */
-.band-compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+/* UPDATED FOR MOBILE: Single column base layout */
+.band-compare { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
 .band-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -473,7 +474,8 @@ body {
 .band-con { font-size: 12px; font-weight: 500; color: var(--red);   padding: 2px 0; }
 
 /* ── Interference grid ──────────────────────────────────── */
-.interference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+/* UPDATED FOR MOBILE: Single column base layout */
+.interference-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
 .interference-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -544,7 +546,8 @@ body {
 }
 
 /* ── Brand grid ─────────────────────────────────────────── */
-.brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+/* UPDATED FOR MOBILE: Single column base layout for larger touch targets */
+.brand-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
 .brand-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -768,9 +771,13 @@ body {
   .speedtest-step:last-child  { border-radius: 0 0 var(--r-xl) 0; }
 
   .channel-grid     { grid-template-columns: repeat(6, 1fr); }
+  
+  /* Restoring multi-column grids for desktop breakpoints */
+  .band-compare     { grid-template-columns: 1fr 1fr; }
   .interference-grid{ grid-template-columns: repeat(4, 1fr); }
-  .placement-list   { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
   .brand-grid       { grid-template-columns: repeat(4, 1fr); }
+
+  .placement-list   { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
   .bar-chart        { height: 130px; }
 
   .step-header-area { padding: 40px 48px 26px; }
@@ -801,7 +808,6 @@ body {
 <body>
 <div class="app">
 
-  <!-- HOME SCREEN -->
   <div class="screen active" id="screen-home">
     <div class="topbar">
       <div class="nav-title">WiFi Guide</div>
@@ -819,7 +825,6 @@ body {
       </button>
     </div>
 
-    <!-- ── NEW: Buffering Diagnosis ───────────────────────── -->
     <div class="section">
       <div class="section-label">What's Causing Your Buffering?</div>
       <div class="diagnosis-list">
@@ -866,7 +871,6 @@ body {
       </div>
     </div>
 
-    <!-- ── NEW: Speed Test Workflow ───────────────────────── -->
     <div class="section">
       <div class="section-label">Speed Test — Diagnose First</div>
       <div class="speedtest-steps">
@@ -902,7 +906,6 @@ body {
       </div>
     </div>
 
-    <!-- Visual Spectrum Chart (original) -->
     <div class="section">
       <div class="section-label">Finding a Free Channel</div>
       <div class="chart-widget">
@@ -942,7 +945,6 @@ body {
       </div>
     </div>
 
-    <!-- Channel reference (original) -->
     <div class="section">
       <div class="section-label">2.4 GHz Reference</div>
       <div class="channel-grid">
@@ -959,7 +961,6 @@ body {
       </div>
     </div>
 
-    <!-- ── NEW: 5 GHz Band Guide ──────────────────────────── -->
     <div class="section">
       <div class="section-label">2.4 GHz vs 5 GHz — Which to Use?</div>
       <div class="band-compare">
@@ -1012,7 +1013,6 @@ body {
       </div>
     </div>
 
-    <!-- ── NEW: Interference Sources ─────────────────────── -->
     <div class="section">
       <div class="section-label">Common Interference Sources</div>
       <div class="interference-grid">
@@ -1071,7 +1071,6 @@ body {
       </div>
     </div>
 
-    <!-- ── NEW: Router Placement ──────────────────────────── -->
     <div class="section">
       <div class="section-label">Router Placement</div>
       <div class="placement-list">
@@ -1126,7 +1125,6 @@ body {
       </div>
     </div>
 
-    <!-- ISP Gateway Directory (original) -->
     <div class="section">
       <div class="section-label">ISP Gateway Directory</div>
       <div class="inset-group">
@@ -1186,7 +1184,6 @@ body {
     </div>
   </div>
 
-  <!-- STEPS SCREEN (original, unchanged) -->
   <div class="screen" id="screen-steps">
     <div class="topbar">
       <button class="back-btn" onclick="goHome()">Back</button>
