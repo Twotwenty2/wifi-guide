@@ -1300,67 +1300,67 @@ const searchEmptyStep = {
 
 const BRANDS = [
   { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-dim)', icon:'N',
-    adminUrl:'routerlogin.net', user:'admin', pass:'password', app:null,
+    adminUrl:'routerlogin.net', user:'admin', pass:'password', app:'Nighthawk App', appLinks:{ios:'https://apps.apple.com/us/app/netgear-nighthawk/id1016506133',android:'https://play.google.com/store/apps/details?id=com.netgear.netgearup',label:'Nighthawk App'},
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone, tablet, or computer is actively connected to your home Netgear WiFi network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser (like Safari or Chrome) and type routerlogin.net into the top search/address bar.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Type in your password to log in. Click on the Advanced tab at the top, then click on Wireless Setup from the side menu.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the "Channel" dropdown menu under the 2.4GHz section. Change it from "Auto" to your chosen clean number and click Apply.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network Settings (2.4GHz)',field:'Channel',saveBtn:'Apply'}}}],
     tip:'Turning off "Smart Connect" or "Band Steering" in your router settings lets you change individual channel numbers manually.', warn:null, 
     affiliates:['netgear_cm3000','netgear_cm2000','netgear_cm1200','netgear_cax80','netgear_rax50'] },
 
   { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-dim)', icon:'T',
-    adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether',
+    adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether', appLinks:{ios:'https://apps.apple.com/us/app/tp-link-tether/id599496594',android:'https://play.google.com/store/apps/details?id=com.tplink.tether',label:'TP-Link Tether'},
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your home TP-Link network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser and type tplinkwifi.net into the top address bar to pull up the access screen.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with your password. Click on Advanced at the top, then click Wireless on the left, and choose Wireless Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the Channel dropdown row, change it to your desired manual channel number, and click the Save button.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}],
     tip:'Older TP-Link routers use admin / admin as default credentials. Newer models (2021 and later) require you to create a custom password on first login — there is no factory default. Check your router sticker or the setup screen for guidance. You can also manage these settings from your phone using the free TP-Link Tether app.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','tplink_deco','tplink_be550','tplink_ax55'] },
 
   { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-dim)', icon:'A',
-    adminUrl:'router.asus.com', adminFallback:'192.168.1.1', user:'admin', pass:'admin', app:'ASUS Router',
+    adminUrl:'router.asus.com', adminFallback:'192.168.1.1', user:'admin', pass:'admin', app:'ASUS Router', appLinks:{ios:'https://apps.apple.com/us/app/asus-router/id1033794044',android:'https://play.google.com/store/apps/details?id=com.asus.aihome',label:'ASUS Router'},
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the address bar. If that does not load, try 192.168.1.1 instead.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}],
     tip:'If your Asus router supports multiple bands, ensure you are editing the 2.4 GHz configuration profile for local channel adjustments.', warn:null, 
     affiliates:['asus_ax88u','asus_ax55','asus_gt6','asus_xd6','asus_ax3000'] },
 
   { id:'arris', name:'Arris', color:'var(--red)', bg:'var(--red-dim)', icon:'AR',
-    adminUrl:'192.168.0.1', user:'admin', pass:'password', app:null,
+    adminUrl:'192.168.0.1', user:'admin', pass:'password', app:null, appLinks:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or computer is fully connected to your Arris home wireless network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser window and type 192.168.0.1 into the top link location bar.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with the details on your router sticker. Click on System Connection and select Wi-Fi Networks.', code:null, mockup:null},{t:'Change the Channel', d:'Find the 2.4 GHz Radio parameters list. Change the Channel option to your clean chosen number and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Wireless Radio',field:'Wireless Channel',saveBtn:'Save'}}}],
     warn:'Some internet service providers lock down custom settings on rented Arris boxes, which might prevent manual channel changing.', 
     affiliates:['arris_s34','arris_s33','arris_sb8200','arris_g36','arris_sb6190'] },
 
   { id:'xfinity', name:'Xfinity', color:'var(--red)', bg:'var(--red-dim)', icon:'X',
-    adminUrl:'10.0.0.1', user:'admin', pass:'password', app:'Xfinity app',
+    adminUrl:'10.0.0.1', user:'admin', pass:'password', app:'Xfinity app', appLinks:{ios:'https://apps.apple.com/us/app/xfinity/id1178765645',android:'https://play.google.com/store/apps/details?id=com.xfinity.digitalhome',label:'Xfinity App'},
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your computer or smartphone is connected to your private home Xfinity network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser screen and type 10.0.0.1 into the top address bar target location.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account codes. Navigate down the left menu to Gateway > Connection > Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Edit button next to your 2.4 GHz band row, switch Channel Selection to your manual number, and click Save Settings.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Wi-Fi Configuration',field:'Channel Selection',saveBtn:'Save Settings'}}}],
     warn:'If you use Xfinity Pod mesh expanders or have modern cloud control rules turned on, manual channel adjustments will be locked out.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'eero', name:'Eero', color:'var(--indigo)', bg:'var(--purple-dim)', icon:'E',
-    adminUrl:null, user:null, pass:null, app:'Eero App',
+    adminUrl:null, user:null, pass:null, app:'Eero App', appLinks:{ios:'https://apps.apple.com/us/app/eero-wifi-router-app/id1117843871',android:'https://play.google.com/store/apps/details?id=com.eero.android',label:'Eero App'},
     steps:[{t:'Open the Eero App', d:'Eero smart mesh networks do not use an admin website link. Open the official Eero app on your mobile phone.', code:null, mockup:null},{t:'Select Your Network', d:'Tap on your main home network system profile box displayed right on the central dashboard view.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap on the lower Settings navigation option menu, scroll down, and select Advanced from the list.', code:null, mockup:null},{t:'Automatic Background Tuning', d:'Eero platforms constantly scan your neighborhood and change channels automatically to fix slow speeds. Manual overrides are completely blocked.', code:null, mockup:null}],
     tip:'Because Eero balances overlapping channels across multiple nodes automatically, you don\'t need to configure manual channel keys.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-dim)', icon:'L',
-    adminUrl:'192.168.1.1', user:'(leave blank)', pass:'admin', app:'Linksys App',
+    adminUrl:'192.168.1.1', user:'(leave blank)', pass:'admin', app:'Linksys App', appLinks:{ios:'https://apps.apple.com/us/app/linksys/id533516503',android:'https://play.google.com/store/apps/details?id=com.linksys.linksys',label:'Linksys App'},
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active device is securely connected to your personal home Linksys network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser and type 192.168.1.1 into the top bar link path fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Dashboard',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your password keys. Look at the left sidebar menu area, find Router Settings, and click Wi-Fi Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4 GHz wireless setup block, change the Channel selection field to your chosen manual number, and click OK or Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Wireless Settings',field:'Channel',saveBtn:'Apply'}}}],
     tip:'Linksys officially discontinued cloud login support via linksyssmartwifi.com. You must handle changes locally using 192.168.1.1 or myrouter.local.', warn:null, 
     affiliates:['linksys_mx5','linksys_hydra','linksys_mr9600','linksys_ea7500','linksys_velop'] },
 
   { id:'google', name:'Google Nest', color:'var(--green)', bg:'var(--green-dim)', icon:'G',
-    adminUrl:null, user:null, pass:null, app:'Google Home App',
+    adminUrl:null, user:null, pass:null, app:'Google Home App', appLinks:{ios:'https://apps.apple.com/us/app/google-home/id680819774',android:'https://play.google.com/store/apps/details?id=com.google.android.apps.chromecast.app',label:'Google Home'},
     steps:[{t:'Open the Google Home App', d:'Google Nest hardware does not have an administrative website link. Launch the free Google Home app on your phone.', code:null, mockup:null},{t:'Select Your Wi-Fi Node', d:'Locate your primary router or active Wi-Fi device circle icon directly on your home map control panel.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap the Settings gear icon in the top right corner, scroll down to the bottom, and select Advanced Networking.', code:null, mockup:null},{t:'Automated Traffic Control', d:'Google Nest systematically manages neighborhood traffic channels in the background to avoid congestion. There is no manual override control.', code:null, mockup:null}],
     tip:'Google Nest mesh pods coordinate automatic frequency hopping behind the scenes to keep data flowing smoothly without manual intervention.', warn:null, 
     affiliates:['eero_pro6e','tplink_deco','asus_xd6','netgear_rax50','netspot_tool'] },
 
   { id:'att', name:'AT&T BGW', color:'var(--orange)', bg:'var(--orange-dim)', icon:'AT',
-    adminUrl:'192.168.1.254', user:null, pass:'Access Code', app:null,
+    adminUrl:'192.168.1.254', user:null, pass:'Access Code', app:null, appLinks:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is actively connected to your AT&T home internet gateway network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser program and type 192.168.1.254 directly into the top navigation location field.', code:'192.168.1.254', mockup:{type:'login',data:{url:'192.168.1.254',title:'AT&T Gateway Management',passLabel:'Device Access Code'}}},{t:'Find Wireless Settings', d:'Click the Home Network tab from the main menu options, then click on the sub-option for Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click Advanced Options near the top. When prompted, type in the Device Access Code printed on your router\'s sticker. Change the 2.4 GHz channel value and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.1.254',section:'2.4 GHz Network Options',field:'Channel Selection',saveBtn:'Save Settings'}}}],
     tip:'The Device Access Code is a unique password completely separate from your daily WiFi password. Look closely at the barcode sticker on the back of the box.', warn:null, 
     affiliates:['tplink_axe75','tplink_ax3000','asus_ax88u','netgear_rax50','netspot_tool'] },
 
   { id:'spectrum', name:'Spectrum', color:'var(--purple)', bg:'var(--purple-dim)', icon:'S',
-    adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:null,
+    adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:null, appLinks:null,
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active setup device is connected to your standard Spectrum home network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser tab window and enter 192.168.1.1 into the top structural target bar.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Portal',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account info. Navigate to the Advanced settings tab sheet and click the main Wireless sub-menu row.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4G channel profile configuration row, select your clean target channel number, and click Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless Configurations',field:'Channel Control',saveBtn:'Apply'}}}],
     warn:'Newer model Spectrum routers with automated software updates frequently lock out manual browser menu overrides entirely.', 
     affiliates:['arris_s34','arris_s33','hitron_coda56','netgear_cm3000','motorola_b12'] },
 
   { id:'dlink', name:'D-Link', color:'var(--blue)', bg:'var(--blue-dim)', icon:'D',
-    adminUrl:'dlinkrouter.local', adminFallback:'192.168.0.1', user:'admin', pass:'Leave blank', app:'D-Link Wi-Fi',
+    adminUrl:'dlinkrouter.local', adminFallback:'192.168.0.1', user:'admin', pass:'Leave blank', app:'D-Link Wi-Fi', appLinks:{ios:'https://apps.apple.com/us/app/d-link-wi-fi/id623698050',android:'https://play.google.com/store/apps/details?id=com.dlink.mydlink',label:'D-Link Wi-Fi'},
     steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your local D-Link wireless network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser and type dlinkrouter.local into the address bar. If that does not load, try 192.168.0.1 instead.', code:'dlinkrouter.local', mockup:{type:'login',data:{url:'dlinkrouter.local',title:'D-Link Administration',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, hover over or click the Settings option link from the top control menu, and choose Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Advanced Settings link row to open the hidden configurations menu. Change the Wi-Fi Channel number dropdown, and click Save.', code:null, mockup:{type:'channel',data:{url:'dlinkrouter.local',section:'Advanced Wireless Settings',field:'Wi-Fi Channel',saveBtn:'Save'}}}],
     tip:null, warn:'D-Link routers made after 2017 do not use a blank default password. Instead, a unique password is printed on the sticker on the bottom of your device. Use that instead of leaving the field blank.', 
     affiliates:['tplink_axe75','netgear_cm3000','arris_s33','motorola_mg87','netspot_tool'] }
@@ -1387,9 +1387,16 @@ function loadBrand(b) {
     const href = buildHref(b.adminUrl);
     barsHtml += `<div class="inset-row"><span class="inset-label">Admin URL</span><a href="${href}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.adminUrl} →</a></div>`; if (b.adminFallback) { const fbHref = buildHref(b.adminFallback); barsHtml += `<div class="inset-row"><span class="inset-label" style="color:var(--text-sec)">Fallback IP</span><a href="${fbHref}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.adminFallback} →</a></div>`; }
   }
-  if (b.app) {
+  if (b.appLinks) {
+    if (b.appLinks.ios) {
+      barsHtml += `<div class="inset-row"><span class="inset-label">iPhone / iPad</span><a href="${b.appLinks.ios}" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none;font-size:14px;">🍎 ${b.appLinks.label} →</a></div>`;
+    }
+    if (b.appLinks.android) {
+      barsHtml += `<div class="inset-row"><span class="inset-label">Android</span><a href="${b.appLinks.android}" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none;font-size:14px;">🤖 ${b.appLinks.label} →</a></div>`;
+    }
+  } else if (b.app) {
     const appQuery = encodeURIComponent(b.app);
-    barsHtml += `<div class="inset-row"><span class="inset-label">iOS App</span><a href="https://apps.apple.com/search?term=${appQuery}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.app} →</a></div>`;
+    barsHtml += `<div class="inset-row"><span class="inset-label">App</span><a href="https://apps.apple.com/search?term=${appQuery}" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none;font-size:14px;">${b.app} →</a></div>`;
   }
   if (b.user) barsHtml += `<div class="inset-row"><span class="inset-label">Default User</span><span class="inset-value">${b.user}</span></div>`;
   if (b.pass) barsHtml += `<div class="inset-row"><span class="inset-label">Default Pass</span><span class="inset-value">${b.pass}</span></div>`;
