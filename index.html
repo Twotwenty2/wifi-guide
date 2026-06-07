@@ -1425,19 +1425,25 @@ function loadBrand(b) {
   }).join('');
   document.getElementById('screen-home').classList.remove('active');
   document.getElementById('screen-steps').classList.add('active');
-  window.scrollTo(0, 0);
+  
+  // Instantly snap to the top, ignoring smooth scrolling CSS
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  
   history.pushState({screen: 'steps'}, '');
 }
 
 function goHome() {
   document.getElementById('screen-steps').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
-  window.scrollTo(0, 0);
+  
+  // Instantly snap to the top, ignoring smooth scrolling CSS
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 window.addEventListener('popstate', (event) => {
   document.getElementById('screen-steps').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
 });
 </script>
 </body>
