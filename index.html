@@ -9,7 +9,7 @@
   gtag('config', 'G-S59EEVNY50');
 </script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -166,11 +166,31 @@ body {
 .back-btn::before { content: "←"; font-weight: 400; }
 .back-btn:hover { background: var(--border); border-color: var(--border-2); }
 
-/* ── Hero ───────────────────────────────────────────────── */
+/* ── Hero + Video Layout ────────────────────────────────── */
 .hero {
   padding: 52px var(--pad-lg) 36px;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
+.hero-content {
+  flex: 1;
+}
+.hero-video {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border-2);
+  flex-shrink: 0;
+  object-fit: cover;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+@media (max-width: 450px) {
+  .hero { flex-direction: column-reverse; align-items: flex-start; gap: 24px; padding-top: 36px; }
+  .hero-video { width: 100%; height: auto; border-radius: var(--r-lg); }
+}
+
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 700;
@@ -186,7 +206,7 @@ body {
 
 /* PAGE TITLE — largest, heaviest weight */
 .hero h1 {
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1.08;
@@ -200,7 +220,6 @@ body {
   font-weight: 400;
   color: var(--text-2);
   line-height: 1.65;
-  max-width: 400px;
 }
 
 .hero-tip {
@@ -823,15 +842,20 @@ body {
     </div>
     
     <div class="hero">
-      <div class="hero-eyebrow">WiFi Troubleshooting Guide</div>
-      <h1>Fix your slow WiFi.</h1>
-      <p>Diagnose congestion, interference, and buffering — then fix it step by step.</p>
-      <div class="hero-tip">
-        <strong>Quick Tip:</strong> Most routers have the default login credentials printed on a sticker on the back or bottom of the device. Check there before trying anything else.
+      <div class="hero-content">
+        <div class="hero-eyebrow">WiFi Troubleshooting Guide</div>
+        <h1>Fix your slow WiFi.</h1>
+        <p>Diagnose congestion, interference, and buffering — then fix it step by step.</p>
+        <div class="hero-tip">
+          <strong>Quick Tip:</strong> Most routers have the default login credentials printed on a sticker on the back or bottom of the device. Check there before trying anything else.
+        </div>
+        <button class="hero-skip-btn" onclick="document.getElementById('brand-guide').scrollIntoView({behavior:'smooth'});">
+          Skip to Router Brand Guide ↓
+        </button>
       </div>
-      <button class="hero-skip-btn" onclick="document.getElementById('brand-guide').scrollIntoView({behavior:'smooth'});">
-        Skip to Router Brand Guide ↓
-      </button>
+      <video class="hero-video" autoplay loop muted playsinline>
+        <source src="router-animation.mp4" type="video/mp4">
+      </video>
     </div>
 
     <div class="section">
@@ -1426,7 +1450,7 @@ function loadBrand(b) {
   document.getElementById('screen-home').classList.remove('active');
   document.getElementById('screen-steps').classList.add('active');
   
-  // Instantly snap to the top, ignoring smooth scrolling CSS
+  // Snap instantly to the top, ignoring the CSS smooth scroll behavior
   window.scrollTo({ top: 0, behavior: 'instant' });
   
   history.pushState({screen: 'steps'}, '');
@@ -1436,13 +1460,15 @@ function goHome() {
   document.getElementById('screen-steps').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
   
-  // Instantly snap to the top, ignoring smooth scrolling CSS
+  // Snap instantly to the top, ignoring the CSS smooth scroll behavior
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 window.addEventListener('popstate', (event) => {
   document.getElementById('screen-steps').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
+  
+  // Snap instantly to the top for edge gesture navigation
   window.scrollTo({ top: 0, behavior: 'instant' });
 });
 </script>
