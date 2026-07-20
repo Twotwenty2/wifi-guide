@@ -1,0 +1,536 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;Change · Fix Your WiFi Traffic Jam&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">/* ═══════════════════════════════════════════════════════════</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>CHANGE LANDING PAGE · 2026 DESIGN SYSTEM</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>Dark Zinc Neutrals · Electric Blue Accents · Bento Layout</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">   </span>═══════════════════════════════════════════════════════════ */</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">:root {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--bg:<span class="Apple-converted-space">        </span>#08080E;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--bg-2:<span class="Apple-converted-space">      </span>#0F0F18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--surface: <span class="Apple-converted-space">  </span>#141420;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--surface-2: #1C1C2C;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--border:<span class="Apple-converted-space">    </span>#252535;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--border-2:<span class="Apple-converted-space">  </span>#32324A;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--text:<span class="Apple-converted-space">      </span>#EEEEF8;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--text-2:<span class="Apple-converted-space">    </span>#9898B8;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--text-3:<span class="Apple-converted-space">    </span>#50506A;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--blue:<span class="Apple-converted-space">      </span>#5B9BFF;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--blue-dim:<span class="Apple-converted-space">  </span>#12203E;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--blue-glow: rgba(91,155,255,0.15);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--green: <span class="Apple-converted-space">    </span>#34D974;<span class="Apple-converted-space">  </span>--green-dim:<span class="Apple-converted-space">  </span>#0A2618;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--orange:<span class="Apple-converted-space">    </span>#F8A525;<span class="Apple-converted-space">  </span>--orange-dim: #2A1A00;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--red: <span class="Apple-converted-space">      </span>#F04E65;<span class="Apple-converted-space">  </span>--red-dim:<span class="Apple-converted-space">    </span>#2C0A12;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--purple:<span class="Apple-converted-space">    </span>#A78BFA;<span class="Apple-converted-space">  </span>--purple-dim: #1C1040;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--magenta: <span class="Apple-converted-space">  </span>#FF1493;<span class="Apple-converted-space">  </span>/* Accent matching your C-Change logo */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--mono: "JetBrains Mono", monospace;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--r-2xl: 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--r-xl:<span class="Apple-converted-space">  </span>16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--r-lg:<span class="Apple-converted-space">  </span>12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>--r:<span class="Apple-converted-space">      </span>8px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">*, *::before, *::after {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>box-sizing: border-box; margin: 0; padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>-webkit-tap-highlight-color: transparent;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-family: var(--font);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--bg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: var(--text);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>line-height: 1.6;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>overflow-x: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>-webkit-font-smoothing: antialiased;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Navigation ─────────────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.nav {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>position: sticky; top: 0; z-index: 1000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: rgba(8,8,14,0.85);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>backdrop-filter: blur(20px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-bottom: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 16px 24px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.nav-inner {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>max-width: 1100px; margin: 0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; justify-content: space-between;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.logo {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>text-decoration: none;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">/* CUSTOM LOGO STYLING */</span></p>
+<p class="p1"><span class="s1">.logo-img {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>height: 32px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width: auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>transition: transform 0.15s ease;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.logo:hover .logo-img {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>transform: scale(1.03);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.nav-links { display: flex; gap: 24px; align-items: center; }</span></p>
+<p class="p1"><span class="s1">.nav-link {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 14px; font-weight: 600; color: var(--text-2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>text-decoration: none; transition: color 0.15s;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.nav-link:hover { color: var(--text); }</span></p>
+<p class="p1"><span class="s1">.btn-nav {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--surface-2); border: 1px solid var(--border-2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: var(--text); padding: 8px 16px; border-radius: var(--r);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 13px; font-weight: 700; text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>transition: all 0.15s;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.btn-nav:hover { background: var(--border); border-color: var(--blue); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">@media (max-width: 600px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.nav-links { display: none; }</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Hero Section ───────────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.hero {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 80px 24px 60px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>max-width: 1100px; margin: 0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: grid; grid-template-columns: 1.1fr 0.9fr;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>gap: 48px; align-items: center;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 850px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 36px; text-align: center; }</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.badge {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: inline-flex; align-items: center; gap: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 6px 12px; background: var(--blue-dim);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border: 1px solid rgba(91,155,255,0.3); border-radius: 100px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 12px; font-weight: 700; color: var(--blue);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>letter-spacing: 0.05em; text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.hero h1 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: clamp(38px, 6vw, 64px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-weight: 900; letter-spacing: -0.04em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>line-height: 1.06; margin-bottom: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.hero h1 span {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: linear-gradient(135deg, var(--blue) 0%, #A78BFA 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>-webkit-background-clip: text; -webkit-text-fill-color: transparent;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.hero p {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: clamp(16px, 2vw, 19px); color: var(--text-2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 32px; max-width: 500px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 850px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.hero p { margin: 0 auto 32px; }</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.hero-ctas {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; gap: 16px; align-items: center;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 850px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.hero-ctas { justify-content: center; flex-wrap: wrap; }</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.btn-primary {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--blue); color: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 16px 28px; border-radius: var(--r-xl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 15px; font-weight: 800; text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>box-shadow: 0 0 25px rgba(91,155,255,0.3);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>transition: transform 0.15s, box-shadow 0.15s;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(91,155,255,0.5); }</span></p>
+<p class="p1"><span class="s1">.btn-secondary {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--surface); border: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: var(--text); padding: 16px 24px; border-radius: var(--r-xl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 15px; font-weight: 700; text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>transition: background 0.15s, border-color 0.15s;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.btn-secondary:hover { background: var(--surface-2); border-color: var(--border-2); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Animated Hero Graphic ──────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.hero-visual {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--surface); border: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: var(--r-2xl); padding: 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>position: relative; overflow: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>box-shadow: 0 20px 50px rgba(0,0,0,0.5);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.visual-header {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; justify-content: space-between; align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.visual-title { font-size: 13px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; }</span></p>
+<p class="p1"><span class="s1">.status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }</span></p>
+<p class="p1"><span class="s1">.visual-tag { font-family: var(--mono); font-size: 11px; color: var(--text-3); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.traffic-chart {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; align-items: flex-end; justify-content: space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>height: 160px; padding-top: 20px; border-bottom: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; position: relative; }</span></p>
+<p class="p1"><span class="s1">.bar { width: 60%; max-width: 18px; border-radius: 4px 4px 0 0; transition: height 1s ease; }</span></p>
+<p class="p1"><span class="s1">.bar.red { background: var(--red); height: 85%; animation: pulseRed 2s infinite alternate; }</span></p>
+<p class="p1"><span class="s1">.bar.orange { background: var(--orange); height: 50%; }</span></p>
+<p class="p1"><span class="s1">.bar.blue { background: var(--blue); height: 30%; opacity: 0.5; }</span></p>
+<p class="p1"><span class="s1">.bar.green { background: var(--green); height: 6px; box-shadow: 0 0 10px var(--green); }</span></p>
+<p class="p1"><span class="s1">.bar-num { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--text-3); margin-top: 8px; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">@keyframes pulseRed {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>0% { opacity: 0.8; height: 80%; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>100% { opacity: 1; height: 95%; }</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.visual-footer {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; justify-content: space-between; align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-top: 16px; font-size: 12px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.pill-free { background: var(--green-dim); color: var(--green); font-weight: 800; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(52,217,116,0.3); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Section Structure ──────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.section {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 80px 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>max-width: 1100px; margin: 0 auto;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.section-header {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>text-align: center; max-width: 600px; margin: 0 auto 56px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.section-eyebrow {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 11px; font-weight: 800; letter-spacing: 0.1em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>text-transform: uppercase; color: var(--blue); margin-bottom: 12px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.section-title {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: clamp(28px, 4vw, 42px); font-weight: 900;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.section-desc { font-size: 16px; color: var(--text-2); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Grid Cards (The Problem) ───────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.grid-3 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 850px) { .grid-3 { grid-template-columns: 1fr; } }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.card {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--surface); border: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: var(--r-xl); padding: 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; flex-direction: column; gap: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>transition: border-color 0.2s;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.card:hover { border-color: var(--border-2); }</span></p>
+<p class="p1"><span class="s1">.card-icon {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width: 48px; height: 48px; border-radius: var(--r-lg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 22px; margin-bottom: 8px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.card h3 { font-size: 19px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }</span></p>
+<p class="p1"><span class="s1">.card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }</span></p>
+<p class="p1"><span class="s1">.card-tag {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: inline-flex; align-self: flex-start;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 11px; font-weight: 800; text-transform: uppercase;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 4px 10px; border-radius: 6px; margin-top: auto;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── How It Works Steps ─────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.steps-grid {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 900px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }</span></p>
+<p class="p1"><span class="s1">@media (max-width: 500px) { .steps-grid { grid-template-columns: 1fr; } }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.step-card {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--surface); border: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: var(--r-xl); padding: 24px; position: relative;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.step-num {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-family: var(--mono); font-size: 12px; font-weight: 800;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color: var(--blue); background: var(--blue-dim);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width: 28px; height: 28px; border-radius: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin-bottom: 16px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.step-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }</span></p>
+<p class="p1"><span class="s1">.step-card p { font-size: 13px; color: var(--text-2); line-height: 1.5; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Bento Grid (Features) ──────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.bento {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: grid; grid-template-columns: 3fr 2fr; gap: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 850px) { .bento { grid-template-columns: 1fr; } }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.bento-card {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--surface); border: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: var(--r-2xl); padding: 36px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; flex-direction: column; justify-content: space-between;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.bento-card.highlight {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: linear-gradient(145deg, var(--surface) 0%, var(--blue-dim) 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-color: rgba(91,155,255,0.3);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.bento-title { font-size: 24px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }</span></p>
+<p class="p1"><span class="s1">.bento-desc { font-size: 15px; color: var(--text-2); max-width: 400px; margin-bottom: 24px; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">.channel-showcase {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; gap: 12px; margin-top: 20px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.ch-box {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>flex: 1; background: var(--surface-2); border: 1px solid var(--border-2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-radius: var(--r-lg); padding: 16px; text-align: center;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.ch-box.best { background: var(--green-dim); border-color: rgba(52,217,116,0.4); color: var(--green); }</span></p>
+<p class="p1"><span class="s1">.ch-num { font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 4px; }</span></p>
+<p class="p1"><span class="s1">.ch-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Marquee / Brands ───────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.brands-section {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: var(--bg-2); padding: 40px 24px; text-align: center;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.brands-lbl { font-size: 11px; font-weight: 800; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }</span></p>
+<p class="p1"><span class="s1">.brands-list {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; justify-content: center; flex-wrap: wrap; gap: 32px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>max-width: 900px; margin: 0 auto;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.brand-item {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 18px; font-weight: 800; color: var(--text-2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; gap: 8px; opacity: 0.7;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Bottom CTA ─────────────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.cta-banner {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin: 80px 24px; max-width: 1100px; margin-left: auto; margin-right: auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background: linear-gradient(135deg, var(--surface-2) 0%, #121A30 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border: 1px solid var(--border-2); border-radius: var(--r-2xl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding: 64px 32px; text-align: center; position: relative; overflow: hidden;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.cta-banner h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }</span></p>
+<p class="p1"><span class="s1">.cta-banner p { font-size: 17px; color: var(--text-2); max-width: 500px; margin: 0 auto 32px; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">/* ── Footer ─────────────────────────────────────────────── */</span></p>
+<p class="p1"><span class="s1">.footer {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>border-top: 1px solid var(--border); padding: 40px 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-size: 13px; color: var(--text-3); text-align: center;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.footer a { color: var(--text-2); text-decoration: none; font-weight: 600; }</span></p>
+<p class="p1"><span class="s1">.footer a:hover { color: var(--blue); }</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- Navigation --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;nav class="nav"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="nav-inner"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="#" class="logo"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- C-CHANGE LOGO INTEGRATION --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="Cchange%20logo%20text.png" alt="Change Logo" class="logo-img"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="nav-links"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;a href="#problem" class="nav-link"&gt;The Problem&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;a href="#how-it-works" class="nav-link"&gt;How It Works&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;a href="#features" class="nav-link"&gt;Spectrum Rules&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="app.html" class="btn-nav"&gt;Launch Utility →&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/nav&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- Hero Section --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section class="hero"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="hero-content"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="badge"&gt;⚡ 2026 UI/UX Case Study Utility&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Your WiFi isn't broken. It's just in a &lt;span&gt;traffic jam.&lt;/span&gt;&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;Most routers default to crowded neighborhood channels. Diagnose buffering, avoid invisible frequency interference, and switch to a clear lane in 4 simple steps.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="hero-ctas"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;a href="app.html" class="btn-primary"&gt;Fix My WiFi Now →&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;a href="#problem" class="btn-secondary"&gt;See How It Works&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- Animated UI Graphic --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="hero-visual"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="visual-header"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="visual-title"&gt;&lt;span class="status-dot"&gt;&lt;/span&gt; Neighborhood Spectrum Scan&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="visual-tag"&gt;2.4 GHz BAND&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="traffic-chart"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar orange"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;1&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar blue"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;2&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar blue"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;3&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar green" style="height:8px;"&gt;&lt;/div&gt;&lt;div class="bar-num" style="color:var(--green);font-weight:900;"&gt;4&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar blue"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;5&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar red"&gt;&lt;/div&gt;&lt;div class="bar-num" style="color:var(--red);font-weight:900;"&gt;6&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar blue"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;7&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar orange"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;8&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar green" style="height:8px;"&gt;&lt;/div&gt;&lt;div class="bar-num" style="color:var(--green);font-weight:900;"&gt;9&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar blue"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;10&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="bar-col"&gt;&lt;div class="bar orange"&gt;&lt;/div&gt;&lt;div class="bar-num"&gt;11&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="visual-footer"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;span style="color:var(--text-2);"&gt;Channel 6 Congestion: &lt;strong style="color:var(--red);"&gt;High (14 Routers)&lt;/strong&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;span class="pill-free"&gt;CH 4 FREE&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- Supported Hardware Marquee --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section class="brands-section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="brands-lbl"&gt;Standardized 4-Step Workflows Built For All Major Gateways&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="brands-list"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="brand-item"&gt;🛡️ Netgear Nighthawk&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="brand-item"&gt;📡 TP-Link Archer&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="brand-item"&gt;🐉 Asus ROG&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="brand-item"&gt;⚡ Arris SURFboard&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="brand-item"&gt;🟣 Xfinity Gateway&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="brand-item"&gt;🔵 Linksys Velop&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- The Problem Section --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section class="section" id="problem"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="section-header"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="section-eyebrow"&gt;The Invisible Problem&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2 class="section-title"&gt;Why you're lagging on a 1 Gigabit internet plan.&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p class="section-desc"&gt;When video buffers or ping spikes, users blame their ISP. In reality, 80% of home connection drops are caused by local environment bottlenecks.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="grid-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card-icon" style="background:var(--red-dim);color:var(--red);"&gt;🚗&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Channel Overlap&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Routers are lazy. When set to "Auto," almost every router in an apartment building selects Channel 6. Your data packets must wait in line behind your neighbors' traffic.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card-tag" style="background:var(--red-dim);color:var(--red);"&gt;Symptom: Evening Lag&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card-icon" style="background:var(--orange-dim);color:var(--orange);"&gt;⚡&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Radio Interference&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Microwaves, cordless DECT phones, baby monitors, and Bluetooth accessories all broadcast on the exact same 2.4 GHz frequency spectrum as your WiFi.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card-tag" style="background:var(--orange-dim);color:var(--orange);"&gt;Symptom: Random Drops&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card-icon" style="background:var(--blue-dim);color:var(--blue);"&gt;🧱&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Physical Obstruction&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Wood, brick, and metal absorb radio waves. Hiding a router inside a TV media console or behind a kitchen appliance can destroy up to 50% of your signal range.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card-tag" style="background:var(--blue-dim);color:var(--blue);"&gt;Symptom: Dead Zones&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- How It Works Section --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section class="section" id="how-it-works" style="background: var(--bg-2); max-width: 100%; padding: 80px 24px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div style="max-width: 1100px; margin: 0 auto;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="section-header"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="section-eyebrow"&gt;The Standardized Solution&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2 class="section-title"&gt;Bridging the "Simplification Gap"&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p class="section-desc"&gt;We translated 11 obscure, complex manufacturer instruction manuals into a single, universal 4-step workflow that works on any device.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="steps-grid"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="step-card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="step-num"&gt;01&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Isolate the Issue&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;Run our recommended wired-vs-wireless speed test routine to instantly prove whether the problem is your ISP or your WiFi spectrum.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="step-card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="step-num"&gt;02&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Scan Your Airspace&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;Use a free mobile analyzer to inspect your room's radio frequencies and visually spot the exact channel numbers your neighbors are avoiding.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="step-card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="step-num"&gt;03&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Select Your Brand&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;Choose your router brand to get direct gateway IPs, default administrator passwords, and direct links to Apple and Android companion apps.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="step-card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="step-num"&gt;04&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Visual Navigation&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;Follow custom browser mockups showing the exact menus and settings fields for your router firmware. No technical guesswork required.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- Bento Grid Features Section --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section class="section" id="features"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="section-header"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="section-eyebrow"&gt;Spectrum Intelligence&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2 class="section-title"&gt;Built for speed. Designed for clarity.&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p class="section-desc"&gt;Every recommendation in Change is grounded in radio frequency engineering principles, simplified for everyday consumers.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="bento"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Highlight Card: 1-6-11 Rule --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="bento-card highlight"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(52,217,116,0.3);"&gt;Golden Rule of WiFi&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3 class="bento-title"&gt;The 1, 6, 11 Non-Overlapping Mandate&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p class="bento-desc"&gt;In the 2.4 GHz band, channels 1 through 11 overlap heavily. Selecting intermediate channels like 3, 4, or 8 causes overlapping interference with multiple adjacent networks simultaneously. Change trains users to strictly choose 1, 6, or 11.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="channel-showcase"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="ch-box best"&gt;&lt;div class="ch-num"&gt;1&lt;/div&gt;&lt;div class="ch-lbl"&gt;Best&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="ch-box"&gt;&lt;div class="ch-num" style="color:var(--red);"&gt;3&lt;/div&gt;&lt;div class="ch-lbl" style="color:var(--red);"&gt;Overlap&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="ch-box best"&gt;&lt;div class="ch-num"&gt;6&lt;/div&gt;&lt;div class="ch-lbl"&gt;Best&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="ch-box"&gt;&lt;div class="ch-num" style="color:var(--red);"&gt;8&lt;/div&gt;&lt;div class="ch-lbl" style="color:var(--red);"&gt;Overlap&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="ch-box best"&gt;&lt;div class="ch-num"&gt;11&lt;/div&gt;&lt;div class="ch-lbl"&gt;Best&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Secondary Card: 5GHz vs 2.4GHz --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="bento-card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge"&gt;Band Strategy&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3 class="bento-title"&gt;2.4 GHz vs 5 GHz Strategy&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p class="bento-desc"&gt;Stop guessing which network to join. We break down the physics: use 5 GHz for high-speed gaming and 4K streaming close to the router; use 2.4 GHz to push signals through heavy brick walls and to smart home IoT devices.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div style="margin-top: 24px; padding: 16px; background:var(--surface-2); border-radius:var(--r-lg); font-size:13px; font-family:var(--mono); color:var(--text-2);"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div style="display:flex; justify-content:space-between; margin-bottom:8px;"&gt;&lt;span&gt;5 GHz Band:&lt;/span&gt; &lt;strong style="color:var(--blue);"&gt;25+ Clean Channels&lt;/strong&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div style="display:flex; justify-content:space-between;"&gt;&lt;span&gt;2.4 GHz Band:&lt;/span&gt; &lt;strong style="color:var(--orange);"&gt;3 Clean Channels&lt;/strong&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- Bottom CTA --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="cta-banner"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Ready to take control of your network?&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;p&gt;Stop resetting your router and hoping for the best. Launch the utility and switch to a clear frequency channel today.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;a href="app.html" class="btn-primary" style="display:inline-block;"&gt;Launch Free Utility →&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;!-- Footer --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;footer class="footer"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;p&gt;Change · A UI/UX Technical Communication Case Study.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;p style="margin-top: 8px;"&gt;Designed &amp; Developed by &lt;a href="app.html" target="_blank"&gt;Rob Mackay&lt;/a&gt; · Powered by the 2026 Design System.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/footer&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
