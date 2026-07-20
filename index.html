@@ -33,7 +33,7 @@
   --orange:    #F8A525;  --orange-dim: #2A1A00;
   --red:       #F04E65;  --red-dim:    #2C0A12;
   --purple:    #A78BFA;  --purple-dim: #1C1040;
-  --magenta:   #FF1493;  /* Accent matching your C-Change logo */
+  --magenta:   #FF1493;  
   
   --font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "JetBrains Mono", monospace;
@@ -74,7 +74,6 @@ body {
   display: flex; align-items: center;
   text-decoration: none;
 }
-/* CUSTOM LOGO STYLING */
 .logo-img {
   height: 32px;
   width: auto;
@@ -333,8 +332,6 @@ body {
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="logo">
-      <!-- C-CHANGE LOGO INTEGRATION -->
-      <!-- Updated image source. Ensure 'Cchange logo text.png' is uploaded to your Vercel root. -->
       <img src="Cchange%20logo%20text.png" alt="Change Logo" class="logo-img">
     </a>
     <div class="nav-links">
@@ -342,7 +339,8 @@ body {
       <a href="#how-it-works" class="nav-link">How It Works</a>
       <a href="#features" class="nav-link">Spectrum Rules</a>
     </div>
-    <a href="https://wifi-guide-one.vercel.app/" class="btn-nav">Launch Utility →</a>
+    <!-- FIXED LINK: Absolute path to the utility -->
+    <a href="https://wifi-guide-one.vercel.app/app.html" class="btn-nav">Launch Utility →</a>
   </div>
 </nav>
 
@@ -353,7 +351,8 @@ body {
     <h1>Your WiFi isn't broken. It's just in a <span>traffic jam.</span></h1>
     <p>Most routers default to crowded neighborhood channels. Diagnose buffering, avoid invisible frequency interference, and switch to a clear lane in 4 simple steps.</p>
     <div class="hero-ctas">
-      <a href="https://wifi-guide-one.vercel.app/" class="btn-primary">Fix My WiFi Now →</a>
+      <!-- FIXED LINK: Absolute path to the utility -->
+      <a href="https://wifi-guide-one.vercel.app/app.html" class="btn-primary">Fix My WiFi Now →</a>
       <a href="#problem" class="btn-secondary">See How It Works</a>
     </div>
   </div>
@@ -507,13 +506,14 @@ body {
 <div class="cta-banner">
   <h2>Ready to take control of your network?</h2>
   <p>Stop resetting your router and hoping for the best. Launch the utility and switch to a clear frequency channel today.</p>
-  <a href="https://wifi-guide-one.vercel.app/" class="btn-primary" style="display:inline-block;">Launch Free Utility →</a>
+  <!-- FIXED LINK: Absolute path to the utility -->
+  <a href="https://wifi-guide-one.vercel.app/app.html" class="btn-primary" style="display:inline-block;">Launch Free Utility →</a>
 </div>
 
 <!-- Footer -->
 <footer class="footer">
   <p>Change · A UI/UX Technical Communication Case Study.</p>
-  <p style="margin-top: 8px;">Designed & Developed by <a href="https://wifi-guide-one.vercel.app/" target="_blank">Rob Mackay</a> · Powered by the 2026 Design System.</p>
+  <p style="margin-top: 8px;">Designed & Developed by <a href="https://wifi-guide-one.vercel.app/app.html" target="_blank">Rob Mackay</a> · Powered by the 2026 Design System.</p>
 </footer>
 
 </body>
