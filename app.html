@@ -188,7 +188,7 @@
   }
 }
 
-/* ── Reset ──────────────────────────────────────────────── */
+/* ── Reset ────────────────────────────────________________ */
 *, *::before, *::after {
   box-sizing: border-box; margin: 0; padding: 0;
   -webkit-tap-highlight-color: transparent;
@@ -238,13 +238,17 @@ body {
 @media (prefers-color-scheme: light) {
   .topbar { background: rgba(243,243,248,0.9); }
 }
-.nav-title {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-3);
+
+/* Logo styling inside the topbar */
+.topbar-logo {
+  display: flex; align-items: center; text-decoration: none;
 }
+.topbar-logo-img {
+  height: 22px; width: auto; display: block;
+  transition: opacity 0.15s ease;
+}
+.topbar-logo-img:hover { opacity: 0.8; }
+
 .back-btn {
   position: absolute; left: var(--pad); top: 50%; transform: translateY(-50%);
   background: var(--surface-2);
@@ -257,6 +261,7 @@ body {
   border-radius: var(--r);
   transition: background 0.12s, border-color 0.12s;
   font-family: var(--font);
+  text-decoration: none;
 }
 .back-btn::before { content: "←"; font-weight: 400; }
 .back-btn:hover { background: var(--border); border-color: var(--border-2); }
@@ -933,7 +938,10 @@ body {
 
   <div class="screen active" id="screen-home">
     <div class="topbar">
-      <div class="nav-title">WiFi Guide</div>
+      <!-- LOGO IN TOPBAR: Clicking this goes back to landing page -->
+      <a href="https://wifi-guide-one.vercel.app/" class="topbar-logo">
+        <img src="Cchange%20logo%20text.png" alt="Change Logo" class="topbar-logo-img">
+      </a>
     </div>
     
     <div class="hero">
@@ -1315,7 +1323,9 @@ body {
   <div class="screen" id="screen-steps">
     <div class="topbar">
       <button class="back-btn" onclick="goHome()">Back</button>
-      <div class="nav-title" id="nav-brand-title">Router Setup</div>
+      <a href="https://wifi-guide-one.vercel.app/" class="topbar-logo" style="margin: 0 auto;">
+        <img src="Cchange%20logo%20text.png" alt="Change Logo" class="topbar-logo-img">
+      </a>
     </div>
     <div class="step-header-area">
       <div class="step-brand-pill" id="brand-pill-el"></div>
