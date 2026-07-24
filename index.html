@@ -1,47 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S59EEVNY50"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S59EEVNY50');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Change · Fix Your WiFi Traffic Jam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<title>Change · Fix Your WiFi Traffic Jam</title>
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "WiFi Troubleshooting & Channel Guide",
+      "description": "Diagnose WiFi congestion, interference, and buffering, then fix it step-by-step for Netgear, TP-Link, Asus, Arris, Xfinity, Linksys, and more.",
+      "url": "https://wifi-guide-one.vercel.app/"
+    }
+  ]
+}
+</script>
+
 <style>
 /* ═══════════════════════════════════════════════════════════
-   CHANGE LANDING PAGE · 2026 DESIGN SYSTEM
-   Dark Zinc Neutrals · Electric Blue Accents · Bento Layout
+   UNIFIED 2026 DESIGN SYSTEM (LANDING + APP)
    ═══════════════════════════════════════════════════════════ */
 
 :root {
+  scroll-behavior: smooth;
   --bg:        #08080E;
   --bg-2:      #0F0F18;
   --surface:   #141420;
   --surface-2: #1C1C2C;
   --border:    #252535;
   --border-2:  #32324A;
-  
   --text:      #EEEEF8;
   --text-2:    #9898B8;
   --text-3:    #50506A;
-  
   --blue:      #5B9BFF;
   --blue-dim:  #12203E;
   --blue-glow: rgba(91,155,255,0.15);
-  
   --green:     #34D974;  --green-dim:  #0A2618;
   --orange:    #F8A525;  --orange-dim: #2A1A00;
   --red:       #F04E65;  --red-dim:    #2C0A12;
   --purple:    #A78BFA;  --purple-dim: #1C1040;
-  --magenta:   #FF1493;  
   
   --font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --mono: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
   
   --r-2xl: 24px;
   --r-xl:  16px;
   --r-lg:  12px;
   --r:      8px;
+  --r-sm:   4px;
+  
+  --pad:    20px;
+  --pad-lg: 28px;
+  --gap:    12px;
 }
 
 *, *::before, *::after {
@@ -58,463 +82,1000 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Navigation ─────────────────────────────────────────── */
-.nav {
-  position: sticky; top: 0; z-index: 1000;
-  background: rgba(8,8,14,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
-}
-.nav-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.logo {
-  display: flex; align-items: center;
-  text-decoration: none;
-}
-.logo-img {
-  height: 32px;
-  width: auto;
+.screen { display: none; }
+.screen.active {
   display: block;
-  transition: transform 0.15s ease;
+  animation: fadeUp 0.25s cubic-bezier(.16,1,.3,1) forwards;
 }
-.logo:hover .logo-img {
-  transform: scale(1.03);
-}
-
-.nav-links { display: flex; gap: 24px; align-items: center; }
-.nav-link {
-  font-size: 14px; font-weight: 600; color: var(--text-2);
-  text-decoration: none; transition: color 0.15s;
-}
-.nav-link:hover { color: var(--text); }
-.btn-nav {
-  background: var(--surface-2); border: 1px solid var(--border-2);
-  color: var(--text); padding: 8px 16px; border-radius: var(--r);
-  font-size: 13px; font-weight: 700; text-decoration: none;
-  transition: all 0.15s;
-}
-.btn-nav:hover { background: var(--border); border-color: var(--blue); }
-
-@media (max-width: 600px) {
-  .nav-links { display: none; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Hero Section ───────────────────────────────────────── */
-.hero {
-  padding: 80px 24px 60px;
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px; align-items: center;
+/* LANDING PAGE CSS */
+.lp-nav {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(8,8,14,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border); padding: 16px 24px;
 }
-@media (max-width: 850px) {
-  .hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 36px; text-align: center; }
-}
+.lp-nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.lp-logo { display: flex; align-items: center; text-decoration: none; }
+.lp-logo-img { height: 32px; width: auto; display: block; transition: transform 0.15s ease; }
+.lp-logo:hover .lp-logo-img { transform: scale(1.03); }
+.lp-nav-links { display: flex; gap: 24px; align-items: center; }
+.lp-nav-link { font-size: 14px; font-weight: 600; color: var(--text-2); text-decoration: none; transition: color 0.15s; }
+.lp-nav-link:hover { color: var(--text); }
+.lp-btn-nav { background: var(--surface-2); border: 1px solid var(--border-2); color: var(--text); padding: 8px 16px; border-radius: var(--r); font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.15s; }
+.lp-btn-nav:hover { background: var(--border); border-color: var(--blue); }
+@media (max-width: 600px) { .lp-nav-links { display: none; } }
 
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 12px; background: var(--blue-dim);
-  border: 1px solid rgba(91,155,255,0.3); border-radius: 100px;
-  font-size: 12px; font-weight: 700; color: var(--blue);
-  letter-spacing: 0.05em; text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.hero h1 {
-  font-size: clamp(38px, 6vw, 64px);
-  font-weight: 900; letter-spacing: -0.04em;
-  line-height: 1.06; margin-bottom: 20px;
-}
-.hero h1 span {
-  background: linear-gradient(135deg, var(--blue) 0%, #A78BFA 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.hero p {
-  font-size: clamp(16px, 2vw, 19px); color: var(--text-2);
-  margin-bottom: 32px; max-width: 500px;
-}
-@media (max-width: 850px) {
-  .hero p { margin: 0 auto 32px; }
-}
+.lp-hero { padding: 80px 24px 60px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+@media (max-width: 850px) { .lp-hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 36px; text-align: center; } }
+.lp-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--blue-dim); border: 1px solid rgba(91,155,255,0.3); border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; }
+.lp-hero h1 { font-size: clamp(38px, 6vw, 64px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 20px; }
+.lp-hero h1 span { background: linear-gradient(135deg, var(--blue) 0%, #A78BFA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.lp-hero p { font-size: clamp(16px, 2vw, 19px); color: var(--text-2); margin-bottom: 32px; max-width: 500px; }
+@media (max-width: 850px) { .lp-hero p { margin: 0 auto 32px; } }
+.lp-hero-ctas { display: flex; gap: 16px; align-items: center; }
+@media (max-width: 850px) { .lp-hero-ctas { justify-content: center; flex-wrap: wrap; } }
+.lp-btn-primary { background: var(--blue); color: #fff; padding: 16px 28px; border-radius: var(--r-xl); font-size: 15px; font-weight: 800; text-decoration: none; border:none; cursor: pointer; box-shadow: 0 0 25px rgba(91,155,255,0.3); transition: transform 0.15s, box-shadow 0.15s; }
+.lp-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(91,155,255,0.5); }
+.lp-btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 16px 24px; border-radius: var(--r-xl); font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.15s, border-color 0.15s; }
+.lp-btn-secondary:hover { background: var(--surface-2); border-color: var(--border-2); }
 
-.hero-ctas {
-  display: flex; gap: 16px; align-items: center;
-}
-@media (max-width: 850px) {
-  .hero-ctas { justify-content: center; flex-wrap: wrap; }
-}
-.btn-primary {
-  background: var(--blue); color: #fff;
-  padding: 16px 28px; border-radius: var(--r-xl);
-  font-size: 15px; font-weight: 800; text-decoration: none;
-  box-shadow: 0 0 25px rgba(91,155,255,0.3);
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(91,155,255,0.5); }
-.btn-secondary {
-  background: var(--surface); border: 1px solid var(--border);
-  color: var(--text); padding: 16px 24px; border-radius: var(--r-xl);
-  font-size: 15px; font-weight: 700; text-decoration: none;
-  transition: background 0.15s, border-color 0.15s;
-}
-.btn-secondary:hover { background: var(--surface-2); border-color: var(--border-2); }
+.lp-visual { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-2xl); padding: 24px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+.lp-visual-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+.lp-visual-title { font-size: 13px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.lp-status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+.lp-visual-tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+.lp-traffic-chart { display: flex; align-items: flex-end; justify-content: space-between; height: 160px; padding-top: 20px; border-bottom: 1px solid var(--border); }
+.lp-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; position: relative; }
+.lp-bar { width: 60%; max-width: 18px; border-radius: 4px 4px 0 0; transition: height 1s ease; }
+.lp-bar.red { background: var(--red); height: 85%; animation: lpPulseRed 2s infinite alternate; }
+.lp-bar.orange { background: var(--orange); height: 50%; }
+.lp-bar.blue { background: var(--blue); height: 30%; opacity: 0.5; }
+.lp-bar.green { background: var(--green); height: 6px; box-shadow: 0 0 10px var(--green); }
+.lp-bar-num { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-3); margin-top: 8px; }
+@keyframes lpPulseRed { 0% { opacity: 0.8; height: 80%; } 100% { opacity: 1; height: 95%; } }
+.lp-visual-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 12px; }
+.lp-pill-free { background: var(--green-dim); color: var(--green); font-weight: 800; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(52,217,116,0.3); }
 
-/* ── Animated Hero Graphic ──────────────────────────────── */
-.hero-visual {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-2xl); padding: 24px;
-  position: relative; overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-.visual-header {
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px;
-}
-.visual-title { font-size: 13px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; }
-.status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
-.visual-tag { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+.lp-section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+.lp-section-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+.lp-section-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.lp-section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }
+.lp-section-desc { font-size: 16px; color: var(--text-2); }
+.lp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 850px) { .lp-grid-3 { grid-template-columns: 1fr; } }
+.lp-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: border-color 0.2s; }
+.lp-card:hover { border-color: var(--border-2); }
+.lp-card-icon { width: 48px; height: 48px; border-radius: var(--r-lg); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 8px; }
+.lp-card h3 { font-size: 19px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+.lp-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+.lp-card-tag { display: inline-flex; align-self: flex-start; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; margin-top: auto; }
+.lp-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .lp-steps-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .lp-steps-grid { grid-template-columns: 1fr; } }
+.lp-step-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 24px; position: relative; }
+.lp-step-num { font-family: var(--font-mono); font-size: 12px; font-weight: 800; color: var(--blue); background: var(--blue-dim); width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.lp-step-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+.lp-step-card p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.lp-bento { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+@media (max-width: 850px) { .lp-bento { grid-template-columns: 1fr; } }
+.lp-bento-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-2xl); padding: 36px; display: flex; flex-direction: column; justify-content: space-between; }
+.lp-bento-card.highlight { background: linear-gradient(145deg, var(--surface) 0%, var(--blue-dim) 100%); border-color: rgba(91,155,255,0.3); }
+.lp-bento-title { font-size: 24px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }
+.lp-bento-desc { font-size: 15px; color: var(--text-2); max-width: 400px; margin-bottom: 24px; }
+.lp-channel-showcase { display: flex; gap: 12px; margin-top: 20px; }
+.lp-ch-box { flex: 1; background: var(--surface-2); border: 1px solid var(--border-2); border-radius: var(--r-lg); padding: 16px; text-align: center; }
+.lp-ch-box.best { background: var(--green-dim); border-color: rgba(52,217,116,0.4); color: var(--green); }
+.lp-ch-num { font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+.lp-ch-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+.lp-brands-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-2); padding: 40px 24px; text-align: center; }
+.lp-brands-lbl { font-size: 11px; font-weight: 800; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
+.lp-brands-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 32px; max-width: 900px; margin: 0 auto; }
+.lp-brand-item { font-size: 18px; font-weight: 800; color: var(--text-2); display: flex; align-items: center; gap: 8px; opacity: 0.7; }
+.lp-cta-banner { margin: 80px 24px; max-width: 1100px; margin-left: auto; margin-right: auto; background: linear-gradient(135deg, var(--surface-2) 0%, #121A30 100%); border: 1px solid var(--border-2); border-radius: var(--r-2xl); padding: 64px 32px; text-align: center; position: relative; overflow: hidden; }
+.lp-cta-banner h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
+.lp-cta-banner p { font-size: 17px; color: var(--text-2); max-width: 500px; margin: 0 auto 32px; }
+.lp-footer { border-top: 1px solid var(--border); padding: 40px 24px; font-size: 13px; color: var(--text-3); text-align: center; }
+.lp-footer a { color: var(--text-2); text-decoration: none; font-weight: 600; }
+.lp-footer a:hover { color: var(--blue); }
 
-.traffic-chart {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  height: 160px; padding-top: 20px; border-bottom: 1px solid var(--border);
-}
-.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; position: relative; }
-.bar { width: 60%; max-width: 18px; border-radius: 4px 4px 0 0; transition: height 1s ease; }
-.bar.red { background: var(--red); height: 85%; animation: pulseRed 2s infinite alternate; }
-.bar.orange { background: var(--orange); height: 50%; }
-.bar.blue { background: var(--blue); height: 30%; opacity: 0.5; }
-.bar.green { background: var(--green); height: 6px; box-shadow: 0 0 10px var(--green); }
-.bar-num { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--text-3); margin-top: 8px; }
+/* UTILITY APP CSS */
+.app-shell { width: 100%; min-height: 100vh; }
+@media (min-width: 768px) { .app-shell { background: var(--bg-2); } }
 
-@keyframes pulseRed {
-  0% { opacity: 0.8; height: 80%; }
-  100% { opacity: 1; height: 95%; }
-}
+.app { max-width: 560px; margin: 0 auto; min-height: 100vh; background: var(--bg); position: relative; padding-bottom: 80px; }
+@media (min-width: 768px) { .app { max-width: 1080px; box-shadow: none; } }
+@media (min-width: 1200px) { .app { max-width: 1200px; } }
 
-.visual-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 16px; font-size: 12px;
-}
-.pill-free { background: var(--green-dim); color: var(--green); font-weight: 800; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(52,217,116,0.3); }
+.topbar { position: sticky; top: 0; z-index: 100; height: 54px; display: flex; align-items: center; justify-content: center; background: rgba(8,8,14,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+@media (min-width: 768px) { .topbar { padding: 0 48px; } }
+.topbar-logo { display: flex; align-items: center; text-decoration: none; cursor:pointer; }
+.topbar-logo-img { height: 22px; width: auto; display: block; transition: opacity 0.15s ease; }
+.topbar-logo-img:hover { opacity: 0.8; }
+.nav-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+.back-btn { position: absolute; left: var(--pad); top: 50%; transform: translateY(-50%); background: var(--surface-2); border: 1px solid var(--border-2); color: var(--blue); font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: var(--r); font-family: var(--font); }
+@media (min-width: 768px) { .back-btn { left: 48px; } }
+.back-btn::before { content: "←"; font-weight: 400; }
+.back-btn:hover { background: var(--border); }
 
-/* ── Section Structure ──────────────────────────────────── */
-.section {
-  padding: 80px 24px;
-  max-width: 1100px; margin: 0 auto;
-}
-.section-header {
-  text-align: center; max-width: 600px; margin: 0 auto 56px;
-}
-.section-eyebrow {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
-}
-.section-title {
-  font-size: clamp(28px, 4vw, 42px); font-weight: 900;
-  letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px;
-}
-.section-desc { font-size: 16px; color: var(--text-2); }
+.app-hero { padding: 52px var(--pad-lg) 36px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 20px; }
+@media (min-width: 768px) { .app-hero { padding: 72px 48px 48px; } .app-hero h1 { font-size: 58px; } .app-hero p { font-size: 18px; } }
+@media (max-width: 450px) { .app-hero { flex-direction: column-reverse; align-items: flex-start; gap: 24px; padding-top: 36px; } .app-hero-video { width: 100%; height: auto; } }
+.app-hero-content { flex: 1; }
+.app-hero-video { width: 120px; height: 120px; border-radius: var(--r-xl); border: 1px solid var(--border-2); flex-shrink: 0; object-fit: cover; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+.app-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+.app-hero-eyebrow::before { content: ""; display: block; width: 18px; height: 2px; background: var(--blue); border-radius: 2px; }
+.app-hero h1 { font-size: 38px; font-weight: 900; letter-spacing: -0.04em; line-height: 1.08; color: var(--text); margin-bottom: 14px; }
+.app-hero p { font-size: 16px; font-weight: 400; color: var(--text-2); line-height: 1.65; }
+.app-hero-tip { margin-top: 22px; padding: 14px 16px; background: var(--blue-glow); border: 1px solid var(--blue-dim); border-radius: var(--r-lg); font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.app-hero-tip strong { font-weight: 700; color: var(--text); }
+.app-hero-skip-btn { margin-top: 22px; display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; background: var(--blue); color: #fff; border: none; border-radius: var(--r-xl); font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.14s, transform 0.14s; }
+.app-hero-skip-btn:hover { opacity: 0.86; transform: translateY(-1px); }
 
-/* ── Grid Cards (The Problem) ───────────────────────────── */
-.grid-3 {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-}
-@media (max-width: 850px) { .grid-3 { grid-template-columns: 1fr; } }
+.app-section { padding: 32px var(--pad) 0; }
+@media (min-width: 768px) { .app-section { padding: 36px 48px 0; } }
+.app-section-label { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 16px; }
 
-.card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-xl); padding: 28px;
-  display: flex; flex-direction: column; gap: 16px;
-  transition: border-color 0.2s;
-}
-.card:hover { border-color: var(--border-2); }
-.card-icon {
-  width: 48px; height: 48px; border-radius: var(--r-lg);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; margin-bottom: 8px;
-}
-.card h3 { font-size: 19px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
-.card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
-.card-tag {
-  display: inline-flex; align-self: flex-start;
-  font-size: 11px; font-weight: 800; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 6px; margin-top: auto;
-}
+.diagnosis-list { display: flex; flex-direction: column; gap: var(--gap); }
+@media (min-width: 768px) { .diagnosis-list { display: grid; grid-template-columns: 1fr 1fr; } }
+.diagnosis-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px; display: flex; gap: 14px; align-items: flex-start; transition: border-color 0.14s; }
+.diagnosis-item:hover { border-color: var(--border-2); }
+.diagnosis-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.diagnosis-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.diagnosis-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.diagnosis-fix { font-size: 11px; font-weight: 700; margin-top: 7px; text-decoration: none; display: inline-block; }
 
-/* ── How It Works Steps ─────────────────────────────────── */
-.steps-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+.speedtest-steps { display: flex; flex-direction: column; }
+@media (min-width: 768px) {
+  .speedtest-steps { display: grid; grid-template-columns: 1fr 1fr; }
+  .speedtest-step:first-child { border-radius: var(--r-xl) 0 0 0; border-right: none; }
+  .speedtest-step:nth-child(2){ border-radius: 0 var(--r-xl) 0 0; }
+  .speedtest-step:nth-child(3){ border-right: none; }
+  .speedtest-step:last-child { border-radius: 0 0 var(--r-xl) 0; }
 }
-@media (max-width: 900px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 500px) { .steps-grid { grid-template-columns: 1fr; } }
+.speedtest-step { background: var(--surface); padding: 16px; display: flex; gap: 14px; align-items: flex-start; border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.speedtest-step:first-child { border-top: 1px solid var(--border); border-radius: var(--r-xl) var(--r-xl) 0 0; }
+.speedtest-step:last-child { border-radius: 0 0 var(--r-xl) var(--r-xl); }
+.speedtest-num { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: var(--teal-dim); color: var(--teal); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.speedtest-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.speedtest-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.speedtest-link { display: inline-block; margin-top: 7px; font-size: 12px; font-weight: 700; color: var(--blue); text-decoration: none; }
 
-.step-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-xl); padding: 24px; position: relative;
-}
-.step-num {
-  font-family: var(--mono); font-size: 12px; font-weight: 800;
-  color: var(--blue); background: var(--blue-dim);
-  width: 28px; height: 28px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.step-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
-.step-card p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.chart-widget { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 22px 20px 26px; }
+.chart-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.chart-icon { width: 32px; height: 32px; border-radius: var(--r); background: var(--blue-dim); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.chart-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.y-axis-guide { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.bar-chart { display: flex; align-items: flex-end; justify-content: space-between; height: 108px; border-bottom: 1px solid var(--border-2); margin-bottom: 26px; }
+@media (min-width: 768px) { .bar-chart { height: 130px; } }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative; height: 100%; }
+.bar-count { font-size: 10px; font-weight: 700; color: var(--text-3); margin-bottom: 3px; }
+.bar { width: 58%; max-width: 13px; border-radius: 3px 3px 0 0; }
+.bar.max { background: var(--red); height: 100%; }
+.bar.high { background: var(--orange); height: 65%; }
+.bar.med { background: var(--blue); height: 40%; opacity: 0.6; }
+.bar.low { background: var(--blue); height: 15%; opacity: 0.3; }
+.bar.empty { background: var(--green); height: 4px; box-shadow: 0 0 8px var(--green); }
+.bar-label { font-size: 10px; font-weight: 600; color: var(--text-3); position: absolute; bottom: -20px; width: 100%; text-align: center; }
+.x-axis-title { text-align: center; font-size: 9px; font-weight: 700; color: var(--text-3); text-transform: uppercase; margin-bottom: 16px; margin-top:-4px;}
+.col-highlight .bar-label, .col-highlight .bar-count { color: var(--green); font-weight: 800; }
+.col-congested .bar-label, .col-congested .bar-count { color: var(--red); font-weight: 800; }
+.chart-caption { font-size: 13px; color: var(--text-2); line-height: 1.65; border-top: 1px solid var(--border); padding-top: 16px; }
 
-/* ── Bento Grid (Features) ──────────────────────────────── */
-.bento {
-  display: grid; grid-template-columns: 3fr 2fr; gap: 20px;
-}
-@media (max-width: 850px) { .bento { grid-template-columns: 1fr; } }
+.channel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+@media (min-width: 768px) { .channel-grid { grid-template-columns: repeat(6, 1fr); } }
+.channel-pill { text-align: center; padding: 16px 8px; border-radius: var(--r-lg); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; }
+.channel-pill .ch { font-size: 24px; font-weight: 900; }
+.channel-pill .cl { font-size: 10px; font-weight: 700; text-transform: uppercase; }
+.pill-best { background: var(--green-dim); border-color: rgba(52,217,116,0.35); color: var(--green); }
+.pill-avoid { background: var(--orange-dim); border-color: rgba(248,165,37,0.35); color: var(--orange); }
+.pill-bad { background: var(--red-dim); border-color: rgba(240,78,101,0.35); color: var(--red); }
 
-.bento-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-2xl); padding: 36px;
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.bento-card.highlight {
-  background: linear-gradient(145deg, var(--surface) 0%, var(--blue-dim) 100%);
-  border-color: rgba(91,155,255,0.3);
-}
-.bento-title { font-size: 24px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }
-.bento-desc { font-size: 15px; color: var(--text-2); max-width: 400px; margin-bottom: 24px; }
+.band-compare { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
+@media (min-width: 768px) { .band-compare { grid-template-columns: 1fr 1fr; } }
+.band-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 20px; }
+.band-badge { display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px; border-radius: var(--r-sm); font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 16px; }
+.band-badge.two { background: var(--orange-dim); color: var(--orange); }
+.band-badge.five { background: var(--blue-dim); color: var(--blue); }
+.band-stat { margin-bottom: 12px; }
+.band-stat-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-3); margin-bottom: 2px; }
+.band-stat-val { font-size: 15px; font-weight: 700; color: var(--text); }
+.band-pro { font-size: 12px; color: var(--green); padding: 2px 0; }
+.band-con { font-size: 12px; color: var(--red); padding: 2px 0; }
 
-.channel-showcase {
-  display: flex; gap: 12px; margin-top: 20px;
-}
-.ch-box {
-  flex: 1; background: var(--surface-2); border: 1px solid var(--border-2);
-  border-radius: var(--r-lg); padding: 16px; text-align: center;
-}
-.ch-box.best { background: var(--green-dim); border-color: rgba(52,217,116,0.4); color: var(--green); }
-.ch-num { font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
-.ch-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+.interference-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
+@media (min-width: 768px) { .interference-grid { grid-template-columns: repeat(4, 1fr); } }
+.interference-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 15px; display: flex; flex-direction: column; gap: 6px; }
+.interference-icon { font-size: 20px; }
+.interference-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.interference-desc { font-size: 12px; color: var(--text-2); line-height: 1.45; }
+.severity-row { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+.severity-dot { width: 6px; height: 6px; border-radius: 50%; }
+.severity-dot.high { background: var(--red); }
+.severity-dot.med { background: var(--orange); }
+.severity-dot.low { background: var(--blue); }
+.severity-label { font-size: 10px; font-weight: 800; text-transform: uppercase; }
+.severity-label.high { color: var(--red); }
+.severity-label.med { color: var(--orange); }
+.severity-label.low { color: var(--blue); }
 
-/* ── Marquee / Brands ───────────────────────────────────── */
-.brands-section {
-  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  background: var(--bg-2); padding: 40px 24px; text-align: center;
-}
-.brands-lbl { font-size: 11px; font-weight: 800; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
-.brands-list {
-  display: flex; justify-content: center; flex-wrap: wrap; gap: 32px;
-  max-width: 900px; margin: 0 auto;
-}
-.brand-item {
-  font-size: 18px; font-weight: 800; color: var(--text-2);
-  display: flex; align-items: center; gap: 8px; opacity: 0.7;
-}
+.placement-list { display: flex; flex-direction: column; gap: var(--gap); }
+@media (min-width: 768px) { .placement-list { display: grid; grid-template-columns: 1fr 1fr; } }
+.placement-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px; display: flex; gap: 14px; align-items: flex-start; }
+.placement-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.placement-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.placement-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; margin-bottom: 9px; }
+.tag-do { background: var(--green-dim); color: var(--green); padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 800; text-transform: uppercase;}
+.tag-dont { background: var(--red-dim); color: var(--red); padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 800; text-transform: uppercase;}
 
-/* ── Bottom CTA ─────────────────────────────────────────── */
-.cta-banner {
-  margin: 80px 24px; max-width: 1100px; margin-left: auto; margin-right: auto;
-  background: linear-gradient(135deg, var(--surface-2) 0%, #121A30 100%);
-  border: 1px solid var(--border-2); border-radius: var(--r-2xl);
-  padding: 64px 32px; text-align: center; position: relative; overflow: hidden;
-}
-.cta-banner h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
-.cta-banner p { font-size: 17px; color: var(--text-2); max-width: 500px; margin: 0 auto 32px; }
+.inset-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+.inset-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.inset-row:last-child { border-bottom: none; }
+.inset-label { font-weight: 600; color: var(--text); }
+.inset-value { color: var(--text-2); text-align: right; }
+.inset-value.link { color: var(--blue); font-weight: 700; text-decoration:none; }
 
-/* ── Footer ─────────────────────────────────────────────── */
-.footer {
-  border-top: 1px solid var(--border); padding: 40px 24px;
-  font-size: 13px; color: var(--text-3); text-align: center;
-}
-.footer a { color: var(--text-2); text-decoration: none; font-weight: 600; }
-.footer a:hover { color: var(--blue); }
+.login-note { font-size: 12px; color: var(--text-3); margin-top: 12px; padding: 0 2px; line-height: 1.65; }
+.login-note strong { color: var(--text-2); font-weight: 600; }
+
+.brand-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
+@media (min-width: 768px) { .brand-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1200px) { .brand-grid { grid-template-columns: repeat(5, 1fr); } }
+.brand-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 18px; cursor: pointer; display: flex; flex-direction: column; gap: 14px; transition: border-color 0.14s, transform 0.12s; user-select: none; }
+.brand-card:hover { border-color: var(--border-2); }
+.brand-card:active { transform: scale(0.97); }
+.brand-icon-wrap { width: 44px; height: 44px; border-radius: var(--r-lg); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; }
+.brand-name { font-size: 15px; font-weight: 700; color: var(--text); }
+.brand-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+.step-header-area { padding: 32px var(--pad) 22px; border-bottom: 1px solid var(--border); }
+@media (min-width: 768px) { .step-header-area { padding: 40px 48px 26px; } }
+.step-brand-pill { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--r-sm); font-size: 10px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+.step-main-title { font-size: 32px; font-weight: 900; letter-spacing: -0.04em; color: var(--text); line-height: 1.1; }
+@media (min-width: 768px) { .step-main-title { font-size: 40px; } }
+
+#steps-container { display:flex; flex-direction:column; gap:var(--gap); }
+@media (min-width: 768px) { #steps-container { display: grid; grid-template-columns: 1fr 1fr; } }
+.step-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 20px; transition: border-color 0.14s; }
+.step-num-badge { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-bottom: 12px; }
+.step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.step-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.code-block { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 10px 14px; margin-top: 10px; font-family: var(--font-mono); font-size: 13px; }
+
+.mockup-wrap { margin-top: 14px; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); }
+.mockup-label { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; padding: 7px 12px; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+.router-ui { background: var(--surface); color: var(--text); }
+.safari-bar { background: var(--bg-2); padding: 8px 12px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+.safari-addr { background: var(--surface); border-radius: var(--r); padding: 5px 0; width: 80%; text-align: center; font-size: 12px; font-family: var(--font-mono); color: var(--text-2); border: 1px solid var(--border); }
+.ui-body { padding: 14px 16px; }
+.ui-section { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+.ui-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.ui-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.ui-label { color: var(--text-2); font-size: 13px; }
+.ui-value { color: var(--text); font-size: 13px; font-weight: 600; }
+.ui-btn-mock { display: block; padding: 9px 16px; border-radius: var(--r); font-size: 13px; font-weight: 700; color: #fff; width: 100%; text-align: center; margin-top: 10px; }
+
+.done-card { background: var(--green-dim); border: 1px solid rgba(52,217,116,0.4); border-radius: var(--r-xl); padding: 32px 20px; text-align: center; }
+@media (min-width: 768px) { .done-card { max-width: 500px; margin: 0 auto; } }
+.done-icon { font-size: 40px; margin-bottom: 12px; }
+.done-title { font-size: 20px; font-weight: 800; color: var(--green); }
+.done-sub { font-size: 14px; color: var(--green); opacity: 0.75; margin-top: 6px; line-height: 1.5; }
+
+@media (min-width: 768px) { #affiliate-el { display: grid; grid-template-columns: 1fr 1fr; } #affiliate-el .affiliate-item:nth-child(odd) { border-right: 1px solid var(--border); } }
+.affiliate-item { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.affiliate-item:last-child { border-bottom: none; }
+.aff-icon { font-size: 20px; width: 40px; height: 40px; background: var(--surface-2); border-radius: var(--r); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.aff-info { flex: 1; }
+.aff-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.aff-sub { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+.aff-btn { padding: 7px 14px; background: var(--surface-2); border: 1px solid var(--border-2); color: var(--blue); font-size: 12px; font-weight: 700; border-radius: var(--r); text-decoration: none; white-space: nowrap; transition: background 0.12s; }
+.aff-btn:hover { background: var(--border); }
+
+.tip-box, .warn-box, .info-box { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: var(--r-lg); font-size: 13px; line-height: 1.6; margin-top: var(--gap); }
+.box-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+.tip-box { background: var(--blue-glow); border: 1px solid var(--blue-dim); color: var(--text-2); }
+.warn-box { background: var(--orange-dim); border: 1px solid rgba(248,165,37,0.4); color: var(--orange); }
+.info-box { background: var(--teal-dim); border: 1px solid rgba(32,212,238,0.3); color: var(--teal); }
+
+.affiliate-disclosure { font-size: 11px; color: var(--text-3); text-align: center; padding: 24px var(--pad); line-height: 1.6; }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <img src="changelogo.png" alt="Change Logo" class="logo-img">
-    </a>
-    <div class="nav-links">
-      <a href="#problem" class="nav-link">The Problem</a>
-      <a href="#how-it-works" class="nav-link">How It Works</a>
-      <a href="#features" class="nav-link">Spectrum Rules</a>
-    </div>
-    <!-- FIXED LINK: Absolute path to the utility -->
-    <a href="https://wifi-guide-one.vercel.app/app.html" class="btn-nav">Launch Utility →</a>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="badge">⚡ 2026 UI/UX Case Study Utility</div>
-    <h1>Your WiFi isn't broken. It's just in a <span>traffic jam.</span></h1>
-    <p>Most routers default to crowded neighborhood channels. Diagnose buffering, avoid invisible frequency interference, and switch to a clear lane in 4 simple steps.</p>
-    <div class="hero-ctas">
-      <!-- FIXED LINK: Absolute path to the utility -->
-      <a href="https://wifi-guide-one.vercel.app/app.html" class="btn-primary">Fix My WiFi Now →</a>
-      <a href="#problem" class="btn-secondary">See How It Works</a>
-    </div>
-  </div>
+<!-- SCREEN 1: LANDING PAGE -->
+<div class="screen active" id="screen-landing">
   
-  <!-- Animated UI Graphic -->
-  <div class="hero-visual">
-    <div class="visual-header">
-      <div class="visual-title"><span class="status-dot"></span> Neighborhood Spectrum Scan</div>
-      <div class="visual-tag">2.4 GHz BAND</div>
+  <nav class="lp-nav">
+    <div class="lp-nav-inner">
+      <a href="#" class="lp-logo">
+        <img src="Cchange%20logo%20text.png" alt="Change Logo" class="lp-logo-img">
+      </a>
+      <div class="lp-nav-links">
+        <a href="#problem" class="lp-nav-link">The Problem</a>
+        <a href="#how-it-works" class="lp-nav-link">How It Works</a>
+        <a href="#features" class="lp-nav-link">Spectrum Rules</a>
+      </div>
+      <button onclick="openApp()" class="lp-btn-nav" style="cursor:pointer;">Launch Utility →</button>
     </div>
-    <div class="traffic-chart">
-      <div class="bar-col"><div class="bar orange"></div><div class="bar-num">1</div></div>
-      <div class="bar-col"><div class="bar blue"></div><div class="bar-num">2</div></div>
-      <div class="bar-col"><div class="bar blue"></div><div class="bar-num">3</div></div>
-      <div class="bar-col"><div class="bar green" style="height:8px;"></div><div class="bar-num" style="color:var(--green);font-weight:900;">4</div></div>
-      <div class="bar-col"><div class="bar blue"></div><div class="bar-num">5</div></div>
-      <div class="bar-col"><div class="bar red"></div><div class="bar-num" style="color:var(--red);font-weight:900;">6</div></div>
-      <div class="bar-col"><div class="bar blue"></div><div class="bar-num">7</div></div>
-      <div class="bar-col"><div class="bar orange"></div><div class="bar-num">8</div></div>
-      <div class="bar-col"><div class="bar green" style="height:8px;"></div><div class="bar-num" style="color:var(--green);font-weight:900;">9</div></div>
-      <div class="bar-col"><div class="bar blue"></div><div class="bar-num">10</div></div>
-      <div class="bar-col"><div class="bar orange"></div><div class="bar-num">11</div></div>
-    </div>
-    <div class="visual-footer">
-      <span style="color:var(--text-2);">Channel 6 Congestion: <strong style="color:var(--red);">High (14 Routers)</strong></span>
-      <span class="pill-free">CH 4 FREE</span>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<!-- Supported Hardware Marquee -->
-<section class="brands-section">
-  <div class="brands-lbl">Standardized 4-Step Workflows Built For All Major Gateways</div>
-  <div class="brands-list">
-    <div class="brand-item">🛡️ Netgear Nighthawk</div>
-    <div class="brand-item">📡 TP-Link Archer</div>
-    <div class="brand-item">🐉 Asus ROG</div>
-    <div class="brand-item">⚡ Arris SURFboard</div>
-    <div class="brand-item">🟣 Xfinity Gateway</div>
-    <div class="brand-item">🔵 Linksys Velop</div>
-  </div>
-</section>
-
-<!-- The Problem Section -->
-<section class="section" id="problem">
-  <div class="section-header">
-    <div class="section-eyebrow">The Invisible Problem</div>
-    <h2 class="section-title">Why you're lagging on a 1 Gigabit internet plan.</h2>
-    <p class="section-desc">When video buffers or ping spikes, users blame their ISP. In reality, 80% of home connection drops are caused by local environment bottlenecks.</p>
-  </div>
-  
-  <div class="grid-3">
-    <div class="card">
-      <div class="card-icon" style="background:var(--red-dim);color:var(--red);">🚗</div>
-      <h3>Channel Overlap</h3>
-      <p>Routers are lazy. When set to "Auto," almost every router in an apartment building selects Channel 6. Your data packets must wait in line behind your neighbors' traffic.</p>
-      <div class="card-tag" style="background:var(--red-dim);color:var(--red);">Symptom: Evening Lag</div>
-    </div>
-    
-    <div class="card">
-      <div class="card-icon" style="background:var(--orange-dim);color:var(--orange);">⚡</div>
-      <h3>Radio Interference</h3>
-      <p>Microwaves, cordless DECT phones, baby monitors, and Bluetooth accessories all broadcast on the exact same 2.4 GHz frequency spectrum as your WiFi.</p>
-      <div class="card-tag" style="background:var(--orange-dim);color:var(--orange);">Symptom: Random Drops</div>
-    </div>
-    
-    <div class="card">
-      <div class="card-icon" style="background:var(--blue-dim);color:var(--blue);">🧱</div>
-      <h3>Physical Obstruction</h3>
-      <p>Wood, brick, and metal absorb radio waves. Hiding a router inside a TV media console or behind a kitchen appliance can destroy up to 50% of your signal range.</p>
-      <div class="card-tag" style="background:var(--blue-dim);color:var(--blue);">Symptom: Dead Zones</div>
-    </div>
-  </div>
-</section>
-
-<!-- How It Works Section -->
-<section class="section" id="how-it-works" style="background: var(--bg-2); max-width: 100%; padding: 80px 24px;">
-  <div style="max-width: 1100px; margin: 0 auto;">
-    <div class="section-header">
-      <div class="section-eyebrow">The Standardized Solution</div>
-      <h2 class="section-title">Bridging the "Simplification Gap"</h2>
-      <p class="section-desc">We translated 11 obscure, complex manufacturer instruction manuals into a single, universal 4-step workflow that works on any device.</p>
-    </div>
-    
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h4>Isolate the Issue</h4>
-        <p>Run our recommended wired-vs-wireless speed test routine to instantly prove whether the problem is your ISP or your WiFi spectrum.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h4>Scan Your Airspace</h4>
-        <p>Use a free mobile analyzer to inspect your room's radio frequencies and visually spot the exact channel numbers your neighbors are avoiding.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <h4>Select Your Brand</h4>
-        <p>Choose your router brand to get direct gateway IPs, default administrator passwords, and direct links to Apple and Android companion apps.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <h4>Visual Navigation</h4>
-        <p>Follow custom browser mockups showing the exact menus and settings fields for your router firmware. No technical guesswork required.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Bento Grid Features Section -->
-<section class="section" id="features">
-  <div class="section-header">
-    <div class="section-eyebrow">Spectrum Intelligence</div>
-    <h2 class="section-title">Built for speed. Designed for clarity.</h2>
-    <p class="section-desc">Every recommendation in Change is grounded in radio frequency engineering principles, simplified for everyday consumers.</p>
-  </div>
-  
-  <div class="bento">
-    <!-- Highlight Card: 1-6-11 Rule -->
-    <div class="bento-card highlight">
-      <div>
-        <div class="badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(52,217,116,0.3);">Golden Rule of WiFi</div>
-        <h3 class="bento-title">The 1, 6, 11 Non-Overlapping Mandate</h3>
-        <p class="bento-desc">In the 2.4 GHz band, channels 1 through 11 overlap heavily. Selecting intermediate channels like 3, 4, or 8 causes overlapping interference with multiple adjacent networks simultaneously. Change trains users to strictly choose 1, 6, or 11.</p>
-      </div>
-      <div class="channel-showcase">
-        <div class="ch-box best"><div class="ch-num">1</div><div class="ch-lbl">Best</div></div>
-        <div class="ch-box"><div class="ch-num" style="color:var(--red);">3</div><div class="ch-lbl" style="color:var(--red);">Overlap</div></div>
-        <div class="ch-box best"><div class="ch-num">6</div><div class="ch-lbl">Best</div></div>
-        <div class="ch-box"><div class="ch-num" style="color:var(--red);">8</div><div class="ch-lbl" style="color:var(--red);">Overlap</div></div>
-        <div class="ch-box best"><div class="ch-num">11</div><div class="ch-lbl">Best</div></div>
+  <section class="lp-hero">
+    <div>
+      <div class="lp-badge">⚡ 2026 UI/UX Case Study Utility</div>
+      <h1>Your WiFi isn't broken. It's just in a <span>traffic jam.</span></h1>
+      <p>Most routers default to crowded neighborhood channels. Diagnose buffering, avoid invisible frequency interference, and switch to a clear lane in 4 simple steps.</p>
+      <div class="lp-hero-ctas">
+        <button onclick="openApp()" class="lp-btn-primary">Fix My WiFi Now →</button>
+        <a href="#problem" class="lp-btn-secondary">See How It Works</a>
       </div>
     </div>
     
-    <!-- Secondary Card: 5GHz vs 2.4GHz -->
-    <div class="bento-card">
-      <div>
-        <div class="badge">Band Strategy</div>
-        <h3 class="bento-title">2.4 GHz vs 5 GHz Strategy</h3>
-        <p class="bento-desc">Stop guessing which network to join. We break down the physics: use 5 GHz for high-speed gaming and 4K streaming close to the router; use 2.4 GHz to push signals through heavy brick walls and to smart home IoT devices.</p>
+    <div class="lp-visual">
+      <div class="lp-visual-header">
+        <div class="lp-visual-title"><span class="lp-status-dot"></span> Neighborhood Spectrum Scan</div>
+        <div class="lp-visual-tag">2.4 GHz BAND</div>
       </div>
-      <div style="margin-top: 24px; padding: 16px; background:var(--surface-2); border-radius:var(--r-lg); font-size:13px; font-family:var(--mono); color:var(--text-2);">
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>5 GHz Band:</span> <strong style="color:var(--blue);">25+ Clean Channels</strong></div>
-        <div style="display:flex; justify-content:space-between;"><span>2.4 GHz Band:</span> <strong style="color:var(--orange);">3 Clean Channels</strong></div>
+      <div class="lp-traffic-chart">
+        <div class="lp-bar-col"><div class="lp-bar orange"></div><div class="lp-bar-num">1</div></div>
+        <div class="lp-bar-col"><div class="lp-bar blue"></div><div class="lp-bar-num">2</div></div>
+        <div class="lp-bar-col"><div class="lp-bar blue"></div><div class="lp-bar-num">3</div></div>
+        <div class="lp-bar-col"><div class="lp-bar green" style="height:8px;"></div><div class="lp-bar-num" style="color:var(--green);font-weight:900;">4</div></div>
+        <div class="lp-bar-col"><div class="lp-bar blue"></div><div class="lp-bar-num">5</div></div>
+        <div class="lp-bar-col"><div class="lp-bar red"></div><div class="lp-bar-num" style="color:var(--red);font-weight:900;">6</div></div>
+        <div class="lp-bar-col"><div class="lp-bar blue"></div><div class="lp-bar-num">7</div></div>
+        <div class="lp-bar-col"><div class="lp-bar orange"></div><div class="lp-bar-num">8</div></div>
+        <div class="lp-bar-col"><div class="lp-bar green" style="height:8px;"></div><div class="lp-bar-num" style="color:var(--green);font-weight:900;">9</div></div>
+        <div class="lp-bar-col"><div class="lp-bar blue"></div><div class="lp-bar-num">10</div></div>
+        <div class="lp-bar-col"><div class="lp-bar orange"></div><div class="lp-bar-num">11</div></div>
+      </div>
+      <div class="lp-visual-footer">
+        <span style="color:var(--text-2);">Channel 6 Congestion: <strong style="color:var(--red);">High (14 Routers)</strong></span>
+        <span class="lp-pill-free">CH 4 FREE</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Bottom CTA -->
-<div class="cta-banner">
-  <h2>Ready to take control of your network?</h2>
-  <p>Stop resetting your router and hoping for the best. Launch the utility and switch to a clear frequency channel today.</p>
-  <!-- FIXED LINK: Absolute path to the utility -->
-  <a href="https://wifi-guide-one.vercel.app/app.html" class="btn-primary" style="display:inline-block;">Launch Free Utility →</a>
+  <section class="lp-brands-section">
+    <div class="lp-brands-lbl">Standardized 4-Step Workflows Built For All Major Gateways</div>
+    <div class="lp-brands-list">
+      <div class="lp-brand-item">🛡️ Netgear Nighthawk</div>
+      <div class="lp-brand-item">📡 TP-Link Archer</div>
+      <div class="lp-brand-item">🐉 Asus ROG</div>
+      <div class="lp-brand-item">⚡ Arris SURFboard</div>
+      <div class="lp-brand-item">🟣 Xfinity Gateway</div>
+      <div class="lp-brand-item">🔵 Linksys Velop</div>
+    </div>
+  </section>
+
+  <section class="lp-section" id="problem">
+    <div class="lp-section-header">
+      <div class="lp-section-eyebrow">The Invisible Problem</div>
+      <h2 class="lp-section-title">Why you're lagging on a 1 Gigabit internet plan.</h2>
+      <p class="lp-section-desc">When video buffers or ping spikes, users blame their ISP. In reality, 80% of home connection drops are caused by local environment bottlenecks.</p>
+    </div>
+    <div class="lp-grid-3">
+      <div class="lp-card">
+        <div class="lp-card-icon" style="background:var(--red-dim);color:var(--red);">🚗</div>
+        <h3>Channel Overlap</h3>
+        <p>Routers are lazy. When set to "Auto," almost every router in an apartment building selects Channel 6. Your data packets must wait in line behind your neighbors' traffic.</p>
+        <div class="lp-card-tag" style="background:var(--red-dim);color:var(--red);">Symptom: Evening Lag</div>
+      </div>
+      <div class="lp-card">
+        <div class="lp-card-icon" style="background:var(--orange-dim);color:var(--orange);">⚡</div>
+        <h3>Radio Interference</h3>
+        <p>Microwaves, cordless phones, baby monitors, and Bluetooth all broadcast on the exact same 2.4 GHz frequency spectrum as your WiFi.</p>
+        <div class="lp-card-tag" style="background:var(--orange-dim);color:var(--orange);">Symptom: Random Drops</div>
+      </div>
+      <div class="lp-card">
+        <div class="lp-card-icon" style="background:var(--blue-dim);color:var(--blue);">🧱</div>
+        <h3>Physical Obstruction</h3>
+        <p>Wood, brick, and metal absorb radio waves. Hiding a router inside a TV media console or behind a kitchen appliance can destroy up to 50% of your signal range.</p>
+        <div class="lp-card-tag" style="background:var(--blue-dim);color:var(--blue);">Symptom: Dead Zones</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section" id="how-it-works" style="background: var(--bg-2); max-width: 100%;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="lp-section-header">
+        <div class="lp-section-eyebrow">The Standardized Solution</div>
+        <h2 class="lp-section-title">Bridging the "Simplification Gap"</h2>
+        <p class="lp-section-desc">We translated 11 obscure, complex manufacturer instruction manuals into a single, universal 4-step workflow that works on any device.</p>
+      </div>
+      <div class="lp-steps-grid">
+        <div class="lp-step-card">
+          <div class="lp-step-num">01</div>
+          <h4>Isolate the Issue</h4>
+          <p>Run our recommended wired-vs-wireless speed test routine to instantly prove whether the problem is your ISP or your WiFi spectrum.</p>
+        </div>
+        <div class="lp-step-card">
+          <div class="lp-step-num">02</div>
+          <h4>Scan Your Airspace</h4>
+          <p>Use a free mobile analyzer to inspect your room's radio frequencies and visually spot the exact channel numbers your neighbors are avoiding.</p>
+        </div>
+        <div class="lp-step-card">
+          <div class="lp-step-num">03</div>
+          <h4>Select Your Brand</h4>
+          <p>Choose your router brand to get direct gateway IPs, default administrator passwords, and direct links to Apple and Android companion apps.</p>
+        </div>
+        <div class="lp-step-card">
+          <div class="lp-step-num">04</div>
+          <h4>Visual Navigation</h4>
+          <p>Follow custom browser mockups showing the exact menus and settings fields for your router firmware. No technical guesswork required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section" id="features">
+    <div class="lp-section-header">
+      <div class="lp-section-eyebrow">Spectrum Intelligence</div>
+      <h2 class="lp-section-title">Built for speed. Designed for clarity.</h2>
+      <p class="lp-section-desc">Every recommendation in Change is grounded in radio frequency engineering principles, simplified for everyday consumers.</p>
+    </div>
+    <div class="lp-bento">
+      <div class="lp-bento-card highlight">
+        <div>
+          <div class="lp-badge" style="background:var(--green-dim);color:var(--green);border-color:rgba(52,217,116,0.3);">Golden Rule of WiFi</div>
+          <h3 class="lp-bento-title">The 1, 6, 11 Mandate</h3>
+          <p class="lp-bento-desc">In the 2.4 GHz band, channels overlap heavily. Selecting intermediate channels like 3 or 8 causes interference with multiple adjacent networks. Change trains users to strictly choose 1, 6, or 11.</p>
+        </div>
+        <div class="lp-channel-showcase">
+          <div class="lp-ch-box best"><div class="lp-ch-num">1</div><div class="lp-ch-lbl">Best</div></div>
+          <div class="lp-ch-box"><div class="lp-ch-num" style="color:var(--red);">3</div><div class="lp-ch-lbl" style="color:var(--red);">Overlap</div></div>
+          <div class="lp-ch-box best"><div class="lp-ch-num">6</div><div class="lp-ch-lbl">Best</div></div>
+          <div class="lp-ch-box"><div class="lp-ch-num" style="color:var(--red);">8</div><div class="lp-ch-lbl" style="color:var(--red);">Overlap</div></div>
+          <div class="lp-ch-box best"><div class="lp-ch-num">11</div><div class="lp-ch-lbl">Best</div></div>
+        </div>
+      </div>
+      <div class="lp-bento-card">
+        <div>
+          <div class="lp-badge">Band Strategy</div>
+          <h3 class="lp-bento-title">2.4 GHz vs 5 GHz</h3>
+          <p class="lp-bento-desc">We break down the physics: use 5 GHz for high-speed gaming close to the router; use 2.4 GHz to push signals through heavy brick walls and to smart home devices.</p>
+        </div>
+        <div style="margin-top: 24px; padding: 16px; background:var(--surface-2); border-radius:var(--r-lg); font-size:13px; font-family:var(--font-mono); color:var(--text-2);">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>5 GHz Band:</span> <strong style="color:var(--blue);">25+ Clean Channels</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span>2.4 GHz Band:</span> <strong style="color:var(--orange);">3 Clean Channels</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lp-cta-banner">
+    <h2>Ready to take control of your network?</h2>
+    <p>Stop resetting your router and hoping for the best. Launch the utility and switch to a clear frequency channel today.</p>
+    <button onclick="openApp()" class="lp-btn-primary" style="display:inline-block;">Launch Free Utility →</button>
+  </div>
+
+  <footer class="lp-footer">
+    <p>Change · A UI/UX Technical Communication Case Study.</p>
+    <p style="margin-top: 8px;">Designed & Developed by Rob Mackay · Powered by the 2026 Design System.</p>
+  </footer>
 </div>
 
-<!-- Footer -->
-<footer class="footer">
-  <p>Change · A UI/UX Technical Communication Case Study.</p>
-  <p style="margin-top: 8px;">Designed & Developed by <a href="https://wifi-guide-one.vercel.app/app.html" target="_blank">Rob Mackay</a> · Powered by the 2026 Design System.</p>
-</footer>
 
+<!-- UTILITY APP SHELL -->
+<div id="app-shell" class="app-shell" style="display: none;">
+  <div class="app">
+
+    <!-- UTILITY HOME SCREEN -->
+    <div class="screen" id="screen-home">
+      <div class="topbar">
+        <a href="#" onclick="goLanding(); return false;" class="topbar-logo">
+          <img src="Cchange%20logo%20text.png" alt="Change Logo" class="topbar-logo-img">
+        </a>
+      </div>
+      
+      <div class="app-hero">
+        <div class="app-hero-content">
+          <div class="app-hero-eyebrow">WiFi Troubleshooting Guide</div>
+          <h1>Fix your slow WiFi.</h1>
+          <p>Diagnose congestion, interference, and buffering — then fix it step by step.</p>
+          <div class="app-hero-tip">
+            <strong>Quick Tip:</strong> Most routers have the default login credentials printed on a sticker on the back or bottom of the device. Check there before trying anything else.
+          </div>
+          <button class="app-hero-skip-btn" onclick="document.getElementById('brand-guide').scrollIntoView({behavior:'smooth'});">
+            Skip to Router Brand Guide ↓
+          </button>
+        </div>
+        <video class="app-hero-video" autoplay loop muted playsinline>
+          <source src="router-animation.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="app-section">
+        <div class="app-section-label">What's Causing Your Buffering?</div>
+        <div class="diagnosis-list">
+          <div class="diagnosis-item">
+            <div class="diagnosis-icon" style="background:var(--red-dim);">📡</div>
+            <div>
+              <div class="diagnosis-title">Channel Congestion</div>
+              <div class="diagnosis-desc">Neighbors sharing the same WiFi channel. Speeds drop when multiple routers fight for the same frequency space.</div>
+              <a href="#channel-guide" class="diagnosis-fix" style="color:var(--red);">Fix → Change your channel below</a>
+            </div>
+          </div>
+          <div class="diagnosis-item">
+            <div class="diagnosis-icon" style="background:var(--orange-dim);">⚡</div>
+            <div>
+              <div class="diagnosis-title">Physical Interference</div>
+              <div class="diagnosis-desc">Appliances, walls, and other devices radiating on similar frequencies. Can cause sudden drops even with no neighbors nearby.</div>
+              <a href="#interference-guide" class="diagnosis-fix" style="color:var(--orange);">Fix → See interference guide below</a>
+            </div>
+          </div>
+          <div class="diagnosis-item">
+            <div class="diagnosis-icon" style="background:var(--purple-dim);">🌐</div>
+            <div>
+              <div class="diagnosis-title">ISP Throttling</div>
+              <div class="diagnosis-desc">Your internet provider intentionally slowing certain traffic. If your wired speed test is also slow, this is the likely cause.</div>
+              <a href="#speedtest-guide" class="diagnosis-fix" style="color:var(--purple);">Fix → Run speed test wired vs wireless</a>
+            </div>
+          </div>
+          <div class="diagnosis-item">
+            <div class="diagnosis-icon" style="background:var(--blue-dim);">📶</div>
+            <div>
+              <div class="diagnosis-title">Weak Signal / Poor Placement</div>
+              <div class="diagnosis-desc">Router too far away, or signal blocked by concrete, metal, or appliances. The device gets a weak signal and buffers constantly.</div>
+              <a href="#placement-guide" class="diagnosis-fix" style="color:var(--blue);">Fix → See placement guide below</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-section" id="speedtest-guide">
+        <div class="app-section-label">Speed Test — Diagnose First</div>
+        <div class="speedtest-steps">
+          <div class="speedtest-step">
+            <div class="speedtest-num">1</div>
+            <div>
+              <div class="speedtest-title">Test Wired (Ethernet)</div>
+              <div class="speedtest-desc">Plug your computer directly into the router with an ethernet cable, then run a speed test. This isolates whether the problem is your internet plan or your WiFi.</div>
+              <a class="speedtest-link" href="https://fast.com" target="_blank">fast.com →</a>
+            </div>
+          </div>
+          <div class="speedtest-step">
+            <div class="speedtest-num">2</div>
+            <div>
+              <div class="speedtest-title">Test Wireless, Same Room</div>
+              <div class="speedtest-desc">Disconnect ethernet and run the same test on WiFi while standing next to the router. If speeds drop significantly, your router may be struggling.</div>
+            </div>
+          </div>
+          <div class="speedtest-step">
+            <div class="speedtest-num">3</div>
+            <div>
+              <div class="speedtest-title">Test From Problem Spot</div>
+              <div class="speedtest-desc">Run the test from the room where buffering happens. Compare this result to the same-room WiFi test. A big gap means signal loss, not congestion.</div>
+            </div>
+          </div>
+          <div class="speedtest-step">
+            <div class="speedtest-num">4</div>
+            <div>
+              <div class="speedtest-title">Compare Against Your Plan</div>
+              <div class="speedtest-desc">Your wired speed should be close to what you're paying for. If wired is also slow, call your ISP — this is a throttling or line issue, not a WiFi issue.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-section" id="channel-guide">
+        <div class="app-section-label">Finding a Free Channel</div>
+        <div class="chart-widget">
+          <div class="chart-header">
+            <div class="chart-icon">📊</div>
+            <div class="chart-title">Neighborhood Traffic Example</div>
+          </div>
+          <div class="y-axis-guide"><span style="font-size: 14px;">↑</span> Taller Bar = More Users on Channel</div>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar-count">8</div><div class="bar high"></div><div class="bar-label">1</div></div>
+            <div class="bar-col"><div class="bar-count">2</div><div class="bar low"></div><div class="bar-label">2</div></div>
+            <div class="bar-col"><div class="bar-count">5</div><div class="bar med"></div><div class="bar-label">3</div></div>
+            <div class="bar-col col-highlight"><div style="font-size: 9px; position:absolute; top:-24px; color:var(--green); font-weight:800;">FREE</div><div class="bar-count">0</div><div class="bar empty"></div><div class="bar-label">4</div></div>
+            <div class="bar-col"><div class="bar-count">1</div><div class="bar low"></div><div class="bar-label">5</div></div>
+            <div class="bar-col col-congested"><div style="font-size: 9px; position:absolute; top:-24px; color:var(--red); font-weight:800;">BAD</div><div class="bar-count">14</div><div class="bar max"></div><div class="bar-label">6</div></div>
+            <div class="bar-col"><div class="bar-count">2</div><div class="bar low"></div><div class="bar-label">7</div></div>
+            <div class="bar-col"><div class="bar-count">6</div><div class="bar med"></div><div class="bar-label">8</div></div>
+            <div class="bar-col col-highlight"><div style="font-size: 9px; position:absolute; top:-24px; color:var(--green); font-weight:800;">FREE</div><div class="bar-count">0</div><div class="bar empty"></div><div class="bar-label">9</div></div>
+            <div class="bar-col"><div class="bar-count">1</div><div class="bar low"></div><div class="bar-label">10</div></div>
+            <div class="bar-col"><div class="bar-count">4</div><div class="bar med"></div><div class="bar-label">11</div></div>
+          </div>
+          <div class="x-axis-title">WiFi Channel (1–11)</div>
+          <div class="chart-caption">Channels 1, 6, and 11 are recommended because they don't overlap with each other. <strong>Stick to these three.</strong> Use a WiFi Analyzer app to find which of 1, 6, or 11 has the least traffic in your area.</div>
+        </div>
+      </div>
+
+      <div class="app-section">
+        <div class="app-section-label">2.4 GHz Reference</div>
+        <div class="channel-grid">
+          <div class="channel-pill pill-best"><span class="ch">1</span><span class="cl">Best</span></div>
+          <div class="channel-pill pill-best"><span class="ch">6</span><span class="cl">Best</span></div>
+          <div class="channel-pill pill-best"><span class="ch">11</span><span class="cl">Best</span></div>
+          <div class="channel-pill pill-avoid"><span class="ch">3</span><span class="cl">Avoid</span></div>
+          <div class="channel-pill pill-avoid"><span class="ch">8</span><span class="cl">Avoid</span></div>
+          <div class="channel-pill pill-bad"><span class="ch">—</span><span class="cl">Overlap</span></div>
+        </div>
+      </div>
+
+      <div class="app-section">
+        <div class="app-section-label">2.4 GHz vs 5 GHz — Which to Use?</div>
+        <div class="band-compare">
+          <div class="band-card">
+            <div class="band-badge two">2.4 GHz</div>
+            <div class="band-stat"><div class="band-stat-label">Range</div><div class="band-stat-val">Long ✓</div></div>
+            <div class="band-stat"><div class="band-stat-label">Speed</div><div class="band-stat-val">Moderate</div></div>
+            <div class="band-pro">✓ Penetrates walls better</div>
+            <div class="band-con">✗ Very congested in apartments</div>
+          </div>
+          <div class="band-card">
+            <div class="band-badge five">5 GHz</div>
+            <div class="band-stat"><div class="band-stat-label">Range</div><div class="band-stat-val">Shorter</div></div>
+            <div class="band-stat"><div class="band-stat-label">Speed</div><div class="band-stat-val">Fast ✓</div></div>
+            <div class="band-pro">✓ Far less congested</div>
+            <div class="band-con">✗ Blocked by thick walls</div>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="box-icon">📡</div>
+          <div>5 GHz channels 36, 40, 44, 48, 149, 153, 157, 161 are the safest picks — they don't require radar scanning (DFS) and are available on all routers.</div>
+        </div>
+      </div>
+
+      <div class="app-section" id="interference-guide">
+        <div class="app-section-label">Common Interference Sources</div>
+        <div class="interference-grid">
+          <div class="interference-card">
+            <div class="interference-icon">📟</div><div class="interference-name">Microwave Oven</div>
+            <div class="interference-desc">Operates on 2.4 GHz. Can completely disrupt WiFi when running.</div>
+            <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+          </div>
+          <div class="interference-card">
+            <div class="interference-icon">📞</div><div class="interference-name">Cordless Phone</div>
+            <div class="interference-desc">Older 2.4 GHz DECT phones broadcast on the same band.</div>
+            <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+          </div>
+          <div class="interference-card">
+            <div class="interference-icon">🏢</div><div class="interference-name">Neighbor Routers</div>
+            <div class="interference-desc">Overlapping channels from nearby networks. Worse in apartments.</div>
+            <div><span class="severity-dot severity-high"></span><span class="severity-label high">High</span></div>
+          </div>
+          <div class="interference-card">
+            <div class="interference-icon">🪟</div><div class="interference-name">Concrete / Metal</div>
+            <div class="interference-desc">Walls, floors, and metal studs absorb and reflect signals.</div>
+            <div><span class="severity-dot severity-med"></span><span class="severity-label med">Medium</span></div>
+          </div>
+        </div>
+        <div class="warn-box">
+          <div class="box-icon">⚠️</div>
+          <div>If buffering spikes exactly when your microwave runs, interference — not congestion — is your problem. Switching to 5 GHz is the fastest fix.</div>
+        </div>
+      </div>
+
+      <div class="app-section" id="placement-guide">
+        <div class="app-section-label">Router Placement</div>
+        <div class="placement-list">
+          <div class="placement-item">
+            <div class="placement-emoji">🏔️</div>
+            <div>
+              <div class="placement-title">Place It High and Central</div>
+              <div class="placement-desc">WiFi signals radiate outward and downward. A shelf or high table in the center of your home covers more area.</div>
+              <span class="tag-do">Do This</span>
+            </div>
+          </div>
+          <div class="placement-item">
+            <div class="placement-emoji">📦</div>
+            <div>
+              <div class="placement-title">Don't Hide It in a Cabinet</div>
+              <div class="placement-desc">Enclosures block signal significantly. Wood, metal, and cabinet walls reduce range by 30–50%.</div>
+              <span class="tag-dont">Avoid</span>
+            </div>
+          </div>
+          <div class="placement-item">
+            <div class="placement-emoji">🧱</div>
+            <div>
+              <div class="placement-title">Minimize Wall Crossings</div>
+              <div class="placement-desc">Concrete and brick are the worst. Position your router so fewer walls separate it from your devices.</div>
+              <span class="tag-do">Do This</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-section">
+        <div class="app-section-label">ISP Gateway Directory</div>
+        <div class="inset-group">
+          <div class="inset-row">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 32px; height: 32px; background: var(--red-dim); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">XF</div>
+              <span class="inset-label" style="font-weight: 500;">Xfinity</span>
+            </div>
+            <a href="http://10.0.0.1" target="_blank" class="inset-value link">10.0.0.1 →</a>
+          </div>
+          <div class="inset-row">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 32px; height: 32px; background: var(--blue-dim); color: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">AT</div>
+              <span class="inset-label" style="font-weight: 500;">AT&T</span>
+            </div>
+            <a href="http://192.168.1.254" target="_blank" class="inset-value link">192.168.1.254 →</a>
+          </div>
+          <div class="inset-row">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 32px; height: 32px; background: var(--purple-dim); color: var(--purple); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">SP</div>
+              <span class="inset-label" style="font-weight: 500;">Spectrum</span>
+            </div>
+            <a href="http://192.168.1.1" target="_blank" class="inset-value link">192.168.1.1 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE ROUTER GRID CONTAINER -->
+      <div class="app-section" id="brand-guide">
+        <div class="app-section-label">Select Router Brand Guide</div>
+        <div class="brand-grid" id="brand-grid"></div>
+      </div>
+
+      <div class="affiliate-disclosure">As an Amazon Associate I earn from qualifying purchases.</div>
+    </div>
+
+    <!-- UTILITY INSTRUCTIONS SCREEN -->
+    <div class="screen" id="screen-steps">
+      <div class="topbar">
+        <button class="back-btn" onclick="goHome()">Back</button>
+        <span id="nav-brand-title" class="nav-title" style="margin:0 auto 0 var(--pad);">Router Setup</span>
+        <a href="#" onclick="goLanding(); return false;" class="topbar-logo" style="position:absolute; right:var(--pad);">
+          <img src="Cchange%20logo%20text.png" alt="Change Logo" class="topbar-logo-img">
+        </a>
+      </div>
+      <div class="step-header-area">
+        <div class="step-brand-pill" id="brand-pill-el"></div>
+        <h1 class="step-main-title">Change Channel</h1>
+      </div>
+      <div class="app-section">
+        <div class="inset-group" id="info-bars-el"></div>
+        <div class="login-note"><span style="font-weight: 600;">Note:</span> Manufacturers print exact login information on a sticker on the back of the device.</div>
+      </div>
+      <div class="app-section">
+        <div class="app-section-label" style="margin-left:0;">Instructions</div>
+        <div id="steps-container"></div>
+      </div>
+      <div class="app-section" id="tip-section"></div>
+      <div class="app-section" id="warn-section"></div>
+      <div class="app-section">
+        <div class="done-card">
+          <div class="done-icon">✓</div>
+          <div class="done-title">You're all set</div>
+          <div class="done-sub">Your router will restart briefly. Reconnect to experience faster speeds.</div>
+        </div>
+      </div>
+      <div class="app-section">
+        <div class="app-section-label" style="margin-left:0;">Top Hardware Upgrades</div>
+        <div class="inset-group" id="affiliate-el"></div>
+      </div>
+      <div class="affiliate-disclosure">Contains affiliate links. As an Amazon Associate I earn from qualifying purchases.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// SPA Navigation Handlers
+function openApp() {
+  document.getElementById('screen-landing').classList.remove('active');
+  document.getElementById('app-shell').style.display = 'block';
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('screen-steps').classList.remove('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function goHome() {
+  document.getElementById('screen-steps').classList.remove('active');
+  document.getElementById('screen-home').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function goLanding() {
+  document.getElementById('app-shell').style.display = 'none';
+  document.getElementById('screen-landing').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// Router Guide Data and Logic
+const AFFILIATE_TAG = 'wifinder03-20';
+
+const AFF = {
+  netgear_cm3000: { name:'Netgear Nighthawk CM3000', sub:'DOCSIS 3.1 Gaming & Multi-Gig', price:'$299', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+CM3000+Cable+Modem&tag=' },
+  netgear_rax50:  { name:'Netgear Nighthawk RAX50', sub:'Standalone High-Power Router Upgrade', price:'$160', url:'https://www.amazon.com/s?k=Netgear+Nighthawk+RAX50+WiFi+6&tag=' },
+  arris_s33:     { name:'Arris SURFboard S33', sub:'Gold-Standard Compact Multi-Gig 2.5G', price:'$199', url:'https://www.amazon.com/s?k=ARRIS+SURFboard+S33+Cable+Modem&tag=' },
+  tplink_ax3000: { name:'TP-Link Archer AX3000', sub:'Value Upgrade Strategic Power Wi-Fi 6', price:'$70', url:'https://www.amazon.com/s?k=TP-Link+Archer+AX3000+Router&tag=' },
+  asus_ax88u:    { name:'Asus RT-AX88U Pro', sub:'Ultimate Gaming Dual 2.5G Network Hub', price:'$260', url:'https://www.amazon.com/s?k=ASUS+RT-AX88U+Pro+Router&tag=' },
+  linksys_velop: { name:'Linksys Velop Intelligent Mesh', sub:'Compact Dual-Node System Core', price:'$110', url:'https://www.amazon.com/s?k=Linksys+Velop+Mesh&tag=' },
+  eero_pro6e:    { name:'Eero Pro 6E Mesh', sub:'Amazon Seamless Deployment Node system', price:'$249', url:'https://www.amazon.com/s?k=eero+Pro+6E+Mesh&tag=' },
+  netspot_tool:  { name:'NetSpot Analyzer Pro', sub:'Spectrum Diagnostic Pro Software', price:'Free Tier', url:'https://www.amazon.com/s?k=WiFi+Analyzer+Software&tag=' }
+};
+
+function buildMockup(type, data, color) {
+  if (!type) return '';
+  if (type === 'login') return `
+    <div class="mockup-wrap">
+      <div class="mockup-label">Browser Preview</div>
+      <div class="router-ui">
+        <div class="safari-bar"><div class="safari-addr">${data.url || '192.168.1.1'}</div></div>
+        <div class="ui-body">
+          <div class="ui-section" style="text-align:center">${data.title||'Router Login'}</div>
+          ${data.userLabel ? `<div class="ui-row"><span class="ui-label">${data.userLabel}</span><span class="ui-value">admin</span></div>` : ''}
+          <div class="ui-row"><span class="ui-label">${data.passLabel||'Password'}</span><span class="ui-value">••••••••</span></div>
+          <div class="ui-btn-mock" style="background:${color}">Log In</div>
+        </div>
+      </div>
+    </div>`;
+  if (type === 'channel') return `
+    <div class="mockup-wrap">
+      <div class="mockup-label">Browser Preview</div>
+      <div class="router-ui">
+        <div class="safari-bar"><div class="safari-addr">${data.url || '192.168.1.1'}</div></div>
+        <div class="ui-body">
+          <div class="ui-section">${data.section||'Wireless Settings'}</div>
+          <div class="ui-row"><span class="ui-label">${data.field||'Channel'}</span><span class="ui-value" style="color:${color}; font-weight:600;">11 &nbsp; ▾</span></div>
+          <div class="ui-btn-mock" style="background:${color}">${data.saveBtn||'Save'}</div>
+        </div>
+      </div>
+    </div>`;
+  return '';
+}
+
+const searchEmptyStep = {
+  t: 'Find a Clear Channel First', 
+  d: 'Use a free WiFi Analyzer app on your phone to check your room. Look for an empty channel number between 1 and 11 to avoid interference.', 
+  code: null, mockup: null
+};
+
+const BRANDS = [
+  { id:'netgear', name:'Netgear', color:'var(--blue)', bg:'var(--blue-dim)', icon:'N',
+    adminUrl:'routerlogin.net', user:'admin', pass:'password', app:'Nighthawk App', appLinks:{ios:'https://apps.apple.com/us/app/netgear-nighthawk/id1016506133',android:'https://play.google.com/store/apps/details?id=com.netgear.netgearup',label:'Nighthawk App'},
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone, tablet, or computer is actively connected to your home Netgear WiFi network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser (like Safari or Chrome) and type routerlogin.net into the top search/address bar.', code:'routerlogin.net', mockup:{type:'login',data:{url:'routerlogin.net',title:'Netgear Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Type in your password to log in. Click on the Advanced tab at the top, then click on Wireless Setup from the side menu.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the "Channel" dropdown menu under the 2.4GHz section. Change it from "Auto" to your chosen clean number and click Apply.', code:null, mockup:{type:'channel',data:{url:'routerlogin.net',section:'Wireless Network Settings (2.4GHz)',field:'Channel',saveBtn:'Apply'}}}],
+    tip:'Turning off "Smart Connect" or "Band Steering" in your router settings lets you change individual channel numbers manually.', warn:null, 
+    affiliates:['netgear_cm3000','netgear_rax50'] },
+
+  { id:'tplink', name:'TP-Link', color:'var(--green)', bg:'var(--green-dim)', icon:'T',
+    adminUrl:'tplinkwifi.net', user:'admin', pass:'admin', app:'TP-Link Tether', appLinks:{ios:'https://apps.apple.com/us/app/tp-link-tether/id599496594',android:'https://play.google.com/store/apps/details?id=com.tplink.tether',label:'TP-Link Tether'},
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or laptop is connected to your home TP-Link network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open your browser and type tplinkwifi.net into the top address bar to pull up the access screen.', code:'tplinkwifi.net', mockup:{type:'login',data:{url:'tplinkwifi.net',title:'TP-Link Admin',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with your password. Click on Advanced at the top, then click Wireless on the left, and choose Wireless Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the Channel dropdown row, change it to your desired manual channel number, and click the Save button.', code:null, mockup:{type:'channel',data:{url:'tplinkwifi.net',section:'Wireless Settings',field:'Channel',saveBtn:'Save'}}}],
+    tip:'Older TP-Link routers use admin / admin as default credentials. Newer models require you to create a custom password on first login.', warn:null, 
+    affiliates:['tplink_ax3000'] },
+
+  { id:'asus', name:'Asus', color:'var(--orange)', bg:'var(--orange-dim)', icon:'A',
+    adminUrl:'router.asus.com', adminFallback:'192.168.1.1', user:'admin', pass:'admin', app:'ASUS Router', appLinks:{ios:'https://apps.apple.com/us/app/asus-router/id1033794044',android:'https://play.google.com/store/apps/details?id=com.asus.aihome',label:'ASUS Router'},
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Ensure your current testing device is actively connected to your home Asus WiFi signal.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a fresh web browser tab and type router.asus.com into the address bar. If that does not load, try 192.168.1.1 instead.', code:'router.asus.com', mockup:{type:'login',data:{url:'router.asus.com',title:'Asus Web Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in, scroll down the left sidebar to the Advanced Settings block, and select Wireless.', code:null, mockup:null},{t:'Change the Channel', d:'Look for the line labeled Control Channel. Switch it from Auto to your new number and click Apply at the bottom.', code:null, mockup:{type:'channel',data:{url:'router.asus.com',section:'Wireless - General Settings',field:'Control Channel',saveBtn:'Apply'}}}],
+    tip:'If your Asus router supports multiple bands, ensure you are editing the 2.4 GHz configuration profile for local channel adjustments.', warn:null, 
+    affiliates:['asus_ax88u'] },
+
+  { id:'arris', name:'Arris', color:'var(--red)', bg:'var(--red-dim)', icon:'AR',
+    adminUrl:'192.168.0.1', user:'admin', pass:'password', app:null, appLinks:null,
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your phone or computer is fully connected to your Arris home wireless network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a web browser window and type 192.168.0.1 into the top link location bar.', code:'192.168.0.1', mockup:{type:'login',data:{url:'192.168.0.1',title:'Arris Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in with the details on your router sticker. Click on System Connection and select Wi-Fi Networks.', code:null, mockup:null},{t:'Change the Channel', d:'Find the 2.4 GHz Radio parameters list. Change the Channel option to your clean chosen number and click Save.', code:null, mockup:{type:'channel',data:{url:'192.168.0.1',section:'2.4 GHz Wireless Radio',field:'Wireless Channel',saveBtn:'Save'}}}],
+    warn:'Some internet service providers lock down custom settings on rented Arris boxes, which might prevent manual channel changing.', 
+    affiliates:['arris_s33'] },
+
+  { id:'xfinity', name:'Xfinity', color:'var(--red)', bg:'var(--red-dim)', icon:'X',
+    adminUrl:'10.0.0.1', user:'admin', pass:'password', app:'Xfinity app', appLinks:{ios:'https://apps.apple.com/us/app/xfinity/id1178765645',android:'https://play.google.com/store/apps/details?id=com.xfinity.digitalhome',label:'Xfinity App'},
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your computer or smartphone is connected to your private home Xfinity network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser screen and type 10.0.0.1 into the top address bar target location.', code:'10.0.0.1', mockup:{type:'login',data:{url:'10.0.0.1',title:'Xfinity Gateway Login',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account codes. Navigate down the left menu to Gateway > Connection > Wi-Fi.', code:null, mockup:null},{t:'Change the Channel', d:'Click the Edit button next to your 2.4 GHz band row, switch Channel Selection to your manual number, and click Save Settings.', code:null, mockup:{type:'channel',data:{url:'10.0.0.1',section:'2.4 GHz Wi-Fi Configuration',field:'Channel Selection',saveBtn:'Save Settings'}}}],
+    warn:'If you use Xfinity Pod mesh expanders or have modern cloud control rules turned on, manual channel adjustments will be locked out.', 
+    affiliates:['arris_s33'] },
+
+  { id:'eero', name:'Eero', color:'var(--indigo)', bg:'var(--purple-dim)', icon:'E',
+    adminUrl:null, user:null, pass:null, app:'Eero App', appLinks:{ios:'https://apps.apple.com/us/app/eero-wifi-router-app/id1117843871',android:'https://play.google.com/store/apps/details?id=com.eero.android',label:'Eero App'},
+    steps:[{t:'Open the Eero App', d:'Eero smart mesh networks do not use an admin website link. Open the official Eero app on your mobile phone.', code:null, mockup:null},{t:'Select Your Network', d:'Tap on your main home network system profile box displayed right on the central dashboard view.', code:null, mockup:null},{t:'Open Advanced Settings', d:'Tap on the lower Settings navigation option menu, scroll down, and select Advanced from the list.', code:null, mockup:null},{t:'Automatic Background Tuning', d:'Eero platforms constantly scan your neighborhood and change channels automatically to fix slow speeds. Manual overrides are completely blocked.', code:null, mockup:null}],
+    tip:'Because Eero balances overlapping channels across multiple nodes automatically, you don\'t need to configure manual channel keys.', warn:null, 
+    affiliates:['eero_pro6e'] },
+
+  { id:'linksys', name:'Linksys', color:'var(--blue)', bg:'var(--blue-dim)', icon:'L',
+    adminUrl:'192.168.1.1', user:'(leave blank)', pass:'admin', app:'Linksys App', appLinks:{ios:'https://apps.apple.com/us/app/linksys/id533516503',android:'https://play.google.com/store/apps/details?id=com.linksys.linksys',label:'Linksys App'},
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active device is securely connected to your personal home Linksys network.', code:null, mockup:null},{t:'Open the Login Page', d:'Open any web browser and type 192.168.1.1 into the top bar link path fields.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Linksys Local Dashboard',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your password keys. Look at the left sidebar menu area, find Router Settings, and click Wi-Fi Settings.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4 GHz wireless setup block, change the Channel selection field to your chosen manual number, and click OK or Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'2.4 GHz Wireless Settings',field:'Channel',saveBtn:'Apply'}}}],
+    tip:'Linksys officially discontinued cloud login support. You must handle changes locally using 192.168.1.1 or myrouter.local.', warn:null, 
+    affiliates:['linksys_velop'] },
+
+  { id:'spectrum', name:'Spectrum', color:'var(--purple)', bg:'var(--purple-dim)', icon:'S',
+    adminUrl:'192.168.1.1', user:'admin', pass:'admin', app:null, appLinks:null,
+    steps:[searchEmptyStep,{t:'Connect to your WiFi', d:'Make sure your active setup device is connected to your standard Spectrum home network link.', code:null, mockup:null},{t:'Open the Login Page', d:'Open a browser tab window and enter 192.168.1.1 into the top structural target bar.', code:'192.168.1.1', mockup:{type:'login',data:{url:'192.168.1.1',title:'Spectrum Portal',userLabel:'Username',passLabel:'Password'}}},{t:'Find Wireless Settings', d:'Log in using your account info. Navigate to the Advanced settings tab sheet and click the main Wireless sub-menu row.', code:null, mockup:null},{t:'Change the Channel', d:'Locate the 2.4G channel profile configuration row, select your clean target channel number, and click Apply.', code:null, mockup:{type:'channel',data:{url:'192.168.1.1',section:'Wireless Configurations',field:'Channel Control',saveBtn:'Apply'}}}],
+    warn:'Newer model Spectrum routers with automated software updates frequently lock out manual browser menu overrides entirely.', 
+    affiliates:['arris_s33'] }
+];
+
+// Initialize Brand Grid Cards
+const grid = document.getElementById('brand-grid');
+if (grid) {
+  BRANDS.forEach((b) => {
+    const card = document.createElement('div');
+    card.className = 'brand-card';
+    card.innerHTML = `<div class="brand-icon-wrap" style="background:${b.bg}; color:${b.color}">${b.icon}</div><div><div class="brand-name">${b.name}</div><div class="brand-sub">${b.app ? 'App & Web' : 'Web Setup'}</div></div>`;
+    card.onclick = () => loadBrand(b);
+    grid.appendChild(card);
+  });
+}
+
+// Load Brand Instructions safely
+function loadBrand(b) {
+  const navTitle = document.getElementById('nav-brand-title');
+  if (navTitle) navTitle.textContent = b.name;
+  
+  const pill = document.getElementById('brand-pill-el');
+  if (pill) {
+    pill.textContent = b.name + ' Router';
+    pill.style.background = b.bg; 
+    pill.style.color = b.color;
+  }
+  
+  const bars = document.getElementById('info-bars-el');
+  const buildHref = (url) => url.startsWith('http') ? url : `http://${url}`;
+  let barsHtml = '';
+  
+  if (b.adminUrl) {
+    const href = buildHref(b.adminUrl);
+    barsHtml += `<div class="inset-row"><span class="inset-label">Admin URL</span><a href="${href}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.adminUrl} →</a></div>`; 
+    if (b.adminFallback) { 
+      const fbHref = buildHref(b.adminFallback); 
+      barsHtml += `<div class="inset-row"><span class="inset-label" style="color:var(--text-3)">Fallback IP</span><a href="${fbHref}" target="_blank" style="color:var(--blue);font-weight:600;text-decoration:none;font-size:15px;">${b.adminFallback} →</a></div>`; 
+    }
+  }
+  if (b.appLinks) {
+    if (b.appLinks.ios) { barsHtml += `<div class="inset-row"><span class="inset-label">iPhone / iPad</span><a href="${b.appLinks.ios}" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none;font-size:14px;">🍎 App →</a></div>`; }
+    if (b.appLinks.android) { barsHtml += `<div class="inset-row"><span class="inset-label">Android</span><a href="${b.appLinks.android}" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none;font-size:14px;">🤖 App →</a></div>`; }
+  }
+  if (b.user) barsHtml += `<div class="inset-row"><span class="inset-label">Default User</span><span class="inset-value">${b.user}</span></div>`;
+  if (b.pass) barsHtml += `<div class="inset-row"><span class="inset-label">Default Pass</span><span class="inset-value">${b.pass}</span></div>`;
+  if (bars) bars.innerHTML = barsHtml;
+  
+  const container = document.getElementById('steps-container');
+  if (container) {
+    container.innerHTML = '';
+    b.steps.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'step-card';
+      const codeHref = s.code ? buildHref(s.code) : null;
+      card.innerHTML = `<div class="step-num-badge" style="background:${b.bg}; color:${b.color}">${i+1}</div><div class="step-title">${s.t}</div><div class="step-desc">${s.d}</div>${s.code ? `<div class="code-block"><a href="${codeHref}" target="_blank" style="color:${b.color};text-decoration:none;font-family:var(--font-mono);font-size:13px;font-weight:600;">${s.code} →</a></div>` : ''}${s.mockup ? buildMockup(s.mockup.type, s.mockup.data, b.color) : ''}`;
+      container.appendChild(card);
+    });
+  }
+  
+  const tipEl = document.getElementById('tip-section');
+  if (tipEl) tipEl.innerHTML = b.tip ? `<div class="tip-box"><div class="box-icon">💡</div><div>${b.tip}</div></div>` : '';
+  
+  const warnEl = document.getElementById('warn-section');
+  if (warnEl) warnEl.innerHTML = b.warn ? `<div class="warn-box"><div class="box-icon">⚠️</div><div>${b.warn}</div></div>` : '';
+  
+  const affEl = document.getElementById('affiliate-el');
+  if (affEl) {
+    affEl.innerHTML = (b.affiliates||[]).map(key => {
+      const a = AFF[key]; if (!a) return '';
+      const dynamicUrl = `${a.url}${AFFILIATE_TAG}`;
+      return `<div class="affiliate-item"><div class="aff-icon">📦</div><div class="aff-info"><div class="aff-name">${a.name}</div><div class="aff-sub">${a.sub}</div></div><a class="aff-btn" href="${dynamicUrl}" target="_blank">${a.price} →</a></div>`;
+    }).join('');
+  }
+  
+  document.getElementById('screen-home').classList.remove('active');
+  document.getElementById('screen-steps').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  
+  try { history.pushState({screen: 'steps'}, ''); } catch(e) {}
+}
+
+window.addEventListener('popstate', (event) => {
+  document.getElementById('screen-steps').classList.remove('active');
+  document.getElementById('screen-home').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+});
+</script>
+
+<script>
+  window.embeddedChatbotConfig = {
+    chatbotId: "IcWkESBKx8klvqxGcR6X6",
+    domain: "www.chatbase.co"
+  }
+</script>
+<script
+  src="https://www.chatbase.co/embed.min.js"
+  chatbotId="IcWkESBKx8klvqxGcR6X6"
+  domain="www.chatbase.co"
+  defer>
+</script>
 </body>
 </html>
